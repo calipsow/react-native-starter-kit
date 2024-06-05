@@ -15,6 +15,7 @@ import {
 } from '../../styles/partials';
 import { SubmitButton } from '../admin/newsletter/CreateNewsletter';
 
+// create documentation 
 const ModalContext = createContext({
   isModalShown: null,
   showModalAlert: function (title, captionText, onSubmit = null) {},
