@@ -16,7 +16,7 @@ import {
   screenPadding,
 } from '../../../styles/partials';
 import { ModalContext } from '../../provider/ModalProvider';
-
+// TODO FIX THIS METHOD
 const ChangePassword = ({ navigation, route }) => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
