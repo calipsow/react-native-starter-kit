@@ -1,0 +1,5 @@
+// ActionTypes.js
+export const SET_SCROLL_POSITION = 'SET_SCROLL_POSITION';
+export const RESET_SCROLL_TO_TOP = 'RESET_SCROLL_TO_TOP';
+export const TRIGGER_SCROLL_TO_TOP = 'TRIGGER_SCROLL_TO_TOP';
+export const TAB_PRESSED = 'TAB_PRESSED';

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "387763673538",
+    "project_id": "fir-zsw",
+    "storage_bucket": "fir-zsw.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387763673538:android:83259df8a92601ab979e5b",
+        "android_client_info": {
+          "package_name": "com.ZusammenStehenWir"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2hWsIxsLjsW_kSRXVYfmpDMn7t-SetXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

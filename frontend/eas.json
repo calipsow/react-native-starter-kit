@@ -1,0 +1,74 @@
+{
+  "cli": {
+    "version": ">= 7.8.5"
+  },
+  "submit": {
+    "extends": {
+      "extends": "base"
+    },
+    "distribution": {
+      "ios": {
+        "appleId": "dennis_wilke01@protonmail.com",
+        "ascAppId": "6502181270",
+        "appleTeamId": "X26AMYS8UF",
+        "sku": "74CD4FF7-9688-4670-BABC-96B034F810B4",
+        "companyName": "Callipson",
+        "bundleIdentifier": "com.zsw.callipson",
+        "ascApiKeyId": "M53G78642P",
+        "appName": "ZSW",
+        "ascApiKeyIssuerId": "1825cdad-aef7-4552-85e9-01080de301a4",
+        "ascApiKeyPath": "../../private/ios/AuthKey_M53G78642P.p8",
+        "language": "de-DE"
+      }
+    }
+  },
+  "build": {   
+    "preview":{
+      "autoIncrement": true,
+      "extends": "base",
+      "distribution": "internal",
+      "developmentClient": true,
+      "node": "20.8.0",
+      "yarn": "1.22.5",
+      "ios": {                
+        "image": "latest",
+        "simulator": false,
+        "buildConfiguration": "Debug",
+        "scheme": "ZSW"        
+      }
+    },
+    "base": {
+      "yarn": "1.22.5",
+      "node": "20.8.0",
+      "autoIncrement": true,
+      "env": {
+        "EXPO_APPLE_ID": "dennis_wilke01@protonmail.com"
+      },
+      "ios": {
+        "buildConfiguration": "Release",
+        "simulator": true,
+        "resourceClass": "medium",
+        "image": "latest"
+      }
+    },
+    "development": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "staging"
+      }
+    },
+    "staging": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "staging"
+      },
+      "distribution": "internal"
+    },
+    "production": {
+      "extends": "base",
+      "env": {
+        "ENVIRONMENT": "production"
+      }
+    }
+  }
+}

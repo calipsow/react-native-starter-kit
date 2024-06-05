@@ -1,0 +1,61 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Berechtigungen -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Anwendungsdefinition -->
+    <application
+        android:name=".MainApplication"
+        android:label="@string/app_name"
+        android:icon="@drawable/zsw_logo"
+        android:roundIcon="@drawable/zsw_logo"
+        android:allowBackup="false"
+        android:theme="@style/AppTheme">
+
+        <!-- Hauptaktivität - MainActivity Konfiguration -->
+        <activity        
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:label="@string/app_name"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:exported="true">
+
+            <!-- Standard Intent-Filter für die App-Launcher -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+            <!-- Deeplinking-Konfiguration für HTTPS URL -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="zusammen-stehen-wir.de"
+                    android:pathPrefix="/app" />
+            </intent-filter>
+
+            <!-- Intent-Filter für allgemeine HTTP und HTTPS URLs -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+
+            <!-- Intent-Filter für benutzerdefinierte Schema URLs zsw:// -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="zsw" />
+            </intent-filter>
+            
+        </activity>
+    </application>
+</manifest>

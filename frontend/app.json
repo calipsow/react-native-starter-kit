@@ -1,0 +1,92 @@
+{
+  "slug": "zsw",
+  "name": "ZusammenStehenWir",
+  "platforms": [
+    "ios"
+  ],
+  "version": "1.0",
+  "backgroundColor": "#131A27",
+  "notification": {
+    "icon": "./assets/images/logo/alternative-logo.png",
+    "iosDisplayInForeground": true
+  },
+  "orientation": "landscape",
+  "privacy": "hidden",
+  "owner": "calipsow",
+  "ios": {
+    "icon": "./assets/images/logo/alternative-logo.png",
+    "splash": {
+      "backgroundColor": "#131A27",
+      "dark": {
+        "image": "./assets/images/logo/zusammen-stehen-wir-rounded.png",
+        "resizeMode": "contain",
+        "tabletImage": "./assets/images/logo/logo-zsw.png",
+        "backgroundColor": "#131A27"
+      }
+    },
+    "userInterfaceStyle": "dark",
+    "bundleIdentifier": "com.zsw.callipson",
+    "buildNumber": "3",
+    "privacyManifests": {
+      "NSPrivacyCollectedDataTypes": [
+        {
+          "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeCrashData",
+          "NSPrivacyCollectedDataTypeLinked": false,
+          "NSPrivacyCollectedDataTypeTracking": false,
+          "NSPrivacyCollectedDataTypePurposes": [
+            "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+          ]
+        },
+        {
+          "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypePerformanceData",
+          "NSPrivacyCollectedDataTypeLinked": false,
+          "NSPrivacyCollectedDataTypeTracking": false,
+          "NSPrivacyCollectedDataTypePurposes": [
+            "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+          ]
+        },
+        {
+          "NSPrivacyCollectedDataType": "NSPrivacyCollectedDataTypeOtherDiagnosticData",
+          "NSPrivacyCollectedDataTypeLinked": false,
+          "NSPrivacyCollectedDataTypeTracking": false,
+          "NSPrivacyCollectedDataTypePurposes": [
+            "NSPrivacyCollectedDataTypePurposeAppFunctionality"
+          ]
+        }
+      ],
+      "NSPrivacyAccessedAPITypes": [
+        {
+          "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryUserDefaults",
+          "NSPrivacyAccessedAPITypeReasons": [
+            "CA92.1"
+          ]
+        },
+        {
+          "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategorySystemBootTime",
+          "NSPrivacyAccessedAPITypeReasons": [
+            "35F9.1"
+          ]
+        },
+        {
+          "NSPrivacyAccessedAPIType": "NSPrivacyAccessedAPICategoryFileTimestamp",
+          "NSPrivacyAccessedAPITypeReasons": [
+            "C617.1"
+          ]
+        }
+      ]
+    },
+    "associatedDomains": [
+      "zusammen-stehen-wir.de"
+    ]
+  },
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "5255ba1f-773b-4470-b303-cfe6ffeee1d6"
+      }
+    },
+    "ios": {
+      "buildNumber": "6"
+    }
+  }
+}
