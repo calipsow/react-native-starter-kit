@@ -12,11 +12,11 @@ import tabNavigationData from './tabNavigationData';
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabs() {
-  const dispatch = useDispatch();
-  const [lastFocusedTab, setLastFocusedTab] = React.useState('Home');
+  const dispatch = useDispatch(); // remove
+  const [lastFocusedTab, setLastFocusedTab] = React.useState('Home'); // remove
 
   // mainly used to refresh the events feed to scroll back to top on tab press
-  const handlePress = (tabName, e) => {
+  const handlePress = (tabName, e) => { // remove
     if (lastFocusedTab === 'Events' && tabName === 'Events')
       dispatch(triggerScrollToTop(true));
     setLastFocusedTab(e.target.split('-')[0]);
