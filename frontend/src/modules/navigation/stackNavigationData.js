@@ -45,7 +45,7 @@ export const InitAppStackScreens = {
       fontSize: getFontSize(18),
     },
   },
-  'Update App Screen': {
+  'Update App Screen': { // remove
     name: 'Update App Screen',
     component: UpdateAppView,
     headerLeft: headerLeftComponent,
@@ -88,7 +88,7 @@ const StackNavigationData = [
       : undefined,
   },
   {
-    name: 'User Rankings',
+    name: 'User Rankings', // remove
     component: DashBoardView,
     headerLeft: null,
     headerShown: false,
@@ -116,7 +116,7 @@ const StackNavigationData = [
       : undefined,
   },
   {
-    name: 'Statistiken',
+    name: 'Statistiken', // remove
     component: UserStatisticsView,
     headerLeft: headerLeftComponent,
     headerShown: true,
@@ -130,7 +130,7 @@ const StackNavigationData = [
       : undefined,
   },
   {
-    name: 'Blogs',
+    name: 'Blogs', // remove
     component: BlogStackNavigator,
     headerLeft: headerLeftComponent,
     headerBackground: { source: HEADER_BACKGROUND_IMAGE },
@@ -154,7 +154,7 @@ const StackNavigationData = [
     },
   },
   {
-    name: 'Events',
+    name: 'Events', // remove
     component: EventStackNavigator,
     headerLeft: headerLeftComponent,
     headerShown: false,
@@ -166,7 +166,7 @@ const StackNavigationData = [
     },
   },
   {
-    name: 'Geplante Events',
+    name: 'Geplante Events', // remove
     component: SecondaryLocalEventStackNavigator,
     headerLeft: headerLeftComponent,
     headerShown: false,
@@ -190,7 +190,7 @@ const StackNavigationData = [
     },
   },
   {
-    name: 'Suche',
+    name: 'Suche', // remove
     component: SearchStackNavigation,
     headerLeft: headerLeftComponent,
     headerShown: false,
@@ -202,7 +202,7 @@ const StackNavigationData = [
     },
   },
   {
-    name: 'Single Event',
+    name: 'Single Event', // remove
     component: SingleEventView,
     headerLeft: headerLeftComponent,
     headerShown: true,
@@ -216,7 +216,7 @@ const StackNavigationData = [
       : undefined,
   },
   {
-    name: 'Single Article',
+    name: 'Single Article', // remove
     component: SingleArticleView,
     headerLeft: headerLeftComponent,
     headerShown: true,
