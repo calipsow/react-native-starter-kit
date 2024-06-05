@@ -19,7 +19,7 @@ import useFirebaseAnalytics from '../../hooks/analytics/use-firebase-analytics';
 
 const drawerData = [
   {
-    name: 'AGB',
+    name: 'AGB', // translate 
     route: {
       main_screen: 'Settings',
       target_screen: 'Rechtliches Dokument',
@@ -36,7 +36,7 @@ const drawerData = [
     ),
   },
   {
-    name: 'Datenschutz',
+    name: 'Datenschutz', // translate
     route: {
       main_screen: 'Settings',
       target_screen: 'Rechtliches Dokument',
@@ -53,8 +53,8 @@ const drawerData = [
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
-  const [accountCtx, setAccountCtx] = React.useContext(AccountContext);
-  const { user } = useAuthState();
+  const [accountCtx, setAccountCtx] = React.useContext(AccountContext); // remove or document the use of accCTX
+  const { user } = useAuthState(); // remove
 
   return (
     <DrawerContentScrollView
@@ -110,7 +110,7 @@ function CustomDrawerContent(props) {
 }
 
 export default function App() {
-  const { navigationRef, onReady, onRouteStateChange } = useFirebaseAnalytics();
+  const { navigationRef, onReady, onRouteStateChange } = useFirebaseAnalytics(); // document
   return (
     <NavigationContainer
       linking={DEEP_LINKING_CONFIG}
