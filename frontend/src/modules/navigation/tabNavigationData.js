@@ -11,6 +11,7 @@ import EventStackNavigator, {
 } from '../events/EventStack';
 import HomeScreen from '../home/HomeViewContainer';
 
+// implement default fall back route 
 const tabNavigationData = [
   {
     name: 'Home',
