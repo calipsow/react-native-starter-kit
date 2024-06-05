@@ -1,5 +1,7 @@
 # Ship Apps Faster 
 
+Ship your apps in days not months!
+
 ## App Build Ins Default
 
 **Functionalities**
