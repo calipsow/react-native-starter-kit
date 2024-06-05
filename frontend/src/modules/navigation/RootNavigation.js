@@ -21,9 +21,11 @@ import StackNavigationData, {
 
 const Stack = createStackNavigator();
 
+// remove isRunnableAppVersion dependency from navigation 
+// document the navigation logic refer to the deeplink config
 export default function NavigatorView(props) {
   const [accountCtx, setAccountCtx] = useContext(AccountContext);
-  useDeepLinkResolver(accountCtx);
+  useDeepLinkResolver(accountCtx); // document this deep link hook
   const { top } = useSafeArea();
   const { app, auth, db, storage } = useContext(Firebase);
   const { isRunnableAppVersion } = useCheckAppVersionCompatibility();
@@ -53,7 +55,7 @@ export default function NavigatorView(props) {
     );
   };
 
-  useEffect(() => {
+  useEffect(() => { // remove
     if (isRunnableAppVersion !== 'PENDING') console.log(isRunnableAppVersion);
   }, [isRunnableAppVersion]);
 
