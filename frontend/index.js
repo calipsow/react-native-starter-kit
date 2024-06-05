@@ -6,7 +6,7 @@
 import { AppRegistry, Platform } from 'react-native';
 import App, { AppWrapperSafeArea } from './App';
 import { name as appName } from './app.json';
-import { slug as iosAppName } from './app.json';
+import { slug as iosAppName } from './app.json'; // todo same name for ios and android
 import messaging from '@react-native-firebase/messaging';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { isIOS } from './src/constants/constants';
