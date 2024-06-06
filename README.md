@@ -1,6 +1,6 @@
-# Ship Apps Faster 
+# Ship Native
 
-Ship your apps in days not months!
+Ship on mobile in days not months!
 
 ## App Festures
 
