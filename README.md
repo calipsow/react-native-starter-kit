@@ -28,8 +28,9 @@ Ship your apps in days not months!
 - Submitting App to Stores
 
 
-## Premium Pack - Auth Based App
-
+## Premium Pack
+### Authentication Based
+**
 **UI**
 -
 - All Auth Screens
@@ -59,8 +60,10 @@ Ship your apps in days not months!
 
 **Documentations**
 -
+- Setup Google Firebase 
+- App Introduction
 - Setting up Notifications for ios / android
-- 
+
 
 
 
