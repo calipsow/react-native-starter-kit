@@ -10,12 +10,13 @@ import {
 } from 'firebase/auth/react-native';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyB2hWsIxsLjsW_kSRXVYfmpDMn7t-SetXo',
-  authDomain: 'fir-zsw.firebaseapp.com',
-  projectId: 'fir-zsw',
-  storageBucket: 'fir-zsw.appspot.com',
-  messagingSenderId: '387763673538',
-  appId: '1:387763673538:android:83259df8a92601ab979e5b',
+  apiKey: "AIzaSyCmmd2hH5n0iu8-dqvgaRuiY1MUZNh8a1Q",
+  authDomain: "ship-apps-fast.firebaseapp.com",
+  projectId: "ship-apps-fast",
+  storageBucket: "ship-apps-fast.appspot.com",
+  messagingSenderId: "787015893641",
+  appId: "1:787015893641:web:94602c9360ea6c3e337c58",
+  measurementId: "G-W68GGYLSNN"
 };
 
 // Initialisieren von Firebase
