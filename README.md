@@ -2,7 +2,7 @@
 
 Ship your apps in days not months!
 
-## App Build Ins Default
+## App Festures
 
 **Functionalities**
 - Firebase Setup: Storage, Analytics, Firestore, Authentication
@@ -26,6 +26,46 @@ Ship your apps in days not months!
 - Run via Emulator, Run on Device
 - Building App Release iOS / Android
 - Submitting App to Stores
+
+
+## Premium Pack - Auth Based App
+
+**UI**
+-
+- All Auth Screens
+- User Profile
+- Home Content Feed UI
+- Forms
+- Settings
+- Loading, Status, Preview Screens
+- All Components
+- E-Commerce Pages
+- Calendar 
+
+**Features**
+- 
+- Deeplinking Handling (complete set)
+- Push Notification Logic
+- Complete Auth Logic
+- Navigation Logic
+- Firebase Functions (full set)
+- Hooks (Auth related full)
+- Helper (full set)
+- Network Features 
+- React Redux (Ready to use Setup)
+- Firestore DB Hooks (full set) 
+- Authentication Hooks (full set)
+- Google Analytics Setup 
+
+**Documentations**
+-
+- Setting up Notifications for ios / android
+- 
+
+
+
+
+
 
 
 
