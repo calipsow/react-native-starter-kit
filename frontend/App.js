@@ -3,19 +3,12 @@ import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { colors } from './src/styles/colors'; // TODO dark light mode
-
 import { persistor, store } from './src/redux/store';
-
 import { app, auth, db } from './config/firebase-client'; // TODO remove storage by default
 import AppView from './src/modules/AppViewContainer';
-
-import { PermissionsAndroid } from 'react-native';
 import { useSafeArea } from 'react-native-safe-area-context';
-
 import { ModalProvider } from './src/modules/provider/ModalProvider';
-// TODO dont call it that way
-Platform.OS === 'android' &&
-  PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+
 
 export const Firebase = createContext({
   auth: null,
@@ -25,17 +18,14 @@ export const Firebase = createContext({
 
 function App({ top = 0, right = 0 }) {
   const [firebase, setFirebase] = useState({});
-  useEffect(() => {
-    if (firebase.auth && firebase.db && firebase.storage) return; // todo remove storage
-    setFirebase({
-      auth,
-      db,
-      app,
-    });
-  }, [auth, db]); // todo
+  
+  useEffect(() => { // init firebase recources
+    if (firebase.auth && firebase.db) return; 
+    // prettier-ignore
+    setFirebase({auth, db, app});
+  }, [auth, db]);
 
   return (
-
       <ModalProvider>
         <Firebase.Provider value={{ ...firebase }}>
           <Provider store={store}>
