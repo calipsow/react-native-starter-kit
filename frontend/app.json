@@ -1,6 +1,6 @@
 {
-  "slug": "zsw",
-  "name": "ZusammenStehenWir",
+  "slug": "ship-apps-faster",
+  "name": "ShipAppsFaster",
   "platforms": [
     "ios"
   ],
@@ -76,7 +76,7 @@
       ]
     },
     "associatedDomains": [
-      "zusammen-stehen-wir.de"
+      "ship-apps-faster.com"
     ]
   },
   "expo": {
