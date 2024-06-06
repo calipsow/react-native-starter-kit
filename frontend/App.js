@@ -6,7 +6,6 @@ import { colors } from './src/styles/colors'; // TODO dark light mode
 import { persistor, store } from './src/redux/store';
 import { app, auth, db } from './config/firebase-client'; // TODO remove storage by default
 import AppView from './src/modules/AppViewContainer';
-import { useSafeArea } from 'react-native-safe-area-context';
 import { ModalProvider } from './src/modules/provider/ModalProvider';
 
 
@@ -16,7 +15,7 @@ export const Firebase = createContext({
   app: null,
 });
 
-function App({ top = 0, right = 0 }) {
+function App() {
   const [firebase, setFirebase] = useState({});
   
   useEffect(() => { // init firebase recources
@@ -48,8 +47,7 @@ function App({ top = 0, right = 0 }) {
 }
 
 export function AppWrapperSafeArea() {
-  const { top, right } = useSafeArea();
-  return <App top={top} right={right} />;
+  return <App />;
 }
 
 const styles = StyleSheet.create({
