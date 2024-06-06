@@ -12,7 +12,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { isIOS } from './src/constants/constants';
 
 // Register background tasks and handler
-// Usefull for pre- fetching, loading or other tasks while the app is in the background 
+// Usefull for pre- fetching, loading or other tasks while the app is in the background
+// so you can trigger task by sending push messages to the user device 
 // Handle Push Events in the background 
 // You need to enable background tasks for iOS manually with explanation 
 messaging().setBackgroundMessageHandler(async remoteMessage => {
