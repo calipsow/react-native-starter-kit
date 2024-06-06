@@ -1,6 +1,6 @@
 {
-  "slug": "ship-apps-faster",
-  "name": "ShipAppsFaster",
+  "slug": "ship-native",
+  "name": "shipnative",
   "platforms": [
     "ios"
   ],
@@ -76,7 +76,9 @@
       ]
     },
     "associatedDomains": [
-      "ship-apps-faster.com"
+      "shipnative.com",
+      "shipnative.dev",
+      "shipnative.app"
     ]
   },
   "expo": {
