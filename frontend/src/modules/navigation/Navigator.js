@@ -53,8 +53,7 @@ const drawerData = [
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
-  const [accountCtx, setAccountCtx] = React.useContext(AccountContext); // remove or document the use of accCTX
-  const { user } = useAuthState(); // remove
+  const [accountCtx] = React.useContext(AccountContext); // remove or document the use of accCTX
 
   return (
     <DrawerContentScrollView
@@ -65,16 +64,11 @@ function CustomDrawerContent(props) {
         <View style={{ paddingLeft: 0 }}>
           {accountCtx ? (
             <Text style={styles.userName}>
-              {accountCtx?.displayName ||
-                accountCtx?.username ||
-                user?.displayName}
+              {accountCtx?.firebase_auth_data?.displayName}
             </Text>
           ) : (
             <Text style={styles.userName}>Loading..</Text>
           )}
-          <Text style={{ color: '#4BC1FD' }} numberOfLines={1}>
-            {user?.email}
-          </Text>
         </View>
       </View>
       <View style={styles.divider} />

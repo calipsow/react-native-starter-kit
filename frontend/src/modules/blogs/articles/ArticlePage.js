@@ -31,7 +31,7 @@ import {
   subHeaderTextLightGray,
   textBtnDark,
 } from '../../../styles/partials';
-import { DividerCaption } from '../../auth/Signin/Signin';
+import { DividerCaption } from '../../../components/DividerCaption';
 import { COMMENTS } from '../../availableInFullVersion/sample-data';
 import { ModalContext } from '../../provider/ModalProvider';
 import { BackButton } from '../ArticleIndex';

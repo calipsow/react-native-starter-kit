@@ -22,8 +22,8 @@ import {
   smallCaptionTextGray,
 } from '../../../styles/partials';
 import { AccountContext } from '../../AppView';
-import { SubmitButton } from '../../admin/newsletter/CreateNewsletter';
-import { DividerCaption } from '../../auth/Signin/Signin';
+import { SubmitButton } from '../../../components/SubmitButton';
+import { DividerCaption } from '../../../components/DividerCaption';
 import PostedEventSection from './sections/PostedEvents';
 import FBImage from '../../../components/FBImage';
 import { resolveRole } from '../../../hooks/auth/use-auth-listener';
@@ -203,13 +203,6 @@ function Profile({ navigation }) {
             onPress={() => startImageUpload(`public/users/${accountCtx?.uid}`)}
             style={{ paddingHorizontal: 13, marginBottom: 15 }}
             text="Profilbild"
-          />
-          <SubmitButton
-            onPress={() =>
-              navigation.navigate('Statistiken', { user_uid: accountCtx.uid })
-            }
-            style={{ paddingHorizontal: 13, marginBottom: 15 }}
-            text="Statistiken"
           />
         </View>
 

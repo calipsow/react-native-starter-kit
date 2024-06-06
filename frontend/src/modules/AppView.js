@@ -1,4 +1,3 @@
-import { ShopifyCheckoutSheetProvider } from '@shopify/checkout-sheet-kit'; // remove lib
 import React, { createContext, useState } from 'react';
 import useAuthListener from '../hooks/auth/use-auth-listener';
 import useSyncAccountChanges from '../hooks/context/use-change-listener';
@@ -18,9 +17,7 @@ export default function AppView() {
   return (
     <AccountContext.Provider value={[accountContext, setAccountContext]}>
       <ToastProviderWrapper>
-        <ShopifyCheckoutSheetProvider>
           <Navigator onNavigationStateChange={() => {}} />
-        </ShopifyCheckoutSheetProvider>
       </ToastProviderWrapper>
     </AccountContext.Provider>
   );

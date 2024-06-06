@@ -6,17 +6,12 @@ import { colors } from './src/styles/colors'; // TODO dark light mode
 
 import { persistor, store } from './src/redux/store';
 
-import { app, auth, db, storage } from './config/firebase-client'; // TODO remove storage by default
+import { app, auth, db } from './config/firebase-client'; // TODO remove storage by default
 import AppView from './src/modules/AppViewContainer';
 
 import { PermissionsAndroid } from 'react-native';
 import { useSafeArea } from 'react-native-safe-area-context';
-import useCheckAppVersionCompatibility from './src/hooks/app/use-check-app-version-compatibilty'; // TODO remove this dep
-import { BugReportProvider } from './src/modules/bug-report/BugReportProvider'; // TODO remove debug context
-import {
-  BugReportButton,
-  ModalContent,
-} from './src/modules/bug-report/ReportComponents'; // TODO remove 
+
 import { ModalProvider } from './src/modules/provider/ModalProvider';
 // TODO dont call it that way
 Platform.OS === 'android' &&
@@ -25,7 +20,6 @@ Platform.OS === 'android' &&
 export const Firebase = createContext({
   auth: null,
   db: null,
-  storage: null, // todo renove 
   app: null,
 });
 
@@ -36,16 +30,12 @@ function App({ top = 0, right = 0 }) {
     setFirebase({
       auth,
       db,
-      storage, // todo remove
       app,
     });
-  }, [auth, db, storage]); // todo
+  }, [auth, db]); // todo
 
   return (
-    <BugReportProvider>
-      {/* Bug Reporting Formular */}
-      <BugReportButton right={right} top={top} />
-      <ModalContent />
+
       <ModalProvider>
         <Firebase.Provider value={{ ...firebase }}>
           <Provider store={store}>
@@ -63,7 +53,7 @@ function App({ top = 0, right = 0 }) {
           </Provider>
         </Firebase.Provider>
       </ModalProvider>
-    </BugReportProvider>
+
   );
 }
 

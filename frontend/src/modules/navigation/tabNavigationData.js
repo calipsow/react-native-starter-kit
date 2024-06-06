@@ -7,7 +7,7 @@ import { colors } from '../../styles';
 import ProfileStackNavigator from '../account/profile/ProfileStack';
 import BlogStackNavigator from '../blogs/BlogStack';
 import EventStackNavigator, {
-  SecondaryLocalEventStackNavigator,
+
 } from '../events/EventStack';
 import HomeScreen from '../home/HomeViewContainer';
 
@@ -33,18 +33,6 @@ const tabNavigationData = [
         name="newspaper"
         size={getFontSize(33)}
         style={{ padding: getFontSize(2), zIndex: 999 }}
-        color={focused ? colors.bluish : colors.primaryDark}
-      />
-    ),
-  },
-  {
-    name: 'Geplante Events',
-    component: SecondaryLocalEventStackNavigator,
-    icon: focused => (
-      <FontAwesome5
-        name="map-marked-alt"
-        size={getFontSize(30)}
-        style={{ padding: getFontSize(5), zIndex: 999 }}
         color={focused ? colors.bluish : colors.primaryDark}
       />
     ),

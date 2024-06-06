@@ -35,13 +35,13 @@ import {
   smallCaptionTextGray,
 } from '../../../styles/partials';
 import { AccountContext } from '../../AppView';
-import { SubmitButton } from '../../admin/newsletter/CreateNewsletter';
+import { SubmitButton } from '../../../components/SubmitButton';
 import ScreenWrapper from '../../app/ScreenWrapper';
-import { AccountMeta, AccountMetaLoader } from '../../blogs/UI/FeedPost';
+import { AccountMeta } from '../../blogs/UI/FeedPost';
+import { AccountMetaLoader } from '../../blogs/UI/AccountMetaLoader';
 import { ModalContext } from '../../provider/ModalProvider';
 import getDocument from '../../../functions/firestore/get-document-async';
 import { isEqual } from 'lodash';
-import CommentSection from '../../comments/CommentSection';
 
 export const SocialInteractionBadge = ({
   icon = () => <></>,
@@ -566,7 +566,9 @@ const SingleEventView = ({ navigation, route }) => {
               >
                 {buttonDimension && (
                   <Image
-                    src={'https://firebasestorage.googleapis.com/v0/b/fir-zsw.appspot.com/o/public%2Fapp%2Fimages%2Fimage.png?alt=media&token=dc2301c8-1c94-42a4-a30e-ebe2556377fb'}
+                    src={
+                      'https://firebasestorage.googleapis.com/v0/b/fir-zsw.appspot.com/o/public%2Fapp%2Fimages%2Fimage.png?alt=media&token=dc2301c8-1c94-42a4-a30e-ebe2556377fb'
+                    }
                     style={{
                       flex: 1,
                       objectFit: 'cover',

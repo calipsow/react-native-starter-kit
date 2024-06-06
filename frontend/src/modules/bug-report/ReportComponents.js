@@ -12,7 +12,7 @@ import {
 import getFontSize from '../../functions/ui/resolve-relative-font-size';
 import { colors, width } from '../../styles';
 import { mediumHeadlineText } from '../../styles/partials';
-import { SubmitButton } from '../admin/newsletter/CreateNewsletter';
+import { SubmitButton } from '../../components/SubmitButton';
 import { BugReportContext } from './BugReportProvider'; // Kontext importieren
 
 const BugReportButton = React.memo(({ top = 5, right = 0, onPress = null }) => {

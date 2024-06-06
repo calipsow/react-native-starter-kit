@@ -13,16 +13,16 @@ import {
   flexBoxRow,
   mediumHeadlineText,
 } from '../../styles/partials';
-import { SubmitButton } from '../admin/newsletter/CreateNewsletter';
+import { SubmitButton } from '../../components/SubmitButton';
 
-// create documentation 
+// create documentation
 const ModalContext = createContext({
   isModalShown: null,
   showModalAlert: function (title, captionText, onSubmit = null) {},
   showModalConfirmation: function (
-    title,
-    captionText,
-    onCustomEvent,
+    title = '',
+    captionText = '',
+    onCustomEvent = null,
     onCancel = null,
   ) {},
 }); // Kontext erstellen
@@ -42,8 +42,8 @@ const ModalProvider = ({ children }) => {
   };
 
   const showModalConfirmation = (
-    title,
-    captionText,
+    title = '',
+    captionText = '',
     onCustomEvent,
     onCancel = null,
   ) => {

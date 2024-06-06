@@ -10,19 +10,22 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getFontSize from '../../../functions/ui/resolve-relative-font-size';
-import getFriendlyErrorMessage from '../../../helpers/message-from-firebase-error';
 import useResetPassword from '../../../hooks/auth/use-passwd-reset';
-import { colors, fonts } from '../../../styles';
+import { fonts } from '../../../styles';
 import {
   appThemeColor,
   maxWidth,
   screenPadding,
-  smallCaptionTextGray,
 } from '../../../styles/partials';
+import {
+  HintTextCaption,
+  TextCaptionWarning,
+} from '../../../components/TextCaptions';
+import { FormSubmitButton } from '../../../components/SubmitButton';
 
 export default function ResetPassword() {
   const navigation = useNavigation();
-  const { resetPassword, emailSent, error } = useResetPassword();
+  const { resetPassword, emailSent, error, loading } = useResetPassword();
   const [email, setEmail] = useState('');
   return (
     <KeyboardAwareScrollView
@@ -33,32 +36,22 @@ export default function ResetPassword() {
       <View style={styles.maxWidthContainer}>
         <Text style={styles.header}>Passwort vergessen?</Text>
         {!error && !emailSent ? (
-          <Text style={[smallCaptionTextGray, styles.subHeader]}>
-            Wir senden dir per E-Mail eine Anleitung zum Zurücksetzen zu.
-          </Text>
-        ) : (
-          <></>
-        )}
+          <HintTextCaption
+            caption={
+              'Erhalte eine Mail mit den Link zum zurücksetzten deines Passworts.'
+            }
+          />
+        ) : null}
         {/* Error Messages */}
-        {error ? (
-          <Text
-            style={[
-              styles.subHeader,
-              {
-                color: colors.brightYellow,
-              },
-            ]}
-          >
-            {getFriendlyErrorMessage(error)}
-          </Text>
-        ) : (
-          emailSent && (
-            <Text style={styles.subHeader}>
-              Wir haben dir die Email zum zurücksetzten des Passworts gesendet.
-            </Text>
-          )
-        )}
-
+        <TextCaptionWarning
+          errorText={error || null}
+          text={
+            emailSent
+              ? 'Wir haben dir die Email zum zurücksetzten des Passworts gesendet.'
+              : null
+          }
+        />
+        {/* Passwd Reset Form */}
         <View style={styles.formContainer}>
           <TextInput
             style={styles.input}
@@ -68,30 +61,31 @@ export default function ResetPassword() {
             autoCapitalize="none"
             onChangeText={text => setEmail(text)}
           />
-
-          <TouchableOpacity
+          <FormSubmitButton
+            handleSubmit={() => resetPassword(email)}
+            loading={loading}
+            title="Passwort Zurücksetzen"
             disabled={!email}
-            style={styles.resetButton}
-            onPress={() => {
-              resetPassword(email);
-            }}
-          >
-            <Text style={styles.resetButtonText}>Passwort Zurücksetzen</Text>
-          </TouchableOpacity>
+          />
         </View>
-
-        <TouchableOpacity
-          style={styles.cancelButton}
-          onPress={() => navigation.navigate('Sign In')}
-        >
-          <Text style={styles.cancelButtonText}>Zurück</Text>
-        </TouchableOpacity>
+        <BackLinkText />
       </View>
     </KeyboardAwareScrollView>
   );
+
+  function BackLinkText() {
+    return (
+      <TouchableOpacity
+        style={styles.cancelButton}
+        onPress={() => navigation.navigate('Sign In')}
+      >
+        <Text style={styles.cancelButtonText}>Zurück</Text>
+      </TouchableOpacity>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',

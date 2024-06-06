@@ -34,13 +34,11 @@ import {
   smallTextGray,
 } from '../../../styles/partials';
 import { AccountContext } from '../../AppView';
-import {
-  LegalText,
-  SubmitButton,
-} from '../../admin/newsletter/CreateNewsletter';
-import { DividerCaption } from '../../auth/Signin/Signin';
+import { LegalText } from '../../../components/LegalText';
+import { SubmitButton } from '../../../components/SubmitButton';
+import { DividerCaption } from '../../../components/DividerCaption';
 import { LocationForm } from '../../e-commerce/checkout/Checkout';
-import SubSectionLayout from '../../home/sections/partials/SubSectionLayout';
+import SubSectionLayout from '../../../components/SubSectionLayout';
 import { ModalContext } from '../../provider/ModalProvider';
 
 export const SuccessMessage = ({

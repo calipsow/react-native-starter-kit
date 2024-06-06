@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {
-  ActivityIndicator,
   Pressable,
   StyleSheet,
   Text,
@@ -10,26 +9,19 @@ import {
 // Assuming usage of React Navigation for navigation, replace with your navigation logic
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { DividerCaption } from '../../../components/DividerCaption';
+import { FormField } from '../../../components/Forms';
+import { FormSubmitButton } from '../../../components/SubmitButton';
+import { TextCaptionWarning } from '../../../components/TextCaptions';
 import getFontSize from '../../../functions/ui/resolve-relative-font-size';
-import getFriendlyErrorMessage from '../../../helpers/message-from-firebase-error';
 import useSignIn from '../../../hooks/auth/use-login-user';
-import { colors, fonts } from '../../../styles';
+import { fonts } from '../../../styles';
 import {
   appThemeColor,
   maxWidth,
   screenPadding,
-  smallTextGray,
 } from '../../../styles/partials';
 import { ModalContext } from '../../provider/ModalProvider';
-import { FormField } from '../Signup/Signup';
-
-export const DividerCaption = ({ caption = '', textStyle, containerStyle }) => (
-  <View style={[styles.dividerContainer, containerStyle && containerStyle]}>
-    <View style={styles.dividerLine} />
-    <Text style={[styles.dividerText, textStyle && textStyle]}>{caption}</Text>
-    <View style={styles.dividerLine} />
-  </View>
-);
 
 export default function SignIn() {
   const { showModalAlert } = useContext(ModalContext);
@@ -109,32 +101,9 @@ export default function SignIn() {
         <View style={{ margin: 'auto', ...maxWidth, ...screenPadding }}>
           <Text style={styles.header}>Willkommen zurück</Text>
 
-          {/* Error Messages */}
-          {error && (
-            <Text
-              style={[
-                smallTextGray,
-                {
-                  textAlign: 'center',
-                  color: colors.brightYellow,
-                  fontSize: getFontSize(16),
-                },
-              ]}
-            >
-              {getFriendlyErrorMessage(error)}
-            </Text>
-          )}
+          {error && <TextCaptionWarning errorText={error} />}
+          <DividerCaption caption="Logge dich mit deiner Email ein" />
 
-          {/* Divider */}
-          <View style={styles.dividerContainer}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>
-              Logge dich mit deiner Email ein
-            </Text>
-            <View style={styles.dividerLine} />
-          </View>
-
-          {/* Email and Password Form */}
           <View style={{ width: '100%', gap: 3 }}>
             <FormField
               id={'email'}
@@ -156,55 +125,50 @@ export default function SignIn() {
               onChange={handleInputChange}
               placeholder="Passwort"
             />
-
-            {/* Remember Me and Forgot Password */}
-            <View style={styles.optionsContainer}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Reset Password')}
-                style={{ padding: 5, paddingLeft: 0 }}
-              >
-                <Text style={styles.forgotPasswordText}>
-                  Passwort vergessen?
-                </Text>
-              </TouchableOpacity>
-            </View>
-
-            {/* Sign-In Button */}
-            <TouchableOpacity
-              style={styles.signInButton}
+            <PasswordForgotten />
+            <FormSubmitButton
+              loading={loading}
               disabled={loading}
-              onPress={handleSubmit}
-            >
-              {!loading ? (
-                <Text style={styles.signInButtonText}>Einloggen</Text>
-              ) : (
-                <ActivityIndicator
-                  size={'small'}
-                  color={colors.bluish}
-                  style={{ margin: 'auto' }}
-                />
-              )}
-            </TouchableOpacity>
+              handleSubmit={handleSubmit}
+              title="Einloggen"
+            />
           </View>
-
-          {/* Sign-Up Redirect */}
-          <View style={styles.signUpRedirectContainer}>
-            <Text style={styles.signUpRedirectText}>Noch kein Account? </Text>
-
-            <Pressable
-              onPress={() => navigation.navigate('Sign Up')}
-              style={{ padding: 5, paddingLeft: 0 }}
-            >
-              <Text style={styles.signUpText}>Registrieren</Text>
-            </Pressable>
-          </View>
+          <SignupCaption />
         </View>
       </View>
     </KeyboardAwareScrollView>
   );
+
+  function SignupCaption() {
+    return (
+      <View style={styles.signUpRedirectContainer}>
+        <Text style={styles.signUpRedirectText}>Noch kein Account? </Text>
+
+        <Pressable
+          onPress={() => navigation.navigate('Sign Up')}
+          style={{ padding: 5, paddingLeft: 0 }}
+        >
+          <Text style={styles.signUpText}>Registrieren</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
+  function PasswordForgotten() {
+    return (
+      <View style={styles.optionsContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Reset Password')}
+          style={{ padding: 5, paddingLeft: 0 }}
+        >
+          <Text style={styles.forgotPasswordText}>Passwort vergessen?</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
@@ -223,35 +187,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
 
     margin: 'auto',
-  },
-  googleSignInButton: {
-    backgroundColor: '#E11D48',
-    padding: 15,
-    borderRadius: 6,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: 20,
-  },
-  googleSignInText: {
-    color: '#fff',
-    fontSize: getFontSize(16),
-  },
-  dividerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    marginVertical: 20,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#4B5563',
-  },
-  dividerText: {
-    marginHorizontal: 10,
-    color: '#9CA3AF',
   },
   input: {
     backgroundColor: '#1F2937',
@@ -272,20 +207,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 5,
   },
-  rememberMeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  checkbox: {
-    marginRight: 8,
-    backgroundColor: 'white',
-    height: 25,
-    width: 25,
-    borderRadius: 5,
-  },
-  optionsText: {
-    color: '#9CA3AF',
-  },
+
   forgotPasswordText: {
     color: '#8E9AFC',
     lineHeight: 25,

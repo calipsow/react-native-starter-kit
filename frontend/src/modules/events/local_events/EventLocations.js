@@ -16,8 +16,8 @@ import {
   sectionTitleCreme,
   smallCaptionTextGray,
 } from '../../../styles/partials';
-import { SubmitButton } from '../../admin/newsletter/CreateNewsletter';
-import { DividerCaption } from '../../auth/Signin/Signin';
+import { SubmitButton } from '../../../components/SubmitButton';
+import { DividerCaption } from '../../../components/DividerCaption';
 
 const LocationBadge = ({ province, navigation }) => {
   return (

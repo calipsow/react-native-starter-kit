@@ -18,7 +18,7 @@ import {
   screenPadding,
   smallCaptionTextGray,
 } from '../../../styles/partials';
-import { SubmitButton } from '../../admin/newsletter/CreateNewsletter';
+import { SubmitButton } from '../../../components/SubmitButton';
 import FeedArticlePost from '../../blogs/UI/FeedPost';
 import { setScrollPosition, triggerScrollToTop } from './feed-reducer/actions';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';

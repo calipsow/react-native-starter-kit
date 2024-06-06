@@ -18,7 +18,7 @@ import {
   smallCaptionTextGray,
   smallTextGray,
 } from '../../../styles/partials';
-import { DividerCaption } from '../../auth/Signin/Signin';
+import { DividerCaption } from '../../../components/DividerCaption';
 import useGetDocument from '../../../hooks/firebase/use-get-document';
 import writeDocument from '../../../functions/firestore/write-document-async';
 

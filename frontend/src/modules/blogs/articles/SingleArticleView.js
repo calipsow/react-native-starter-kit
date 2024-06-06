@@ -29,9 +29,9 @@ import {
   sectionTitleCreme,
 } from '../../../styles/partials';
 import { AccountContext } from '../../AppView';
-import { SubmitButton } from '../../admin/newsletter/CreateNewsletter';
+import { SubmitButton } from '../../../components/SubmitButton';
 import ScreenWrapper from '../../app/ScreenWrapper';
-import { DividerCaption } from '../../auth/Signin/Signin';
+import { DividerCaption } from '../../../components/DividerCaption';
 import { ModalContext } from '../../provider/ModalProvider';
 import { AvatarComponent } from '../UI/ArticlePreviewCard';
 import { CommentForm, LightboxView } from './ArticlePage';

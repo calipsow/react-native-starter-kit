@@ -7,7 +7,7 @@ import { useSafeArea } from 'react-native-safe-area-context';
 import { Firebase } from '../../../App';
 import { isIOS } from '../../constants/constants';
 import getFontSize from '../../functions/ui/resolve-relative-font-size';
-import useCheckAppVersionCompatibility from '../../hooks/app/use-check-app-version-compatibilty';
+
 import useAuthState from '../../hooks/auth/use-auth-state';
 import useDeepLinkResolver from '../../hooks/linking/use-deep-link-resolver';
 import useHandlePushNotifications from '../../hooks/notifications/use-navigate-push-notification';
@@ -24,15 +24,13 @@ const Stack = createStackNavigator();
 // remove isRunnableAppVersion dependency from navigation 
 // document the navigation logic refer to the deeplink config
 export default function NavigatorView(props) {
-  const [accountCtx, setAccountCtx] = useContext(AccountContext);
-  useDeepLinkResolver(accountCtx); // document this deep link hook
-  const { top } = useSafeArea();
+  const [accountCtx] = useContext(AccountContext);
   const { app, auth, db, storage } = useContext(Firebase);
-  const { isRunnableAppVersion } = useCheckAppVersionCompatibility();
-  // Listener for in App Notifications
-  useHandlePushNotifications();
-  usePushNotification();
   const { authStatus } = useAuthState();
+  useDeepLinkResolver(accountCtx); // document this deep link hook
+  useHandlePushNotifications(); // Listener for in App Notifications
+  usePushNotification();
+
 
   const headerLeftComponentMenu = () => {
     return (
@@ -55,70 +53,10 @@ export default function NavigatorView(props) {
     );
   };
 
-  useEffect(() => { // remove
-    if (isRunnableAppVersion !== 'PENDING') console.log(isRunnableAppVersion);
-  }, [isRunnableAppVersion]);
 
   return (
     <Stack.Navigator>
-      {isRunnableAppVersion === 'PENDING' ? (
-        <Stack.Screen
-          name={InitAppStackScreens['Loading Screen'].name}
-          component={InitAppStackScreens['Loading Screen'].component}
-          options={{
-            headerLeft:
-              InitAppStackScreens['Loading Screen'].headerLeft ||
-              headerLeftComponentMenu,
-            headerShown: InitAppStackScreens['Loading Screen'].headerShown,
-            headerStyle: [
-              { backgroundColor: appThemeColor.darkBlue },
-              isIOS && { borderWidth: 0 },
-            ],
-            headerBackground: !isIOS
-              ? () => (
-                  <Image
-                    style={[styles.headerImage]}
-                    source={
-                      InitAppStackScreens['Loading Screen'].headerBackground
-                        .source
-                    }
-                  />
-                )
-              : undefined,
-            headerTitleStyle:
-              InitAppStackScreens['Loading Screen'].headerTitleStyle,
-          }}
-        />
-      ) : isRunnableAppVersion === 'INCOMPATIBLE' ? (
-        <Stack.Screen
-          name={InitAppStackScreens['Update App Screen'].name}
-          component={InitAppStackScreens['Update App Screen'].component}
-          options={{
-            headerLeft:
-              InitAppStackScreens['Update App Screen'].headerLeft ||
-              headerLeftComponentMenu,
-            headerShown: InitAppStackScreens['Update App Screen'].headerShown,
-            headerStyle: [
-              { backgroundColor: appThemeColor.darkBlue },
-              isIOS && { borderWidth: 0 },
-            ],
-            headerBackground: !isIOS
-              ? () => (
-                  <Image
-                    style={[styles.headerImage]}
-                    source={
-                      InitAppStackScreens['Update App Screen'].headerBackground
-                        .source
-                    }
-                  />
-                )
-              : undefined,
-            headerTitleStyle:
-              InitAppStackScreens['Update App Screen'].headerTitleStyle,
-          }}
-        />
-      ) : isRunnableAppVersion === 'COMPATIBLE' &&
-        (!auth || !db || !storage || !app) ? (
+      {(!auth || !db || !storage || !app) ? (
         <Stack.Screen
           name={InitAppStackScreens['Loading Backend'].name}
           component={InitAppStackScreens['Loading Backend'].component}

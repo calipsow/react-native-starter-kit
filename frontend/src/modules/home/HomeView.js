@@ -12,7 +12,6 @@ import {
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import RNSRadioGroup from '../../components/RadioGroup';
 import Tag from '../../components/Tag';
 import getFontSize from '../../functions/ui/resolve-relative-font-size';
 import useAuthState from '../../hooks/auth/use-auth-state';
@@ -28,40 +27,11 @@ import {
   smallCaptionTextGray,
 } from '../../styles/partials';
 import { AccountContext } from '../AppView';
-import HandleEvents from '../admin/events/HandleEvents';
-import CreateNewsletter from '../admin/newsletter/CreateNewsletter';
+
 import ScreenWrapper from '../app/ScreenWrapper';
-import CreateNewEvent from '../events/create/CreateEvent';
+
 import BlogSection from './sections/BlogSection';
 import useBroadcastPushNotification from '../../hooks/notifications/use-send-notification';
-import { ZSW_LOGO_SOURCE } from '../../constants/constants';
-
-const SECTIONS = {
-  admin: [
-    {
-      title: 'Events prüfen',
-      component: () => <HandleEvents />,
-    },
-    {
-      title: 'Artikel erstellen',
-      component: () => <CreateNewsletter />,
-    },
-    {
-      title: 'Event erstellen',
-      component: () => <CreateNewEvent />,
-    },
-  ],
-  user: [
-    {
-      title: 'Neuigkeiten',
-      component: () => <BlogSection />,
-    },
-    {
-      title: 'Event erstellen',
-      component: () => <CreateNewEvent />,
-    },
-  ],
-};
 
 const HomeTags = [
   {
@@ -101,7 +71,6 @@ const HomeTag = ({
 };
 
 const Home = () => {
-  const [showPage, setShownPage] = useState(0);
   const { role } = useAuthState();
   const navigation = useNavigation();
   const [accountContext, setAccountContext] = useContext(AccountContext);
@@ -307,33 +276,11 @@ const Home = () => {
           )
         )}
       </React.Fragment>
-      {/* Sections */}
-      <View style={styles.fileCategories}>
-        <RNSRadioGroup
-          textStyles={{
-            fontSize: getFontSize(15),
-            fontFamily: fonts.primarySemiBold,
-          }}
-          underline
-          items={
-            role === 'Nutzer'
-              ? SECTIONS.user.map(sec => sec.title)
-              : SECTIONS.admin.map(sec => sec.title)
-          }
-          darkMode={false}
-          selectedIndex={showPage}
-          onChange={idx => setShownPage(idx)}
-          style={{}}
-        />
-      </View>
+
 
       {/* Theme Sections */}
       <View style={{ marginTop: 20 }}>
-        {role === 'Nutzer' ? (
-          <>{SECTIONS.user[showPage].component()}</>
-        ) : (
-          <>{SECTIONS.admin[showPage].component()}</>
-        )}
+        <BlogSection />
       </View>
     </KeyboardAwareScrollView>
   );

@@ -24,7 +24,7 @@ import useImageUpload from '../../../hooks/firebase/use-image-upload';
 import useBroadcastPushNotification from '../../../hooks/notifications/use-send-notification';
 import useExternalLink from '../../../hooks/utilities/use-external-link';
 import useVirusTotal from '../../../hooks/utilities/use-virus-total-check';
-import { colors, fonts, width } from '../../../styles';
+import { colors, fonts } from '../../../styles';
 import {
   bodyTextRegular,
   captionTxtTrpYellow,
@@ -32,79 +32,12 @@ import {
   smallCaptionTextGray,
 } from '../../../styles/partials';
 import { AccountContext } from '../../AppView';
-import { DividerCaption } from '../../auth/Signin/Signin';
+import { DividerCaption } from '../../../components/DividerCaption';
 import { SuccessMessage } from '../../events/create/CreateEvent';
-import SubSectionLayout from '../../home/sections/partials/SubSectionLayout';
+import SubSectionLayout from '../../../components/SubSectionLayout';
 import { ModalContext } from '../../provider/ModalProvider';
-
-export const LegalText = () => {
-  const navigation = useNavigation();
-
-  return (
-    <View style={[flexBoxRow, { flexWrap: 'wrap' }]}>
-      <Text
-        style={[
-          smallCaptionTextGray,
-          { fontStyle: 'italic', maxWidth: width - 20 },
-        ]}
-      >
-        Durch das Erstellen und Teilen von Beiträgen stimmst du den geltenden
-        AGB&apos;s dieser App zu.
-      </Text>
-      <Pressable
-        onPress={() =>
-          navigation.navigate('Settings', {
-            screen: 'Rechtliches Dokument',
-            params: {
-              document_id: 'license',
-            },
-          })
-        }
-      >
-        <Text style={[{ color: colors.lightBlue }]}>Geschäftsbedingungen</Text>
-      </Pressable>
-    </View>
-  );
-};
-
-export const SubmitButton = ({
-  onPress = function () {},
-  text = '',
-  style,
-  textStyle,
-}) => (
-  <TouchableOpacity onPress={onPress}>
-    <View
-      style={[
-        {
-          justifyContent: 'center',
-          alignItems: 'center',
-          ...styles.input,
-          paddingVertical: 8,
-          paddingHorizontal: 13,
-          borderRadius: 4,
-        },
-        style && style,
-      ]}
-    >
-      <Text
-        style={[
-          {
-            verticalAlign: 'middle',
-            margin: 'auto',
-            fontSize: getFontSize(16),
-            lineHeight: 16,
-            color: colors.bluish,
-            opacity: 0.9,
-          },
-          textStyle && textStyle,
-        ]}
-      >
-        {text}
-      </Text>
-    </View>
-  </TouchableOpacity>
-);
+import { SubmitButton } from '../../../components/SubmitButton';
+import { LegalText } from '../../../components/LegalText';
 
 export const validateAndSubmitArticle = async ({
   createDocument = async function () {},
@@ -661,7 +594,7 @@ const CreateNewsletter = () => {
   );
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
