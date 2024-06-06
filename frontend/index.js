@@ -4,14 +4,17 @@
  */
 
 import { AppRegistry, Platform } from 'react-native';
-import App, { AppWrapperSafeArea } from './App';
+import App from './App';
 import { name as appName } from './app.json';
 import { slug as iosAppName } from './app.json'; // todo same name for ios and android
 import messaging from '@react-native-firebase/messaging';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { isIOS } from './src/constants/constants';
 
-// Register background handler
+// Register background tasks and handler
+// Usefull for pre- fetching, loading or other tasks 
+// Handle Push Events in the background 
+// You need to enable background tasks for iOS manually with explanation 
 messaging().setBackgroundMessageHandler(async remoteMessage => {
   console.log('Message handled in the background!', remoteMessage);
 });
@@ -25,7 +28,7 @@ function HeadlessCheck({ isHeadless }) {
   // Render the app component on foreground launch
   return (
     <SafeAreaProvider>
-      <AppWrapperSafeArea />
+      <App />
     </SafeAreaProvider>
   );
 }
