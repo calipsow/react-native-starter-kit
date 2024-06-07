@@ -4,7 +4,7 @@
 
 ---
 
-**Zusammen Stehen Wir** is licensed to You (End-User) by Zusammen Stehen Wir e.U., located and registered at Langer Weg 61, Stendal, Sachsen-Anhalt 39576, Germany ("Licensor"), for use only under the terms of this License Agreement.
+**Ship Native** is licensed to You (End-User) by Zusammen Stehen Wir e.U., located and registered at Langer Weg 61, Stendal, Sachsen-Anhalt 39576, Germany ("Licensor"), for use only under the terms of this License Agreement.
 
 By downloading the Licensed Application from Apple's software distribution platform ("App Store") and Google's software distribution platform ("Play Store"), and any update thereto (as permitted by this License Agreement), You indicate that You agree to be bound by all of the terms and conditions of this License Agreement, and that You accept this License Agreement. App Store and Play Store are referred to in this License Agreement as "Services."
 
