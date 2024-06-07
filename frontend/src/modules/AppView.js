@@ -17,7 +17,7 @@ export default function AppView() {
   return (
     <AccountContext.Provider value={[accountContext, setAccountContext]}>
       <ToastProviderWrapper>
-          <Navigator onNavigationStateChange={() => {}} />
+        <Navigator onNavigationStateChange={() => {}} />
       </ToastProviderWrapper>
     </AccountContext.Provider>
   );

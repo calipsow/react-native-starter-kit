@@ -29,7 +29,7 @@ import {
   tagText,
 } from '../../styles/partials';
 import { fallback_img } from '../availableInFullVersion/sample-data';
-import { TopBarMenu } from '../events/feed/EventFeed';
+import { TopBarMenu } from '../../components/TopScreenDescription';
 
 export const BackButton = ({
   navigation,

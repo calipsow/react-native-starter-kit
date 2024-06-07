@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import functions from '@react-native-firebase/functions';
 import '@react-native-firebase/functions';
-import { ZSW_LOGO_SOURCE } from '../../constants/constants';
+import { ZSW_LOGO_SOURCE, fbImage } from '../../constants/constants';
 
 const useBroadcastPushNotification = () => {
   const [loading, setLoading] = useState(false);
@@ -9,9 +9,9 @@ const useBroadcastPushNotification = () => {
   const [error, setError] = useState(null);
 
   const broadcastNotification = async ({
-    title = 'Zusammen Stehen Wir',
-    body = 'Sie haben eine neue Benachrichtigung',
-    imageUrl = ZSW_LOGO_SOURCE,
+    title = 'ship native',
+    body = 'ship native notifications',
+    imageUrl = fbImage,
     data,
   }) => {
     setLoading(true);

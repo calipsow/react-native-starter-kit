@@ -4,9 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reducer from './reducer';
-import scrollMiddleware from '../modules/events/feed/feed-reducer/scroll-middleware';
 
-const middlewares = [thunkMiddleware, scrollMiddleware];
+const middlewares = [thunkMiddleware];
 
 const enhancers = [
   applyMiddleware(

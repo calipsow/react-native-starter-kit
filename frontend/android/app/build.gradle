@@ -71,18 +71,18 @@ android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
-    namespace "com.ship.native.callipson"
+    namespace "com.shipnative.callipson"
 //     compileOptions {
 //         sourceCompatibility JavaVersion.VERSION_1_8
 //         targetCompatibility JavaVersion.VERSION_1_8
 //     }
 
     defaultConfig {
-        applicationId "com.ship.native.callipson"
+        applicationId "com.shipnative.callipson"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 22
-        versionName "5.3.2"
+        versionCode 1
+        versionName "1.0"
         multiDexEnabled true
     }
 //   dexOptions {

@@ -7,25 +7,25 @@
   "version": "1.0",
   "backgroundColor": "#131A27",
   "notification": {
-    "icon": "./assets/images/logo/alternative-logo.png",
+    "icon": "./assets/images/shipnative/logo/IMG_2090.PNG",
     "iosDisplayInForeground": true
   },
   "orientation": "landscape",
   "privacy": "hidden",
   "owner": "calipsow",
   "ios": {
-    "icon": "./assets/images/logo/alternative-logo.png",
+    "icon": "./assets/images/shipnative/logo/IMG_2090.PNG",
     "splash": {
       "backgroundColor": "#131A27",
       "dark": {
-        "image": "./assets/images/logo/zusammen-stehen-wir-rounded.png",
+        "image": "./assets/images/shipnative/logo/IMG_2092.PNG",
         "resizeMode": "contain",
-        "tabletImage": "./assets/images/logo/logo-zsw.png",
+        "tabletImage": "./assets/images/shipnative/logo/IMG_2092.PNG",
         "backgroundColor": "#131A27"
       }
     },
     "userInterfaceStyle": "dark",
-    "bundleIdentifier": "com.zsw.callipson",
+    "bundleIdentifier": "com.shipnative.ios.callipson",
     "buildNumber": "3",
     "privacyManifests": {
       "NSPrivacyCollectedDataTypes": [

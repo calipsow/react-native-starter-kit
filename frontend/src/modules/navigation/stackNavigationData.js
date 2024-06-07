@@ -6,15 +6,13 @@ import { colors, fonts } from '../../styles'; //TODO - Change Color Theme
 import ProfileStackNavigator from '../account/profile/ProfileStack';
 import { AuthStackNavigation } from '../auth/AuthStack';
 import BlogStackNavigator from '../blogs/BlogStack';
-import SingleArticleView from '../blogs/articles/SingleArticleView';
-import EventStackNavigator, {
-} from '../events/EventStack';
-import SingleEventView from '../events/event/SingleEventView';
+import SingleArticleView from '../blogs/ArticlePage';
+import EventStackNavigator from '../events/EventStack';
+import SingleEventView from '../events/EventPage';
 import { SearchStackNavigation } from '../search/SearchStack';
 import { SettingStackNavigation } from '../settings/SettingStack';
 import { headerLeftComponent } from './headerLeftComponent';
 import LoadingView, { LoadingFirebaseView } from '../pages/LoadingViews';
-
 
 export const InitAppStackScreens = {
   'Loading Screen': {
@@ -40,7 +38,7 @@ export const InitAppStackScreens = {
       color: colors.white,
       fontSize: getFontSize(18),
     },
-  }
+  },
 };
 
 export const AuthStackScreen = {

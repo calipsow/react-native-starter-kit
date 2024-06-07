@@ -9,7 +9,6 @@ import {
 } from 'firebase/auth/react-native';
 import { firebase } from '@react-native-firebase/auth';
 import { app } from '../../../config/firebase-client';
-import { resolveRole } from './use-auth-listener';
 import { ModalContext } from '../../modules/provider/ModalProvider';
 
 const useAuthState = () => {
@@ -35,8 +34,7 @@ const useAuthState = () => {
         // console.log(result);
         setCurrentUserJSON(currentUser.toJSON());
         setFirebaseAccountCtx(currentUser.toJSON());
-        const role = await resolveRole(currentUser.uid);
-        setRole(role === 'admin' ? 'Admin' : 'Nutzer'); // Standardrolle ist 'user', falls keine Rolle definiert ist
+        setRole('user'); // Standardrolle ist 'user', falls keine Rolle definiert ist
       } else {
         // Nutzer ist nicht angemeldet
         setAuthStatus('unauthenticated');
@@ -48,7 +46,6 @@ const useAuthState = () => {
       }
     });
 
-    // Bereinigen beim Unmount der Komponente
     return () => unsubscribe();
   }, [auth]);
 
@@ -146,13 +143,6 @@ const useAuthState = () => {
         setFirebaseError(error);
       });
   };
-
-  useEffect(() => {
-    if (!user?.uid || role) return;
-    resolveRole(user.uid).then(role => {
-      setRole(role === 'admin' ? 'Admin' : 'Nutzer');
-    });
-  }, [user]);
 
   return {
     currentUser,

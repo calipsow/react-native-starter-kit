@@ -2,6 +2,7 @@ import '@react-native-firebase/functions';
 import functions from '@react-native-firebase/functions';
 import { useState } from 'react';
 import FirebaseAuthCacheController from '../../controller/cache/firebase-auth-controller';
+import { fbImage } from '../../constants/constants';
 
 const useFetchPublicUserData = () => {
   const [userData, setUserData] = useState(null);
@@ -20,9 +21,8 @@ const useFetchPublicUserData = () => {
       if (response?.data) setUserData(response.data);
       else {
         setUserData({
-          displayName: 'Zusammen Stehen Wir · Nutzer',
-          photoURL:
-            'https://firebasestorage.googleapis.com/v0/b/zusammen-stehen-wir.appspot.com/o/public%2Fapp%2Fimages%2Fdefault-avatar.png?alt=media&token=567b6e03-58d7-44b9-a065-4c2fa7341324',
+          displayName: 'ship native dev',
+          photoURL: fbImage,
         });
       }
     } catch (err) {

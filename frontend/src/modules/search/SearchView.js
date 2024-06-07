@@ -9,7 +9,7 @@ import {
 } from '../../styles/partials';
 import SearchBar from '../../components/Searchbar';
 import { useEffect, useState } from 'react';
-import FeedArticlePost from '../blogs/UI/FeedPost';
+import FeedArticlePost from '../../components/FeedPost';
 import { colors } from '../../styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 

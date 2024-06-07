@@ -55,11 +55,7 @@ export const ZusammenStehenWir_META_DATA = {
   },
 };
 
-export const HEADER_BACKGROUND_IMAGE = isIOS
-  ? require('../../assets/images/topBarBg.png')
-  : width < 900
-  ? require('../../assets/images/topBarBgZsw.png')
-  : require('../../assets/images/topBarBgZsw-large.png');
+export const HEADER_BACKGROUND_IMAGE = require('../../assets/images/topBarBg.png');
 export const iconHome = require('../../assets/images/tabbar/home.png');
 export const iconCalendar = require('../../assets/images/tabbar/calendar.png');
 export const iconGrids = require('../../assets/images/tabbar/grids.png');

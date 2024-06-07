@@ -32,7 +32,7 @@ const useInitialAccountCreation = (
       USER_SCHEME.firebase_auth_data = { ...currentUser };
       USER_SCHEME.firebase_uid = uid;
       USER_SCHEME.uid = uid;
-      USER_SCHEME.role = await resolveRole(uid);
+      USER_SCHEME.role = 'user';
 
       await createDocumentHook('Users', uid, USER_SCHEME);
       setAccount(USER_SCHEME);

@@ -11,17 +11,6 @@ import SecureStorage from '../../helpers/secure-storage';
 import { Firebase } from '../../../App';
 import { app } from '../../../config/firebase-client';
 
-export const resolveRole = async uid => {
-  const admin = await getDocument('Admins', uid);
-  return admin ? 'admin' : 'user';
-};
-
-export const resolveAdminAccessLevel = async uid => {
-  const admin = await getDocument('Admins', uid);
-  if (!admin) return 'none';
-  else return admin.access_level;
-};
-
 const useAuthListener = (accountCtx, setAccountCtx = function (state) {}) => {
   const { db } = useContext(Firebase);
   useEffect(() => {
@@ -33,6 +22,7 @@ const useAuthListener = (accountCtx, setAccountCtx = function (state) {}) => {
         if (!accountCtx) {
           // Wenn das Benutzerdokument noch nicht geladen ist, lade es aus der Firestore-DB
           try {
+            // Here you could create an new user ref in your db if nothing is found
             const userDocument = await getDocument('Users', user.uid); // Funktion zum Abrufen des Benutzerdokuments aus Firestore
             if (!userDocument) {
               let username = await SecureStorage.get('username');
@@ -43,16 +33,16 @@ const useAuthListener = (accountCtx, setAccountCtx = function (state) {}) => {
               }
               USER_SCHEME.uid = user.uid;
               USER_SCHEME.firebase_uid = user.uid;
-              USER_SCHEME.role = await resolveRole(user.uid);
+              USER_SCHEME.role = 'user';
 
               await writeDocument('Users', user.uid, USER_SCHEME, false);
-              USER_SCHEME.firebase_auth_data = { ...user.toJSON() };
+              USER_SCHEME.firebase_auth_data = user.toJSON();
               setAccountCtx(USER_SCHEME);
             } else
               setAccountCtx({
                 ...userDocument,
                 username: user.displayName,
-                firebase_auth_data: { ...user.toJSON() },
+                firebase_auth_data: user.toJSON(),
               });
           } catch (error) {
             console.error('Error fetching user document:', error);
@@ -65,10 +55,10 @@ const useAuthListener = (accountCtx, setAccountCtx = function (state) {}) => {
       }
     });
 
-    return () => unsubscribe(); // Aufräumen bei Komponentenabbau
+    return () => unsubscribe();
   }, [accountCtx, setAccountCtx, app]);
 
-  return null; // Diese Hook gibt nichts zurück, da sie nur Nebeneffekte hat
+  return null;
 };
 
 export default useAuthListener;

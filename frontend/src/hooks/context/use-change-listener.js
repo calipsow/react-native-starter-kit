@@ -28,7 +28,6 @@ const useSyncAccountChanges = accountCtx => {
   };
 
   useEffect(() => {
-    if (!accountCtx) return;
     if (firebaseError) {
       console.warn(
         'Failed to sync accountCtx with firestore last modified field',

@@ -14,8 +14,7 @@ const useVirusTotal = () => {
 
     try {
       const headers = {
-        'x-apikey':
-          '3777165175e39d7086ff82f2c504ac699b7f150dd50d42d4c2ae1b988b0e06e5', // Ersetze 'YOUR_API_KEY' durch deinen echten API-Schlüssel
+        'x-apikey': 'YOUR_API_KEY',
         'Content-Type': 'application/x-www-form-urlencoded',
       };
       var response = await fetch('https://www.virustotal.com/api/v3/urls', {

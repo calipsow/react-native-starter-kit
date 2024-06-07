@@ -11,7 +11,7 @@ import {
   smallCaptionTextGray,
 } from '../../styles/partials';
 import { STATIC_BLOGS } from '../availableInFullVersion/sample-data';
-import BlogCard from './UI/BlogCard';
+import BlogCard from '../../components/BlogCard';
 
 export const BlogIndexHeader = ({
   headerText = 'Entdecke Blogs',

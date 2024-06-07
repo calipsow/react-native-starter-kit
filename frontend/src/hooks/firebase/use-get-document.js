@@ -1,7 +1,5 @@
-import { useState, useContext } from 'react';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import { Firebase } from '../../../App';
-import FirebaseAuthCacheController from '../../controller/cache/firebase-auth-controller';
+import { useState } from 'react';
 
 const useGetDocument = () => {
   const [succeed, setSucceed] = useState(false);

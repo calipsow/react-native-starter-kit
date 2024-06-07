@@ -7,7 +7,7 @@ import { styles } from '../navigation/RootNavigation';
 import { headerLeftComponent } from '../navigation/headerLeftComponent';
 import BlogArticleIndex from './ArticleIndex';
 import BlogIndex from './BlogArticleFeed';
-import ArticlePage from './articles/ArticlePage';
+import ArticlePage from './ArticlePage';
 const BlogStack = createStackNavigator();
 
 const BlogStacks = [

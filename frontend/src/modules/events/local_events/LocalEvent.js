@@ -15,7 +15,7 @@ import useResetScreen from '../../../hooks/screen/use-screen-reset';
 import { colors, width } from '../../../styles';
 import { appThemeColor, sectionTitleCreme } from '../../../styles/partials';
 import { BackButton } from '../../blogs/ArticleIndex';
-import FeedArticlePost from '../../blogs/UI/FeedPost';
+import FeedArticlePost from '../../../components/FeedPost';
 
 const LocalEvent = ({ navigation, route }) => {
   const { province } = route.params;
