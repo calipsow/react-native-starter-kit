@@ -13,9 +13,9 @@
         "appleTeamId": "X26AMYS8UF",
         "sku": "74CD4FF7-9688-4670-BABC-96B034F810B4",
         "companyName": "Callipson",
-        "bundleIdentifier": "com.zsw.callipson",
+        "bundleIdentifier": "com.ship.native.callipson",
         "ascApiKeyId": "M53G78642P",
-        "appName": "ZSW",
+        "appName": "shipnative",
         "ascApiKeyIssuerId": "1825cdad-aef7-4552-85e9-01080de301a4",
         "ascApiKeyPath": "../../private/ios/AuthKey_M53G78642P.p8",
         "language": "de-DE"
@@ -34,7 +34,7 @@
         "image": "latest",
         "simulator": false,
         "buildConfiguration": "Debug",
-        "scheme": "ZSW"        
+        "scheme": "shipnative"        
       }
     },
     "base": {
