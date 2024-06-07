@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { colors } from './src/styles/colors'; // TODO dark light mode
 import { persistor, store } from './src/redux/store';
-import { app, auth, db } from './config/firebase-client'; // TODO remove storage by default
+import { app, auth, db, storage } from './config/firebase-client'; // TODO remove storage by default
 import AppView from './src/modules/AppViewContainer';
 import { ModalProvider } from './src/modules/provider/ModalProvider';
 
@@ -13,6 +13,7 @@ export const Firebase = createContext({
   auth: null,
   db: null,
   app: null,
+  storage: null
 });
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   useEffect(() => { // init firebase recources
     if (firebase.auth && firebase.db) return; 
     // prettier-ignore
-    setFirebase({auth, db, app});
+    setFirebase({auth, db, app, storage});
   }, [auth, db]);
 
   return (
