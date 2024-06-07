@@ -1,4 +1,4 @@
-package com.ZusammenStehenWir
+package com.ship.native.callipson
 
 import android.app.Application
 import com.facebook.react.PackageList
