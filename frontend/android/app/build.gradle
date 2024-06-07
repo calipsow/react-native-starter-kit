@@ -71,14 +71,14 @@ android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
-    namespace "com.ZusammenStehenWir"
+    namespace "com.ship.native.callipson"
 //     compileOptions {
 //         sourceCompatibility JavaVersion.VERSION_1_8
 //         targetCompatibility JavaVersion.VERSION_1_8
 //     }
 
     defaultConfig {
-        applicationId "com.ZusammenStehenWir"
+        applicationId "com.ship.native.callipson"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 22
