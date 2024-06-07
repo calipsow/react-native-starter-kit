@@ -6,10 +6,8 @@
 import { AppRegistry, Platform } from 'react-native';
 import App from './App';
 import { name as appName } from './app.json';
-import { slug as iosAppName } from './app.json'; // todo same name for ios and android
 import messaging from '@react-native-firebase/messaging';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { isIOS } from './src/constants/constants';
 
 // Register background tasks and handler
 // Usefull for pre- fetching, loading or other tasks while the app is in the background
@@ -34,4 +32,4 @@ function HeadlessCheck({ isHeadless }) {
   );
 }
 
-AppRegistry.registerComponent(isIOS ? 'ZSW' : appName, () => HeadlessCheck);
+AppRegistry.registerComponent(appName, () => HeadlessCheck);
