@@ -26,10 +26,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>X26AMYS8UF.com.zsw.callipson</string>
+			<string>com.ship.native.callipson</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>zsw</string>
+				<string>shipnative</string>
 			</array>
 		</dict>
 	</array>
