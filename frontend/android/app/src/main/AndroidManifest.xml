@@ -35,8 +35,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:scheme="https"
-                    android:host="zusammen-stehen-wir.de"
-                    android:pathPrefix="/app" />
+                    android:host="shipnative.app"
+                    android:pathPrefix="/demo" />
             </intent-filter>
 
             <!-- Intent-Filter für allgemeine HTTP und HTTPS URLs -->
@@ -53,7 +53,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="zsw" />
+                <data android:scheme="shipnative" />
             </intent-filter>
             
         </activity>
