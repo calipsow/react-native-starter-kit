@@ -27,7 +27,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'ZSW' do
+target 'shipnative' do
   config = use_native_modules!
   use_frameworks! :linkage => :static
   $RNFirebaseAsStaticFramework = true
@@ -44,7 +44,7 @@ target 'ZSW' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'ZSWTests' do
+  target 'shipnativeTests' do
     inherit! :complete
     pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
     # Pods for testing
