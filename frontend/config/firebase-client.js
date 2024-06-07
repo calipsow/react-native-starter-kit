@@ -1,7 +1,7 @@
 // Importieren der Firebase-App und der benötigten Dienste
 import { initializeApp } from 'firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import {
@@ -28,5 +28,5 @@ const auth = initializeAuth(app, {
 });
 const db = getFirestore(app);
 const storage = getStorage(app);
-
-export { auth, db, storage, app };
+const analytics = getAnalytics(app);
+export { auth, db, storage, app, analytics };
