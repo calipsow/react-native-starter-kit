@@ -6,14 +6,14 @@
 	<string>development</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:zusammen-stehen-wir.de</string>
-		<string>webcredentials:zusammen-stehen-wir.de</string>
+		<string>applinks:shipnative.app</string>
+		<string>webcredentials:shipnative.app</string>
 	</array>
 	<key>com.apple.developer.associated-domains.mdm-managed</key>
 	<true/>
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
-		<string>iCloud.com.zsw.callipson</string>
+		<string>iCloud.com.ship.native.callipson</string>
 	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>
