@@ -7,6 +7,8 @@ import { AccountContext } from '../../modules/AppView';
 import { useNavigation } from '@react-navigation/native';
 import { useToastNotify } from '../screen/use-toast-notification';
 import { ModalContext } from '../../modules/provider/ModalProvider';
+import { handlePushNotification } from "./use-push-notification"
+
 
 const usePushNotification = () => {
   const { showToastNotification } = useToastNotify();
@@ -46,6 +48,7 @@ const usePushNotification = () => {
         `${lastNotification.title}\n${lastNotification.body}`,
         `See more`,
         () => {
+          handlePushNotification(
           navigation.navigate(data.targetScreen, data.params);
         },
       );
