@@ -3,6 +3,7 @@ import functions from '@react-native-firebase/functions';
 import '@react-native-firebase/functions';
 import { fbImage } from '../../constants/constants';
 
+// TODO add description how the data needs set to ensure the app navigation 
 const useBroadcastPushNotification = () => {
   const [loading, setLoading] = useState(false);
   const [succeed, setSucceed] = useState(false);
