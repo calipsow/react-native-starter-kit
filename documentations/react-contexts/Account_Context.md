@@ -20,17 +20,17 @@ The **[`useSyncAccountChanges.js`](/frontend/src/hooks/context/use-change-listen
 
 ## Functionality Details
 
-- **Data Synchronization**:
+**Data Synchronization**:
 
   - The hook compares the previous and current states of `accountCtx`.
   - When a change is detected in any field except for `firebase_auth_data`, it triggers an update to the Firestore database using `updateDoc`.
 
-- **Error Handling**:
+**Error Handling**:
 
   - Errors during the Firestore update operation are caught and stored in `firebaseError`.
   - A separate effect logs warning messages if there is a synchronization failure.
 
-- **Initialization and Cleanup**:
+**Initialization and Cleanup**:
   - The Firestore instance (`db`) is initialized when `accountCtx` is set.
   - Previous state management helps avoid unnecessary database writes and ensures updates are based on actual changes.
 
