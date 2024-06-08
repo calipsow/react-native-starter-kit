@@ -11,7 +11,7 @@ This project uses Firebase as backend,
 Firebase enables to develop apps fast and reliable and secure applications across all platforms.
 
 In order to use Firebase as backend you need an Google Account to start with.
-In case you dont have one, create a free one in just a minute. **[Create Google Account](https://support.google.com/accounts/answer/27441?hl=de)**
+In case you dont have one, create a free one in just a minute. [Create Google Account](https://support.google.com/accounts/answer/27441?hl=de)
 
 ## Get Started
 
@@ -22,7 +22,7 @@ Once logged in, click on "Create new project".
 
 - Enter a project name and follow the on-screen instructions.
 - Make sure to enable Google Analytics for your project, as it provides valuable insights.
-- After this you should enable Firebase Functions, see more in [setup firebase functions](/documentations/firebase-setup-guides/Firebase_Functions_Setup.md).
+- After this you should enable Firebase Functions, see more in **[setup firebase functions](/documentations/firebase-setup-guides/Firebase_Functions_Setup.md)**.
 
 ---
 
@@ -36,15 +36,15 @@ The web app is needed to simplify the setup
 
 - Click on the Android icon to create a new Android app.
 - Create an package name for your android app.
-  Like this one: `com.example.android.app`. This bundle identifier needs also configured within this project, more about in [app identifiers](/documentations/general-setup/Configure_Bundle_Identifiers.md).
-- Download the `google-services.json` file and place it in the `./android/app/` directory.
+  Like this one: `com.example.android.app`. This bundle identifier needs also configured within this project, more about in **[app identifiers](/documentations/general-setup/Configure_Bundle_Identifiers.md)**.
+- Download the `google-services.json` file and place it in the **[`/android/app/`](/frontend/android/app/)** directory.
 
 **For iOS**:
 
 - Click on the iOS Icon and create a new iOS App in Firebase.
-- Register your app with an iOS bundle ID. Like the package name for android. Example: `com.example.ios.app`. The identifier should be unique on the App Store. More about in [app identifiers](/documentations/general-setup/Configure_Bundle_Identifiers.md)
+- Register your app with an iOS bundle ID. Like the package name for android. Example: `com.example.ios.app`. **The identifier should be unique on the App Store.** More about in [app identifiers](/documentations/general-setup/Configure_Bundle_Identifiers.md)
 - Download the `GoogleService-Info.plist` file and add it to your project using Xcode.
-- **You dont have to modify the `AppDelegate.mm` yourself. Its already configured for you.**
+- **You dont have to modify the [`AppDelegate.mm`](/frontend/ios/shipnative/AppDelegate.mm) yourself. Its already configured for you.**
 
 **For Web**:
 
@@ -55,11 +55,11 @@ The web app is needed to simplify the setup
 
 ### 3. Configure App Client
 
-- At the Firebase Console click on **settings**, select **project settings**, scroll down until you see your Web App and select it.
+At the Firebase Console click on **settings**, select **project settings**, scroll down until you see your Web App and select it.
 
-- Below **SDK setup and configuration**, select the **Configuration** option. Copy the `firebaseConfig` object from the code snipped.
+Below **SDK setup and configuration**, select the **Configuration** option. Copy the `firebaseConfig` object from the code snipped.
 
-- Go to `config/firebase-client.js` file, replace the example firebaseConfig with the `firebaseConfig` you copied from firebase.
+Go to **[firebase-client.js](/frontend/config/firebase-client.js)** file, replace the initial firebaseConfig with the `firebaseConfig` you copied from firebase.
 
 ---
 

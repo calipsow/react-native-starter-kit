@@ -35,8 +35,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:scheme="https"
-                    android:host="shipnative.app"
-                    android:pathPrefix="/demo" />
+                    android:host="shipnative.app" />
             </intent-filter>
 
             <!-- Intent-Filter für allgemeine HTTP und HTTPS URLs -->

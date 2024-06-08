@@ -1,91 +1,10 @@
 # Account Context Functions, Features and How To Use Guide
 
-The react context is implemented in the `src/modules/AppView.js` component and wraps the core application.
-
-```javascript
-export default function AppView() {
-  const [accountContext, setAccountContext] = useState(null);
-  useSyncAccountChanges(accountContext); // syncs automatic the accountCtx state with the user data in the firestore db
-  useAuthContextListener(accountContext, setAccountContext); // syncs the accountCtx with the firebase auth state if the auth state changes
-  // it creates also a new account if no one is found
-
-  return (
-    <AccountContext.Provider value={[accountContext, setAccountContext]}>
-      <ToastProviderWrapper>
-        <Navigator onNavigationStateChange={() => {}} />
-      </ToastProviderWrapper>
-    </AccountContext.Provider>
-  );
-}
-```
+The react context is implemented in the **[`AppView.js`](/frontend/src/modules/AppView.js)** component and wraps the core application.
 
 ## Initialize useSyncAccountChanges Hook
 
-The `useSyncAccountChanges` hook facilitates real-time synchronization of user state changes with a Firestore database. It tracks changes to the `accountCtx` state, automatically updating the Firestore document for the logged-in user when changes are detected.
-
-```javascript
-const useSyncAccountChanges = (accountCtx) => {
-  const [lastModifiedData, setLastModifiedData] = useState(null);
-  const [firebaseError, setFirebaseError] = useState(null);
-  const [previousState, setPreviousState] = useState(null);
-  const db = getFirestore();
-
-  const updateFirestoreDocument = async (fieldPath, value, uid) => {
-    const docRef = doc(db, "Users", uid);
-    try {
-      await updateDoc(docRef, {
-        [fieldPath]: value,
-      });
-      setLastModifiedData({ fieldPath, value });
-      setFirebaseError(null);
-    } catch (error) {
-      console.error("Error updating document:", error);
-      setFirebaseError(error.message);
-    }
-  };
-
-  useEffect(() => {
-    if (firebaseError) {
-      console.warn(
-        "Failed to sync accountCtx with firestore last modified field",
-        lastModifiedData
-      );
-    }
-  }, [firebaseError]);
-
-  useEffect(() => {
-    if (!accountCtx) return;
-    if (previousState && !accountCtx) {
-      // resets the previous state to null if the user logs out
-      setPreviousState(accountCtx);
-      return;
-    }
-
-    if (!accountCtx) return; // preventing useless state updates
-
-    if (!previousState) {
-      // only runs if a accountCtx is given and the previous state is null so it update the previous state initial and stops there
-      setPreviousState(accountCtx);
-      return;
-    }
-    // at this point there is a difference between the previous state and the new accountCtx while the user was and is logged in, so it will track the diff and updates the firestore db to get sync with this new state of the accountCtx
-    const currentData = accountCtx || {};
-
-    Object.keys(currentData).forEach((key) => {
-      if (key === "firebase_auth_data") return; // ignoring firebase managed changes stored in `firebase_auth_data`. add more fields to ignore here, if needed.
-      const oldValue = previousState[key];
-      const newValue = currentData[key];
-
-      if (newValue !== oldValue) {
-        updateFirestoreDocument(key, newValue, accountCtx.uid); // updates the db
-        setPreviousState(accountCtx); // update the previous state to the latest changes to prevent useless rewrites to the db of the same state over and over again
-      }
-    });
-  }, [accountCtx]);
-
-  return { firebaseError, lastModifiedData };
-};
-```
+The **[`useSyncAccountChanges.js`](/frontend/src/hooks/context/use-change-listener.js)** hook facilitates real-time synchronization of user state changes with a Firestore database. It tracks changes to the `accountCtx` state, automatically updating the Firestore document for the logged-in user when changes are detected.
 
 ## Hook Overview
 
@@ -97,40 +16,7 @@ const useSyncAccountChanges = (accountCtx) => {
 
 ## Dependencies
 
-**Ensure Firebase is initialized in your project and the Firestore SDK is correctly configured in `config/firebase-client`:**
-
-```javascript
-import { initializeApp } from "firebase/app";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
-import {
-  getReactNativePersistence,
-  initializeAuth,
-} from "firebase/auth/react-native";
-
-// Fill this with your firebase ids and configs, to see them visit the project overview page in your firebase-console
-const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "example.firebaseapp.com", // example
-  projectId: "example",
-  storageBucket: "example.appspot.com", // example
-  messagingSenderId: "365436544212", // example
-  appId: "1:6546846847654:web:85674687454545", // example
-  measurementId: "G-FGHZG684768", // example
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = initializeAuth(app, {
-  persistence: getReactNativePersistence(AsyncStorage), // used to ensure login sessions are persistent even the app is shuted down
-});
-const db = getFirestore(app);
-const storage = getStorage(app);
-const analytics = getAnalytics(app);
-export { auth, db, storage, app, analytics };
-```
+**Ensure Firebase is initialized in your project and the Firestore SDK is correctly configured in [firebase-client.js](/frontend/config/firebase-client.js)**.
 
 ## Functionality Details
 

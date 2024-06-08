@@ -2,19 +2,6 @@
 
 Push notifications are vital for mobile apps to keep users engaged by providing timely updates and essential information directly to their devices. This guide will walk you through setting up push notifications in a React Native application using Firebase Cloud Messaging (FCM) for both iOS and Android platforms.
 
-## Firebase Backend Configuration
-
-### Add Your React Native App to Firebase
-
-- **For Android**:
-
-  1. Add your Android app in Firebase by specifying your app's package name.
-  2. Download the `google-services.json` file and place it into your React Native project under `android/app/`.
-
-- **For iOS**:
-  1. Add your iOS app using the iOS bundle ID.
-  2. Download the `GoogleService-Info.plist` file and place it in your project using Xcode under the app's root directory.
-
 ### Configure FCM in Firebase Console
 
 1. Navigate to the "Cloud Messaging" tab in your Firebase project settings.
@@ -30,20 +17,13 @@ The app uses the `@react-native-firebase/messaging` module wich is already insta
   - Ensure `google-services.json` is correctly placed.
 
 - **iOS**:
-  - Use Xcode to drag `GoogleService-Info.plist` into the root of your project.
   - Ensure your app's capabilities include Push Notifications and Background Modes → Remote notifications.
 
-### How the App Requesting Notification Permissions
+### How the App Requesting Permissions
 
 Firebase messaging requires explicit permission to receive notifications on iOS. Request this permission within your React Native application:
 
 ```javascript
-import messaging from "@react-native-firebase/messaging";
-import writeDocument from "../firestore/write-document-async";
-import { Push_Notification_Token } from "../../constants/firestore-schemes";
-import { Platform } from "react-native";
-import { resolveRole } from "../../hooks/auth/use-auth-listener";
-
 async function requestUserPermission(accountCtx) {
   const authStatus = await messaging().requestPermission();
   const enabled =
@@ -76,7 +56,7 @@ async function requestUserPermission(accountCtx) {
 
 ### The usePushNotification Hook
 
-The `usePushNotification` hook is designed to manage push notifications in a React Native application using Firebase Cloud Messaging (FCM). This hook handles the receipt of notifications, user permissions, and responding to notification interactions by utilizing modals and navigation.
+The **[`usePushNotification`](/frontend/src/hooks/notifications/use-push-notification.js)** hook is designed to manage push notifications in a React Native application using Firebase Cloud Messaging (FCM). This hook handles the receipt of notifications, user permissions, and responding to notification interactions by utilizing modals and navigation.
 
 1. Several Functionalities Overview:
 

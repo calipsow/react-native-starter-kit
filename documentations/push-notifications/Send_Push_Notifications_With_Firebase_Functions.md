@@ -2,7 +2,7 @@
 
 The custom React hook designed for applications that facilitates sending push notifications either to all app users or a single user through Firebase Functions. This documentation will provide an overview of the hook's functionality, its implementation, and usage.
 
-The `useBroadcastPushNotification` hook simplifies sending push notifications in a React Native app by interfacing with Firebase Cloud Functions to send messages either to individual users or multicast messages to all users. This hook manages the state related to notification sending, including loading status, success status, and errors.
+The **[`useBroadcastPushNotification`](/frontend/src/hooks/notifications/use-send-notification.js)** hook simplifies sending push notifications in a React Native app by interfacing with Firebase Cloud Functions to send messages either to individual users or multicast messages to all users. This hook manages the state related to notification sending, including loading status, success status, and errors.
 
 ## Hook Functionality
 
@@ -25,11 +25,12 @@ Before using this hook, ensure `@react-native-firebase/functions` is installed a
 yarn add @react-native-firebase/functions
 ```
 
-Ensure your Firebase functions are defined and deployed. From the `firebase-functions` directory wich holds the backend functions.
+Ensure your Firebase functions are defined and deployed. From the **[`firebase-functions`](/firebase-functions/)** directory wich holds the backend functions.
 
 ## Usage
 
 **You have to provide within your data sending through push notification the properties**
+
 - **`targetScreen`**: a string with the screen name to define where the deeplink should route the user.
 - **`params`**: an object with navigation params to apply to the navigation, if you have none use an empty object.
 
