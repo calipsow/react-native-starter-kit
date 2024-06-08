@@ -19,19 +19,12 @@ Follow these steps to set up Firebase Authentication in your existing Firebase p
 - Set up your login method preferences, such as allowing users to sign in with their email and password.
 - Configure additional settings such as password reset policies and email verification templates.
 
-## Step 5: Implement Authentication in Your App
-- Use the Firebase SDK in your application to integrate the authentication flow. Examples of SDK usage for different platforms can be found in the Firebase documentation.
-- Ensure that your app handles authentication states correctly to manage user sessions.
-
-## Step 6: Secure Your Application
-- Use Firebase Rules and custom claims to secure your application by restricting what authenticated users are allowed to do.
-- Regularly review and update your security rules in response to how your app evolves.
-
-## Step 7: Test Your Authentication Setup
+## Step 5: Test The Authentication Setup
 - Thoroughly test each authentication method to ensure everything works smoothly from the user’s perspective.
 - Use the Firebase console to monitor authentication activities and troubleshoot issues.
 
-For further implementation details and best practices, visit the official [Firebase Authentication Documentation](https://firebase.google.com/docs/auth).
+The shipnative app comes with an fully implemented auth workflow see more about it in [Authentication Workflow](/documentations/authentication-setup).
+For further details about Auth, visit the official [Firebase Authentication Documentation](https://firebase.google.com/docs/auth).
 
 ## Additional Tips
 - Continuously update and monitor your authentication methods to ensure data safety.
