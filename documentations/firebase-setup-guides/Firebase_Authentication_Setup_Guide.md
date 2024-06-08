@@ -32,7 +32,8 @@ Follow these steps to set up Firebase Authentication in your existing Firebase p
 
 - (info): Use the Firebase console to monitor authentication activities and troubleshoot issues.
 
-For further implementation details and best practices, visit the official [Firebase Authentication Documentation](https://firebase.google.com/docs/auth).
+The shipnative app comes with an fully implemented auth workflow see more about it in [Authentication Workflow](/documentations/authentication-workflow/Authentication_Workflow.md).
+For further details about Auth, visit the official [Firebase Authentication Documentation](https://firebase.google.com/docs/auth).
 
 ## Additional Tips
 

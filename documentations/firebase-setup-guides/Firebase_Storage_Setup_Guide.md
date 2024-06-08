@@ -26,19 +26,15 @@ Note that you must be on a "pay as you go plan" (Blaze plan) to utilize Firebase
 ## Configure Security Rules for Storage
 
 - Firebase Storage comes with default security rules which you might need to modify according to your app’s needs.
-
-Basic Security Rule:
-
-```
-service firebase.storage {
-  match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if request.auth != null;
+  Example of a basic rule for authenticated access only:
+  `    service firebase.storage {
+      match /b/{bucket}/o {
+        match /{allPaths=**} {
+          allow read, write: if request.auth != null;
+        }
+      }
     }
-  }
-}
-```
-
+   `
 - Confirm your security settings and proceed.
 
 ## Monitor Usage and Optimize Costs
@@ -51,3 +47,6 @@ For detailed documentation and best practices, refer to the official [Firebase S
 ## Additional Tips
 
 - Regularly update your security rules to protect data.
+- The storage bucket is for free until 500MB of data.
+- Ensure uploaded images are small as possible. Use our boilerplate hooks `src/hooks/firebase` they compromise images and esure security and integrity.
+- Hooks for delete images from the bucket and more are ready to use. See more in [firebase fuctions](/documentations/hooks/Firebase_Hooks.md).
