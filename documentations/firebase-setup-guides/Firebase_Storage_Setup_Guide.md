@@ -28,13 +28,13 @@ Note that you must be on a "pay as you go plan" (Blaze plan) to utilize Firebase
 - Firebase Storage comes with default security rules which you might need to modify according to your app’s needs.
   Example of a basic rule for authenticated access only:
 ```
-  service firebase.storage {
-      match /b/{bucket}/o {
-        match /{allPaths=**} {
-          allow read, write: if request.auth != null;
-        }
+service firebase.storage {
+    match /b/{bucket}/o {
+      match /{allPaths=**} {
+        allow read, write: if request.auth != null;
       }
     }
+  }
 ```
 - Confirm your security settings and proceed.
 
