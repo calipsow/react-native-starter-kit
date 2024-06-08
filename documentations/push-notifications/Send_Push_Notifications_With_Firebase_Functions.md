@@ -1,4 +1,4 @@
-# Documentation for sending push notifications using firebase functions
+# Invoke push notifications
 
 The custom React hook designed for applications that facilitates sending push notifications either to all app users or a single user through Firebase Functions. This documentation will provide an overview of the hook's functionality, its implementation, and usage.
 
