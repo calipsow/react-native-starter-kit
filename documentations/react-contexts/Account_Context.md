@@ -1,4 +1,4 @@
-# Account Context Guide
+# Account Context
 
 The react context is implemented in the **[`AppView.js`](/frontend/src/modules/AppView.js)** component and wraps the core application.
 
