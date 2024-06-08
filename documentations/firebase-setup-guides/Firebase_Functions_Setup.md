@@ -32,7 +32,7 @@ firebase emulators:start
 
 ## Part 3: Deploying to Firebase Functions
 
-Inside of `firebase-functions` you can deploy your functions to Firebase with:
+Inside of `firebase-functions` folder you can deploy your functions to Firebase with:
 
 ```bash
 firebase deploy --only functions

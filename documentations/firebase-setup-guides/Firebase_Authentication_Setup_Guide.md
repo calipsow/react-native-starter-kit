@@ -1,38 +1,40 @@
-
 # Setup Firebase Authentication
 
 Follow these steps to set up Firebase Authentication in your existing Firebase project:
 
-## Step 1: Sign in to Firebase Console
+## Sign in to Firebase Console
+
 - Navigate to the [Firebase Console](https://console.firebase.google.com/).
 - Select your existing project from the list of projects.
 
-## Step 2: Add Firebase Authentication to Your Project
+## Add Firebase Authentication to Your Project
+
 - In the Firebase console, click on the `Authentication` section in the left panel under `Build`.
 - Click `Get started`.
 
-## Step 3: Choose Authentication Providers
-- Firebase Authentication supports various providers such as Email/Password, Google, Facebook, Twitter, GitHub, etc.
-- Enable the providers you need by toggling them on and configuring the necessary API keys and secrets that you receive from those services.
+## Choose Authentication Providers
 
-## Step 4: Configure Authentication Settings
-- Set up your login method preferences, such as allowing users to sign in with their email and password.
-- Configure additional settings such as password reset policies and email verification templates.
+- **Enable Email/Password to get started**.
+- (info): Firebase Authentication supports various providers such as Email/Password, Google, Facebook, Twitter, GitHub, etc. Shipnative uses Email/Password
+- (info): For some providers you need by toggling to configuring the necessary API keys and secrets that you receive from those services.
 
-## Step 5: Implement Authentication in Your App
-- Use the Firebase SDK in your application to integrate the authentication flow. Examples of SDK usage for different platforms can be found in the Firebase documentation.
-- Ensure that your app handles authentication states correctly to manage user sessions.
+## Configure Authentication Settings
 
-## Step 6: Secure Your Application
-- Use Firebase Rules and custom claims to secure your application by restricting what authenticated users are allowed to do.
-- Regularly review and update your security rules in response to how your app evolves.
+- **Set login method preferences to sign in with email and password.**
+- (optional): Configure additional settings such as password reset policies and email verification templates.
 
-## Step 7: Test Your Authentication Setup
-- Thoroughly test each authentication method to ensure everything works smoothly from the user’s perspective.
-- Use the Firebase console to monitor authentication activities and troubleshoot issues.
+## Security
+
+- (info): Use Firebase Rules and custom claims to secure your application by restricting what authenticated users are allowed to do.
+- (info): Regularly review and update your security rules in response to how your app evolves.
+
+## Monitoring Authentication
+
+- (info): Use the Firebase console to monitor authentication activities and troubleshoot issues.
 
 For further implementation details and best practices, visit the official [Firebase Authentication Documentation](https://firebase.google.com/docs/auth).
 
 ## Additional Tips
+
 - Continuously update and monitor your authentication methods to ensure data safety.
 - Consider integrating advanced features such as Multi-Factor Authentication (MFA) for enhanced security.
