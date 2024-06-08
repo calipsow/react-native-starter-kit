@@ -317,8 +317,15 @@ const useAuthState = () => {
 ### App View Logic
 
 - After the user signs in or signs up, the `src/modules/AppView.js` component sets up the `AccountContext` that holds all values from Firebase related to the user. 
-It is also recommended to store your custom data in that `AccountContext` state using the `setAccountContext` method provided by the 
-```javascript const [accountCtx, setAccountContext] = useContext(AccountContext)``` Context.
+It is also recommended to store your custom data in that `AccountContext` state using the `setAccountContext` method provided by the AccountContext:
+```javascript 
+const [accountCtx, setAccountContext] = useContext(AccountContext)
+setAccountContext(prev => ({
+...prev,
+username: "john"
+}))
+```
+[More about AccountContext](/documentations/react-contexts/Account_Context.md).
 - If the user signup the username will temporary stored in the `SecureStorage` with the key `username`, 
 the hook will look for this value if its found, the hook updates the database and stores the username also in the `accountContext`. 
 After this the value `username` will be deleted from the `SecureStorage`.
