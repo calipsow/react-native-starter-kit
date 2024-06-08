@@ -43,4 +43,6 @@ For detailed documentation and best practices, refer to the official [Firebase S
 
 ## Additional Tips
 - Regularly update your security rules to protect data.
-- Consider using Firebase Functions to automate tasks like image resizing or file processing.
+- The storage bucket is for free until 500MB of data. 
+- Ensure uploaded images are small as possible. Use our boilerplate hooks `src/hooks/firebase` they compromise images and esure security and integrity. 
+- Hooks for delete images from the bucket and more are ready to use. See more in [firebase fuctions](/documentations/hooks/Firebase_Hooks.md).
