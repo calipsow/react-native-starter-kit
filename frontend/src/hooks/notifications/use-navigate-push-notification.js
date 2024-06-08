@@ -43,7 +43,7 @@ function handlePushNotification(remoteMessage, navigation) {
       }
     }
   } catch (error) {
-    console.error(error);
+    console.error("an error occurred while handling incoming push notification",error.message);
   }
 }
 
