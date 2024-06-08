@@ -8,8 +8,8 @@ The **[`useSyncAccountChanges.js`](/frontend/src/hooks/context/use-change-listen
 
 ## Hook Overview
 
-- **Purpose**: To keep the user's Firestore document in sync with the application's user state.
-- **Key Features**:
+**Purpose**: To keep the user's Firestore document in sync with the application's user state.
+**Key Features**:
   - Detects changes in the `accountCtx`.
   - Updates the corresponding Firestore document for the current user.
   - Handles and logs Firebase errors during updates.
