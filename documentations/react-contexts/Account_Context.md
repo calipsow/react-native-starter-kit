@@ -21,8 +21,6 @@ export default function AppView() {
 
 ## Initialize useSyncAccountChanges Hook
 
-The `useSyncAccountChanges` hook is designed for React applications using Firebase as a backend. It automatically syncs user data changes to the Firestore database whenever there is a modification in the user's context. This documentation provides an overview of the hook's implementation, usage, and key functionalities.
-
 The `useSyncAccountChanges` hook facilitates real-time synchronization of user state changes with a Firestore database. It tracks changes to the `accountCtx` state, automatically updating the Firestore document for the logged-in user when changes are detected.
 
 ```javascript
@@ -97,7 +95,7 @@ const useSyncAccountChanges = (accountCtx) => {
   - Updates the corresponding Firestore document for the current user.
   - Handles and logs Firebase errors during updates.
 
-## Feature Dependencies
+## Dependencies
 
 **Ensure Firebase is initialized in your project and the Firestore SDK is correctly configured in `config/firebase-client`:**
 

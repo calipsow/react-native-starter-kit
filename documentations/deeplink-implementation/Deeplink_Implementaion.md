@@ -10,7 +10,7 @@ Deep links are URLs that direct users to specific content within an app, bypassi
 
 Proper setup of logic-based route rendering is crucial for a seamless user experience and ensures that the app can handle deep links correctly. It involves setting up navigation routes that adjust based on the user's authentication status or other criteria, ensuring that users are directed appropriately within the app.
 
-### Example: Deep Link Friendly Logic-Based Routing
+### Implementation of the Logic-Based Routing
 
 Here’s how the app's deep linking-friendly logic-based routing is implemented in `src/modules/navigation/RootNavigation.js` it covers if the firebase backend is not loaded, user is un-auth or user is auth:
 
@@ -99,6 +99,7 @@ Here’s how the app's deep linking-friendly logic-based routing is implemented 
 ## The Deep Link Configuration Object
 
 A deep link configuration object defines the URL prefixes and the mapping of these URLs to the navigation structure of the app. This configuration ensures that deep links correctly navigate to the specified screens within the app.
+**You have to ensure that all screens on wich the deeplink can directed are defined within this object.**
 
 ### App's Deep Linking Config
 
@@ -163,4 +164,4 @@ Container
 }
 ```
 
-IMPORTANT: Only the screens defined in the configuration object are navigable through deep links. This ensures a targeted and user-friendly navigation experience based on URLs.
+**IMPORTANT: Only the screens defined in the configuration object are navigable through deep links. This ensures a targeted and user-friendly navigation experience based on URLs.**
