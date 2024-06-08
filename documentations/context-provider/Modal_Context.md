@@ -1,6 +1,6 @@
-# ModalProvider and ModalContext
+# Modal Context
 
-The `ModalProvider` wraps the React application or specific components to provide an easy way to manage and display modals based on different triggers such as user actions or application events. The `ModalContext` allows descendant components to control modal visibility and content dynamically.
+The `ModalProvider` wraps the React application or specific components to provide an easy way to manage and display modals based on different triggers such as user actions or application events.
 
 ## Features
 
@@ -92,38 +92,6 @@ const YourComponent = () => {
   - `captionText`: String, text displayed in the modal.
   - `onCustomEvent`: Function, called when the user clicks "Confirm".
   - `onCancel`: Function (optional), called when the user clicks "Cancel".
-
-### Styling
-
-Modals are styled using `StyleSheet` for consistent theming and layout across the application. Customize the styles in the `styles` object to match your design requirements.
-
-```jsx
-const styles = StyleSheet.create({
-  modalBackground: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  modalContent: {
-    backgroundColor: "your_color",
-    padding: 10,
-    borderRadius: 10,
-    width: "80%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: "your_border_color",
-  },
-  modalTitle: {
-    fontSize: 20,
-    textAlign: "center",
-    color: "your_text_color",
-    fontFamily: "your_font_family",
-  },
-});
-```
 
 ## Conclusion
 

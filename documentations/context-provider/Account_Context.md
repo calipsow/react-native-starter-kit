@@ -11,25 +11,27 @@ The **[`useSyncAccountChanges.js`](/frontend/src/hooks/context/use-change-listen
 **Purpose**: To keep the user's Firestore document in sync with the application's user state.
 
 **Key Features**:
-  - Detects changes in the `accountCtx`.
-  - Updates the corresponding Firestore document for the current user.
-  - Handles and logs Firebase errors during updates.
+
+- Detects changes in the `accountCtx`.
+- Updates the corresponding Firestore document for the current user.
+- Handles and logs Firebase errors during updates.
 
 ## Functionality
 
 **Data Synchronization**:
 
-  - The hook compares the previous and current states of `accountCtx`.
-  - When a change is detected in any field except for `firebase_auth_data`, it triggers an update to the Firestore database using `updateDoc`.
+- The hook compares the previous and current states of `accountCtx`.
+- When a change is detected in any field except for `firebase_auth_data`, it triggers an update to the Firestore database using `updateDoc`.
 
 **Error Handling**:
 
-  - Errors during the Firestore update operation are caught and stored in `firebaseError`.
-  - A separate effect logs warning messages if there is a synchronization failure.
+- Errors during the Firestore update operation are caught and stored in `firebaseError`.
+- A separate effect logs warning messages if there is a synchronization failure.
 
 **Initialization and Cleanup**:
-  - The Firestore instance (`db`) is initialized when `accountCtx` is set.
-  - Previous state management helps avoid unnecessary database writes and ensures updates are based on actual changes.
+
+- The Firestore instance (`db`) is initialized when `accountCtx` is set.
+- Previous state management helps avoid unnecessary database writes and ensures updates are based on actual changes.
 
 ## Updating the `accountCtx` State
 
@@ -50,4 +52,6 @@ setAccountCtx((prev) => ({
 
 ## Conclusion
 
-The `useSyncAccountChanges` hook offers an efficient and robust solution for keeping user-related data synchronized between a React application's state and Firebase Firestore. By automating this process, the hook helps maintain data integrity and reduces the complexity of handling user data updates manually.
+The `useSyncAccountChanges` hook offers an efficient and robust solution for keeping user-related data synchronized between a React application's state and Firebase Firestore.
+
+By automating this process, the hook helps maintain data integrity and reduces the complexity of handling user data updates manually.

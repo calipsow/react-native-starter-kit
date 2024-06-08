@@ -22,7 +22,7 @@ Once logged in, click on "Create new project".
 
 - Enter a project name and follow the on-screen instructions.
 - Make sure to enable Google Analytics for your project, as it provides valuable insights.
-- After this you should enable Firebase Functions, see more in **[setup firebase functions](/documentations/firebase-setup-guides/Firebase_Functions_Setup.md)**.
+- After this you should enable Firebase Functions, see more in **[setup firebase functions](/documentations/firebase-setup/Firebase_Functions_Setup.md)**.
 
 ---
 
@@ -36,13 +36,13 @@ The web app is needed to simplify the setup
 
 - Click on the Android icon to create a new Android app.
 - Create an package name for your android app.
-  Like this one: `com.example.android.app`. This bundle identifier needs also configured within this project, more about in **[app identifiers](/documentations/general-setup/Configure_Bundle_Identifiers.md)**.
+  Like this one: `com.example.android.app`. This bundle identifier needs also configured within this project, more about in **[app identifiers](/documentations/app-config/Configure_Bundle_Identifiers.md)**.
 - Download the `google-services.json` file and place it in the **[`/android/app/`](/frontend/android/app/)** directory.
 
 **For iOS**:
 
 - Click on the iOS Icon and create a new iOS App in Firebase.
-- Register your app with an iOS bundle ID. Like the package name for android. Example: `com.example.ios.app`. **The identifier should be unique on the App Store.** More about in [app identifiers](/documentations/general-setup/Configure_Bundle_Identifiers.md)
+- Register your app with an iOS bundle ID. Like the package name for android. Example: `com.example.ios.app`. **The identifier should be unique on the App Store.** More about in [app identifiers](/documentations/app-config/Configure_Bundle_Identifiers.md)
 - Download the `GoogleService-Info.plist` file and add it to your project using Xcode.
 - **You dont have to modify the [`AppDelegate.mm`](/frontend/ios/shipnative/AppDelegate.mm) yourself. Its already configured for you.**
 
@@ -67,10 +67,52 @@ Go to **[firebase-client.js](/frontend/config/firebase-client.js)** file, replac
 
 Follow the Setup Guides for the required Firebase-Features
 
-**[Firebase Authentication](/documentations/firebase-setup-guides/Firebase_Authentication_Setup_Guide.md)**
+**[Firebase Authentication](/documentations/firebase-setup/Firebase_Authentication_Setup_Guide.md)**
 
-**[Firebase Firestore](/documentations/firebase-setup-guides/Firestore_Setup_Guide.md)**
+**[Firebase Firestore](/documentations/firebase-setup/Firestore_Setup_Guide.md)**
 
-**[Firebase Storage](/documentations/firebase-setup-guides/Firebase_Storage_Setup_Guide.md)**
+**[Firebase Storage](/documentations/firebase-setup/Firebase_Storage_Setup_Guide.md)**
 
-**[Firebase Functions](/documentations/firebase-setup-guides/Firebase_Functions_Setup.md)**
+**[Firebase Functions](/documentations/firebase-setup/Firebase_Functions_Setup.md)**
+
+### 5. Install Node Packages
+
+Install the package requirements from `package.json`
+
+Switch to the [root directory](/frontend/) and run:
+
+```bash
+yarn
+```
+
+Or using NPM:
+
+```bash
+npm install --legacy-peer-debs --save
+```
+
+---
+
+**Starting the App**
+
+Make sure you have an running emulator or a usb-connected device to run the app with.
+
+**Run on iOS**
+
+Switch into the [ios folder](/frontend/ios/) and run:
+
+```bash
+pod install --repo-update
+```
+
+Now run:
+
+```bash
+npx react-native run-ios
+```
+
+**Run on Android**
+
+```bash
+npx react-native run-android
+```
