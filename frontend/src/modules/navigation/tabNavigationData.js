@@ -6,12 +6,10 @@ import getFontSize from '../../functions/ui/resolve-relative-font-size';
 import { colors } from '../../styles';
 import ProfileStackNavigator from '../account/profile/ProfileStack';
 import BlogStackNavigator from '../blogs/BlogStack';
-import EventStackNavigator, {
+import EventStackNavigator from '../events/EventStack';
+import HomeScreen from '../home/HomeView';
 
-} from '../events/EventStack';
-import HomeScreen from '../home/HomeViewContainer';
-
-// implement default fall back route 
+// implement default fall back route
 const tabNavigationData = [
   {
     name: 'Home',

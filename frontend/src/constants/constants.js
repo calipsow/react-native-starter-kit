@@ -80,7 +80,7 @@ export const pbImage =
   'https://firebasestorage.googleapis.com/v0/b/fir-zsw.appspot.com/o/public%2Fapp%2Fimages%2Fdefault-avatar.png?alt=media&token=44a5f0a9-6a04-45fa-83d1-f0a95e49f7b5';
 
 export const DEEP_LINKING_CONFIG = {
-  prefixes: ['https://zusammen-stehen-wir.de/app', 'zsw://'],
+  prefixes: ['https://shipnative.app/', 'shipnative://'],
   config: {
     screens: {
       Homes: {
@@ -100,8 +100,6 @@ export const DEEP_LINKING_CONFIG = {
             path: 'settings',
             initialRouteName: 'Einstellungen',
           },
-          'Single Event': 'event/:event_id',
-          'Single Article': 'article/:article_id',
         },
       },
     },

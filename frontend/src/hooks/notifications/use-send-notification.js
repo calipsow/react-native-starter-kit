@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import functions from '@react-native-firebase/functions';
 import '@react-native-firebase/functions';
-import { ZSW_LOGO_SOURCE, fbImage } from '../../constants/constants';
+import { fbImage } from '../../constants/constants';
 
 const useBroadcastPushNotification = () => {
   const [loading, setLoading] = useState(false);
@@ -27,26 +27,6 @@ const useBroadcastPushNotification = () => {
         imageUrl: imageUrl,
         data: data,
       });
-      setLoading(false);
-      setSucceed(true);
-    } catch (error) {
-      setLoading(false);
-      setError(error);
-      setSucceed(false);
-    }
-  };
-
-  const sendAdminNotification = async ({
-    imageUrl = '',
-    body = '',
-    data = {},
-  }) => {
-    setLoading(true);
-    setError(null);
-    setSucceed(false);
-    try {
-      const sendPushToAdmins = functions().httpsCallable('sendPushToAdmins');
-      await sendPushToAdmins({ imageUrl: imageUrl, body: body, data: data });
       setLoading(false);
       setSucceed(true);
     } catch (error) {
@@ -96,7 +76,6 @@ const useBroadcastPushNotification = () => {
     loading,
     succeed,
     error,
-    sendAdminNotification,
   };
 };
 

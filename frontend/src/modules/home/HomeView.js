@@ -50,7 +50,6 @@ const HomeTag = ({
   const { sendSingleNotification } = useBroadcastPushNotification();
   const sendTestPush = async () => {
     console.log('sending test push..');
-
   };
   return (
     <TouchableOpacity onPress={sendTestPush}>
@@ -73,8 +72,8 @@ const HomeTag = ({
 const Home = () => {
   const { role } = useAuthState();
   const navigation = useNavigation();
-  const [accountContext, setAccountContext] = useContext(AccountContext);
-  const { documentData, getDocument, error, loading } = useGetDocument();
+  const [accountContext] = useContext(AccountContext);
+  const { documentData, getDocument, error } = useGetDocument();
   const linkHook = useExternalLink();
 
   const handlePressedTag = action => {};
@@ -276,7 +275,6 @@ const Home = () => {
           )
         )}
       </React.Fragment>
-
 
       {/* Theme Sections */}
       <View style={{ marginTop: 20 }}>

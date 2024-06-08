@@ -11,7 +11,10 @@ import SecureStorage from '../../helpers/secure-storage';
 import { Firebase } from '../../../App';
 import { app } from '../../../config/firebase-client';
 
-const useAuthListener = (accountCtx, setAccountCtx = function (state) {}) => {
+const useAuthContextListener = (
+  accountCtx,
+  setAccountCtx = function (state) {},
+) => {
   const { db } = useContext(Firebase);
   useEffect(() => {
     if (!db) return;
@@ -61,4 +64,4 @@ const useAuthListener = (accountCtx, setAccountCtx = function (state) {}) => {
   return null;
 };
 
-export default useAuthListener;
+export default useAuthContextListener;

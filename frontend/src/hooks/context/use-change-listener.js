@@ -28,6 +28,12 @@ const useSyncAccountChanges = accountCtx => {
   };
 
   useEffect(() => {
+    if (accountCtx && !db) {
+      db = getFirestore();
+    }
+  }, [accountCtx]);
+
+  useEffect(() => {
     if (firebaseError) {
       console.warn(
         'Failed to sync accountCtx with firestore last modified field',
@@ -55,7 +61,7 @@ const useSyncAccountChanges = accountCtx => {
     const currentData = accountCtx || {};
 
     Object.keys(currentData).forEach(key => {
-      if (key === 'firebase_auth_data') return; // ignoring firebase managed changes stored in `firebase_auth_data`
+      if (key === 'firebase_auth_data') return; // ignoring firebase managed changes stored in `firebase_auth_data`. add more fields to ignore here, if needed.
       const oldValue = previousState[key];
       const newValue = currentData[key];
 
@@ -64,12 +70,6 @@ const useSyncAccountChanges = accountCtx => {
         setPreviousState(accountCtx); // update the previous state to the latest changes to prevent useless rewrites to the db of the same state over and over again
       }
     });
-  }, [accountCtx]);
-
-  useEffect(() => {
-    if (accountCtx && !db) {
-      db = getFirestore();
-    }
   }, [accountCtx]);
 
   return { firebaseError, lastModifiedData };
