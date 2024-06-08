@@ -2,7 +2,7 @@
 
 The react context is implemented in the **[`AppView.js`](/frontend/src/modules/AppView.js)** component and wraps the core application.
 
-## Initialize useSyncAccountChanges Hook
+## Auto Sync Changes
 
 The **[`useSyncAccountChanges.js`](/frontend/src/hooks/context/use-change-listener.js)** hook facilitates real-time synchronization of user state changes with a Firestore database. It tracks changes to the `accountCtx` state, automatically updating the Firestore document for the logged-in user when changes are detected.
 
@@ -15,11 +15,7 @@ The **[`useSyncAccountChanges.js`](/frontend/src/hooks/context/use-change-listen
   - Updates the corresponding Firestore document for the current user.
   - Handles and logs Firebase errors during updates.
 
-## Dependencies
-
-**Ensure Firebase is initialized in your project and the Firestore SDK is correctly configured in [firebase-client.js](/frontend/config/firebase-client.js)**.
-
-## Functionality Details
+## Functionality
 
 **Data Synchronization**:
 
