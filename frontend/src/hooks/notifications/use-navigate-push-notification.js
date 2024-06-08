@@ -24,7 +24,7 @@ function useHandlePushNotifications() {
 }
 
 
-function handlePushNotification(remoteMessage, navigation) {
+export function handlePushNotification(remoteMessage, navigation) {
   // if (!remoteMessage?.data?.data) return;
   try {
     const values = JSON.parse(remoteMessage.data.data);
