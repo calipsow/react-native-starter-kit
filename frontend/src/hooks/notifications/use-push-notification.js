@@ -44,7 +44,7 @@ const usePushNotification = () => {
     if (newNotificationArrived) {
       showModalConfirmation(
         `${lastNotification.title}\n${lastNotification.body}`,
-        `${data.type === 'event' ? 'Zum Event' : 'Zum Beitrag'} wechseln?`,
+        `See more`,
         () => {
           navigation.navigate(data.targetScreen, data.params);
         },
