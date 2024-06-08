@@ -7,7 +7,7 @@ import { AccountContext } from '../../modules/AppView';
 import { useNavigation } from '@react-navigation/native';
 import { useToastNotify } from '../screen/use-toast-notification';
 import { ModalContext } from '../../modules/provider/ModalProvider';
-import { handlePushNotification } from "./use-push-notification"
+import { handlePushNotification } from "./use-navigate-push-notification"
 
 
 const usePushNotification = () => {
@@ -35,7 +35,7 @@ const usePushNotification = () => {
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       setData(JSON.parse(remoteMessage.data.data));
       console.log(JSON.parse(remoteMessage.data.data));
-      setLastNotification(remoteMessage.notification);
+      setLastNotification(remoteMessage);
       setNewNotificationArrived(true);
     });
 
@@ -45,11 +45,10 @@ const usePushNotification = () => {
   useEffect(() => {
     if (newNotificationArrived) {
       showModalConfirmation(
-        `${lastNotification.title}\n${lastNotification.body}`,
+        `${lastNotification.notification.title}\n${lastNotification.notification.body}`,
         `See more`,
         () => {
-          handlePushNotification(
-          navigation.navigate(data.targetScreen, data.params);
+          handlePushNotification(lastNotification, navigation)
         },
       );
       setNewNotificationArrived(false);
