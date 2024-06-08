@@ -19,7 +19,7 @@ Follow these steps to set up Firebase Storage in your existing Firebase project.
 
 ## Step 4: Configure Security Rules for Storage
 - Firebase Storage comes with default security rules which you might need to modify according to your app’s needs.
-  - Example of a basic rule for authenticated access:
+Example of a basic rule for authenticated access only:
     ```
     service firebase.storage {
       match /b/{bucket}/o {
