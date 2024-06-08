@@ -1,24 +1,28 @@
-# Deeplink Domain Setup
+# Deeplink and Domain Setup
 
-Associating a domain with a mobile application and setting up custom URL schemes for iOS and Android in a React Native environment involves several detailed steps. **This guide will walk you through the necessary configurations for both platforms, as well as adjustments needed for native modules in your React Native app.**
+Associating a domain with a mobile application and setting up custom URL schemes for iOS and Android in a React Native environment involves several detailed steps.
 
-## Associating a Domain with Your App
+This guide will walk you through the necessary configurations for both platforms, as well as adjustments needed for native modules in your React Native app.
+
+## Associate your Domain
+
+Setup Guide for your domains to associate apps with it.
 
 ### iOS - Associated Domains
 
-**Apple Developer Account**:
+**1. Apple Developer Account Config**
 
 - Log in to your [Apple Developer Account](https://developer.apple.com/).
 - Go to "Certificates, Identifiers & Profiles" and select your app identifier.
 - Enable "Associated Domains" under the app capabilities.
 
-**Xcode Configuration**:
+**2. Xcode Configuration**:
 
 - Open your project in Xcode.
 - Select your target and go to the "Capabilities" tab.
 - Toggle "Associated Domains" to on and add your domain in the format: `applinks:yourdomain.com`.
 
-**Server Configuration**:
+**3. Server/Domain Configuration**:
 
 - Ensure your server hosts an Apple App Site Association (AASA) file at `https://yourdomain.com/.well-known/apple-app-site-association`.
 - This file should not have any file extension and must be accessible via HTTPS without any redirects.
@@ -41,14 +45,14 @@ Example AASA file:
 
 ### Android - Digital Asset Links
 
-**Google Play Console**:
+**Google Play Console Config**
 
 - Ensure your app is added to the Google Play Console.
 - Link your app with the website by verifying the ownership through the Google Play Console.
 
-**Asset Links File**:
+**Asset Links File**
 
-- Host a Digital Asset Links JSON file at `https://yourdomain.com/.well-known/assetlinks.json`.
+- Host a Digital Asset Links JSON file at `https://yourdomain.com/.well-known/assetlinks.json` route in your webserver or hosting provider.
 
 Example asset links file:
 
@@ -65,7 +69,7 @@ Example asset links file:
 ]
 ```
 
-**Android Manifest**:
+**Update Android Manifest**
 
 - Add an intent filter in your **[`AndroidManifest.xml`](/frontend/android/app/src/main/AndroidManifest.xml)** to associate HTTP and HTTPS URLs with your app.
 
@@ -80,20 +84,20 @@ Example asset links file:
 </activity>
 ```
 
-## Setting Up Custom URL Schemes
+## Config Custom URL Schemes
 
-### iOS
+### For iOS
 
-**Xcode Configuration**:
+**Xcode Config**
 
 - Open your project in Xcode.
 - Select your project target, go to the "Info" tab.
 - Expand "URL Types" and click the "+" to add a new URL type.
 - Enter your custom scheme (e.g., `app`) in "URL Schemes".
 
-### Android
+### For Android
 
-**Android Manifest**:
+**Android Manifest Config**
 
 - Add an intent filter for your custom URL scheme in **[`AndroidManifest.xml`](/frontend/android/app/src/main/AndroidManifest.xml)**.
 
@@ -106,46 +110,6 @@ Example asset links file:
     <data android:scheme="app" />
   </intent-filter>
 </activity>
-```
-
-## (No Required) Adjusting Native Modules
-
-**This is usually not necessary, and requires an deep understanding of the native ios and android modules**
-
-To handle deep links in React Native, especially for custom URL schemes or universal links, you may need to adjust your native modules.
-
-### iOS - AppDelegate.mm
-
-```objective-c
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-  return [RCTLinkingManager application:application openURL:url options:options];
-}
-```
-
-### Android - MainActivity.kt
-
-```java
-@Override
-public void onNewIntent(Intent intent) {
-  super.onNewIntent(intent);
-  setIntent(intent);
-}
-```
-
-And link it with the React Native Linking API:
-
-```javascript
-import { Linking } from "react-native";
-
-Linking.getInitialURL()
-  .then((url) => {
-    if (url) {
-      console.log("Initial url is: " + url);
-    }
-  })
-  .catch((err) => console.error("An error occurred", err));
 ```
 
 ## Conclusion

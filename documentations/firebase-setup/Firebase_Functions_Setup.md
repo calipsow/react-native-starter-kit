@@ -1,4 +1,4 @@
-# Setting Up and Deploying Firebase Functions
+# Firebase Functions
 
 Firebase Functions, part of Firebase's suite of cloud services and backed by Google Cloud Platform, allow developers to run backend code in response to events triggered by Firebase features and HTTPS requests. This guide provides a comprehensive overview of setting up Firebase Functions, deploying them, considerations for using Google Cloud Platform, and exploring alternatives.
 
@@ -42,23 +42,29 @@ This command deploys all functions defined in your `firebase-functions/functions
 
 ## Part 4: Google Cloud Platform Considerations
 
-- **Billing**: Firebase Functions run on Google Cloud Platform, which requires a Blaze Plan for outbound network calls. Ensure you have a billing account set up.
-- **Resource Allocation**: Functions are allocated CPU and memory based on the plan. Monitoring and adjusting these can optimize costs and performance.
-- **Security and Permissions**: Configure the function's runtime environment and permissions in the Firebase Console under the Cloud Functions section.
+**Billing**: Firebase Functions run on Google Cloud Platform, which requires a Blaze Plan for outbound network calls. Ensure you have a billing account set up.
+
+**Resource Allocation**: Functions are allocated CPU and memory based on the plan. Monitoring and adjusting these can optimize costs and performance.
+
+**Security and Permissions**: Configure the function's runtime environment and permissions in the Firebase Console under the Cloud Functions section.
 
 ## Part 5: Alternatives and Benefits
 
 ### Server-Based Alternatives
 
-- **Dedicated Servers**: Manage your infrastructure or use providers like AWS EC2 or DigitalOcean for full control over the environment.
-- **Container Services**: Use Docker with services like Kubernetes or AWS ECS for scalable containerized applications.
+**Dedicated Servers**: Manage your infrastructure or use providers like AWS EC2 or DigitalOcean for full control over the environment.
+
+**Container Services**: Use Docker with services like Kubernetes or AWS ECS for scalable containerized applications.
 
 ### Benefits of Firebase Functions Over Servers
 
-- **Scalability**: Automatically scales based on demand without managing server infrastructure.
-- **Integrated Ecosystem**: Seamlessly integrates with other Firebase and Google Cloud services.
-- **Cost-Effective**: Pay only for the resources you use during the function execution.
-- **Serverless Architecture**: Reduces the complexity of software deployments and server management.
+**Scalability**: Automatically scales based on demand without managing server infrastructure.
+
+**Integrated Ecosystem**: Seamlessly integrates with other Firebase and Google Cloud services.
+
+**Cost-Effective**: Pay only for the resources you use during the function execution.
+
+**Serverless Architecture**: Reduces the complexity of software deployments and server management.
 
 ## Conclusion
 
