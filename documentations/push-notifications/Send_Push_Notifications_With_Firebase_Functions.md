@@ -29,6 +29,10 @@ Ensure your Firebase functions are defined and deployed. From the `firebase-func
 
 ## Usage
 
+**You have to provide within your data sending through push notification the properties**
+- **`targetScreen`**: a string with the screen name to define where the deeplink should route the user.
+- **`params`**: an object with navigation params to apply to the navigation, if you have none use an empty object.
+
 ### Sending a Broadcast Notification
 
 ```javascript
@@ -40,7 +44,7 @@ broadcastNotification({
   title: "New Feature",
   body: "Check out our brand new features today!",
   imageUrl: "https://example.com/image.png",
-  data: { key: "value" },
+  data: { targetScreen: "Home", params: {} },
 });
 
 if (loading) {
@@ -68,7 +72,7 @@ sendSingleNotification({
   title: "Personalized Message",
   body: "Hello, this is a personalized message just for you!",
   imageUrl: "https://example.com/image.png",
-  data: { key: "value" },
+  data: { targetScreen: "Home", params: {} },
   sendToUserUID: "user_uid",
 });
 
