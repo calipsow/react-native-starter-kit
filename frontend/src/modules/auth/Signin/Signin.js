@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-// Assuming usage of React Navigation for navigation, replace with your navigation logic
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { DividerCaption } from '../../../components/DividerCaption';
@@ -23,9 +22,9 @@ import {
 } from '../../../styles/partials';
 import { ModalContext } from '../../provider/ModalProvider';
 
+
 export default function SignIn() {
   const { showModalAlert } = useContext(ModalContext);
-
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
     password: '',
@@ -33,6 +32,7 @@ export default function SignIn() {
   });
   const [formErrors, setFormErrors] = useState({});
   const { signIn, error, succeeded, loading } = useSignIn();
+
 
   const validateForm = () => {
     let errors = {};
@@ -46,10 +46,9 @@ export default function SignIn() {
     return Object.keys(errors).length === 0;
   };
 
-  // Funktion zum Aktualisieren der Formulardaten
+
   const handleInputChange = ({ id, text }) => {
     setFormData(prevState => ({ ...prevState, [id]: text }));
-    // Entferne Fehlermeldungen für dieses Feld, falls vorhanden
     if (formErrors[id]) {
       setFormErrors(prevErrors => {
         const newErrors = { ...prevErrors };
@@ -59,12 +58,9 @@ export default function SignIn() {
     }
   };
 
-  // Funktion zum Verarbeiten der Anmeldung
+
   const handleSubmit = async () => {
     if (validateForm()) {
-      // Führe die Registrierung durch, wenn keine Fehler vorliegen
-      console.log('Submitting form with data:', formData);
-      // Hier könnte die Logik zum Aufrufen einer API oder Firebase Auth hinzugefügt werden
       signIn({ email: formData.email, passwd: formData.password });
     } else {
       showModalAlert(
@@ -76,6 +72,7 @@ export default function SignIn() {
     }
   };
 
+
   const handleLoginException = (error = '') => {
     if (!error.includes('auth/invalid-login-credentials')) {
       console.error(error);
@@ -83,13 +80,15 @@ export default function SignIn() {
       setFormData({
         email: '',
         password: '',
-      }); // resets the form fields
+      });
     }
   };
+
 
   useEffect(() => {
     if (error) handleLoginException(error);
   }, [error]);
+
 
   return (
     <KeyboardAwareScrollView
@@ -100,10 +99,8 @@ export default function SignIn() {
       <View style={[styles.innerContainer]}>
         <View style={{ margin: 'auto', ...maxWidth, ...screenPadding }}>
           <Text style={styles.header}>Willkommen zurück</Text>
-
           {error && <TextCaptionWarning errorText={error} />}
           <DividerCaption caption="Logge dich mit deiner Email ein" />
-
           <View style={{ width: '100%', gap: 3 }}>
             <FormField
               id={'email'}
@@ -115,7 +112,6 @@ export default function SignIn() {
               keyboardType="email-address"
               value={formData.email}
             />
-
             <FormField
               value={formData.password}
               id={'password'}
@@ -139,11 +135,11 @@ export default function SignIn() {
     </KeyboardAwareScrollView>
   );
 
+
   function SignupCaption() {
     return (
       <View style={styles.signUpRedirectContainer}>
         <Text style={styles.signUpRedirectText}>Noch kein Account? </Text>
-
         <Pressable
           onPress={() => navigation.navigate('Sign Up')}
           style={{ padding: 5, paddingLeft: 0 }}
@@ -153,6 +149,7 @@ export default function SignIn() {
       </View>
     );
   }
+
 
   function PasswordForgotten() {
     return (
@@ -167,6 +164,7 @@ export default function SignIn() {
     );
   }
 }
+
 
 export const styles = StyleSheet.create({
   container: {
@@ -185,7 +183,6 @@ export const styles = StyleSheet.create({
     color: '#fff',
     marginBottom: 20,
     textAlign: 'center',
-
     margin: 'auto',
   },
   input: {
