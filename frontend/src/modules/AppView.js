@@ -8,11 +8,13 @@ export const AccountContext = createContext([]);
 
 export default function AppView() {
   const [accountContext, setAccountContext] = useState(null);
-  // create documentation for this hook
-  useSyncAccountChanges(accountContext); // syncs automatic the accountCtx state with the user data in the firestore db
-  // refactor this hook and document it
-  useAuthContextListener(accountContext, setAccountContext); // syncs the accountCtx with the firebase auth state if the auth state changes
-  // it creates also a new account if no one is found
+  // syncs automatic the user data in the accountCtx state with the database, see more about in the app-context docs it in the docs
+  useSyncAccountChanges(accountContext); 
+  // it creates an new account entry in the databse if no entry is found
+  // syncs the firebase_auth_data property in the accountCtx state if the auth state changes
+  // more about this in the app-context docs
+  useAuthContextListener(accountContext, setAccountContext); 
+  
 
   return (
     <AccountContext.Provider value={[accountContext, setAccountContext]}>
