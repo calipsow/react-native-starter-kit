@@ -33,13 +33,13 @@ Ship on mobile in days not months!
 
 ## Premium Pack
 
-
 ### Authentication Based
+
 --
 
-**UI**
 ## **UI**
 
+- All Auth Screens
 - User Profile
 - Home Content Feed UI
 - Forms
@@ -47,10 +47,11 @@ Ship on mobile in days not months!
 - Loading, Status, Preview Screens
 - All Components
 - E-Commerce Pages
-- Calendar 
+- Calendar
 
 **Features**
-- 
+
+-
 - Deeplinking Handling (complete set)
 - Push Notification Logic
 - Complete Auth Logic
@@ -58,24 +59,14 @@ Ship on mobile in days not months!
 - Firebase Functions (full set)
 - Hooks (Auth related full)
 - Helper (full set)
-- Network Features 
+- Network Features
 - React Redux (Ready to use Setup)
-- Firestore DB Hooks (full set) 
+- Firestore DB Hooks (full set)
 - Authentication Hooks (full set)
-- Google Analytics Setup 
+- Google Analytics Setup
 
-**Documentations**
--
-- Setup Google Firebase 
+## **Documentations**
+
+- Setup Google Firebase
 - App Introduction
 - Setting up Notifications for ios / android
-
-
-
-
-
-
-
-
-
-
