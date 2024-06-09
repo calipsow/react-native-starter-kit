@@ -21,15 +21,14 @@ import StackNavigationData, {
 
 const Stack = createStackNavigator();
 
-// remove isRunnableAppVersion dependency from navigation 
-// document the navigation logic refer to the deeplink config
+
 export default function NavigatorView(props) {
-  const [accountCtx] = useContext(AccountContext);
+  const [accountCtx] = useContext(AccountContext); 
   const { app, auth, db, storage } = useContext(Firebase);
   const { authStatus } = useAuthState();
-  useDeepLinkResolver(accountCtx); // document this deep link hook
-  useHandlePushNotifications(); // Listener for in App Notifications
-  usePushNotification();
+  useDeepLinkResolver(accountCtx); // documented in deeplink-setup docs
+  useHandlePushNotifications(); // documented in notification-setup docs
+  usePushNotification(); // documented in notification-setup docs
 
 
   const headerLeftComponentMenu = () => {
@@ -53,7 +52,7 @@ export default function NavigatorView(props) {
     );
   };
 
-
+  // navigation logic in deeplink-setup and in authentication-workflow docs
   return (
     <Stack.Navigator>
       {(!auth || !db || !storage || !app) ? (
