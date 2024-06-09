@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-// Assuming React Navigation is used for navigation. Replace or remove as needed.
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import getFontSize from '../../../functions/ui/resolve-relative-font-size';
@@ -23,10 +22,13 @@ import {
 } from '../../../components/TextCaptions';
 import { FormSubmitButton } from '../../../components/SubmitButton';
 
+
 export default function ResetPassword() {
   const navigation = useNavigation();
   const { resetPassword, emailSent, error, loading } = useResetPassword();
   const [email, setEmail] = useState('');
+  
+  
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={styles.container}
@@ -73,6 +75,7 @@ export default function ResetPassword() {
     </KeyboardAwareScrollView>
   );
 
+
   function BackLinkText() {
     return (
       <TouchableOpacity
@@ -84,6 +87,7 @@ export default function ResetPassword() {
     );
   }
 }
+
 
 export const styles = StyleSheet.create({
   container: {
