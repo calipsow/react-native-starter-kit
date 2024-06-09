@@ -41,7 +41,6 @@ function useFirestoreSearch() {
                 if (lowerFieldValue.includes(lowerQueryText)) {
                   if (!searchResults.has(doc.id)) {
                     let d = doc.data();
-                    if (!d.approval.approved) return false;
                     searchResults.set(doc.id, doc.data());
                     return true;
                   } else return false;
@@ -51,7 +50,6 @@ function useFirestoreSearch() {
                 if (lowerFieldValue === lowerQueryText) {
                   if (!searchResults.has(doc.id)) {
                     let d = doc.data();
-                    if (!d.approval.approved) return false;
                     searchResults.set(doc.id, doc.data());
                     return true;
                   } else return false;
