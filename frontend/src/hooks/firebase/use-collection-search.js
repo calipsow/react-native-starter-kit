@@ -4,6 +4,7 @@ import debounce from 'lodash/debounce';
 import { Firebase } from '../../../App';
 import getNestedProperty from '../../helpers/search-property-in-object';
 
+
 function useFirestoreSearch() {
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
@@ -11,16 +12,10 @@ function useFirestoreSearch() {
   const [searchDone, setSearchDone] = useState(null); // initial state is null after the first search is set to true or false
   const { db } = useContext(Firebase);
 
+
   const debouncedSearch = useCallback(
     debounce(async (collectionID = '', fieldPaths = [], queryText = '') => {
-      console.log(
-        'Searching for:',
-        queryText,
-        'by fields',
-        fieldPaths.join(', '),
-        'in',
-        collectionID,
-      );
+  
       setLoading(true);
       setSearchError(null);
       setSearchDone(false);
@@ -29,12 +24,10 @@ function useFirestoreSearch() {
       try {
         const collectionRef = collection(db, collectionID);
         const querySnapshot = await getDocs(query(collectionRef));
-
         const results = [];
 
         querySnapshot.forEach(doc => {
           const docData = doc.data();
-
           const match = fieldPaths.some(fieldPath => {
             const fieldValue = !fieldPath.includes('.')
               ? docData[fieldPath]
@@ -43,9 +36,8 @@ function useFirestoreSearch() {
               const lowerQueryText = queryText.toLowerCase();
               const lowerFieldValue = fieldValue.toLowerCase();
 
-              // Überprüfen, ob die Mindestlänge 5 erreicht ist
               if (queryText.length >= 5) {
-                // Verwende includes() für Suchbegriff ab 5 Zeichen
+
                 if (lowerFieldValue.includes(lowerQueryText)) {
                   if (!searchResults.has(doc.id)) {
                     let d = doc.data();
@@ -55,7 +47,7 @@ function useFirestoreSearch() {
                   } else return false;
                 }
               } else {
-                // Andernfalls Gleichheit prüfen
+
                 if (lowerFieldValue === lowerQueryText) {
                   if (!searchResults.has(doc.id)) {
                     let d = doc.data();
@@ -84,7 +76,7 @@ function useFirestoreSearch() {
         setLoading(false);
         setSearchDone(true);
       }
-    }, 500), // 0.5 Sekunden Puffer
+    }, 500), // 0.5 sec buffer
     [],
   );
 
