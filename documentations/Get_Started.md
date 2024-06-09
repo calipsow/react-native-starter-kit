@@ -1,91 +1,101 @@
-# Shipnative Setup Guide
+# Basic Setup
 
-This setup go trough all required steps to get started with your app, make sure you completed this setup before you start developing.
-
-**Finish this Setup completely before you Start**
+This setup goes trough all setup steps. Make sure you completed this initial setup before you go into developing.
 
 ## General Information
 
-This project uses Firebase as backend,
-**Firebase is an free backend solution** for native apps and web apps as well.
-Firebase enables to develop apps fast and reliable and secure applications across all platforms.
+This project uses Firebase as backend, an free backend solution for building native apps and web apps as well.
 
-In order to use Firebase as backend you need an Google Account to start with.
-In case you dont have one, create a free one in just a minute. [Create Google Account](https://support.google.com/accounts/answer/27441?hl=de)
+You need an active Google Account to get started.
+In case you dont have one, [create a free account](https://accounts.google.com) in just a minute.
 
 ## Get Started
 
-### 1. Setup your Firebase Project
+### 1. Setup Firebase Project
 
 Go to the [Firebase Console](https://console.firebase.google.com/) and log in with your Google account.
-Once logged in, click on "Create new project".
+Once logged in, click on **"Create new project"**.
 
 - Enter a project name and follow the on-screen instructions.
-- Make sure to enable Google Analytics for your project, as it provides valuable insights.
-- After this you should enable Firebase Functions, see more in **[setup firebase functions](/documentations/firebase-setup/Firebase_Functions_Setup.md)**.
+
+- Make sure to enable Google Analytics for your project, as it provides valuable insights for your application.
 
 ---
 
 ### 2. Create Firebase Apps
 
-You'll need to create separate Firebase apps within your project for Android, iOS, and Web:
+You'll need to create separate Firebase apps within your project one for Android, iOS, and Web
 
-The web app is needed to simplify the setup
+The Web-App is just needed to simplify the setup process. 
 
-**For Android**:
+**For Android**
 
-- Click on the Android icon to create a new Android app.
+- Click on the **Android icon** to add a new Android app.
+
 - Create an package name for your android app.
-  Like this one: `com.example.android.app`. This bundle identifier needs also configured within this project, more about in **[app identifiers](/documentations/app-config/Configure_Bundle_Identifiers.md)**.
+  This bundle identifier needs also configured in this project, more about in **[app identifiers](/documentations/app-config/Configure_Bundle_Identifiers.md)**.
+
 - Download the `google-services.json` file and place it in the **[`/android/app/`](/frontend/android/app/)** directory.
 
-**For iOS**:
+**For iOS**
 
-- Click on the iOS Icon and create a new iOS App in Firebase.
-- Register your app with an iOS bundle ID. Like the package name for android. Example: `com.example.ios.app`. **The identifier should be unique on the App Store.** More about in [app identifiers](/documentations/app-config/Configure_Bundle_Identifiers.md)
-- Download the `GoogleService-Info.plist` file and add it to your project using Xcode.
-- **You dont have to modify the [`AppDelegate.mm`](/frontend/ios/shipnative/AppDelegate.mm) yourself. Its already configured for you.**
+- Click on the **iOS icon** and add a new iOS App.
 
-**For Web**:
+- Register your app with an iOS bundle ID.  
+You also have to setup this bundle id in xCode. More about in [app identifiers](/documentations/app-config/Configure_Bundle_Identifiers.md)
 
-- Click on the web app icon and create it
-- Select an name for the web app and submit
+- Download the `GoogleService-Info.plist` file and add it to your project using Xcode, right click on the project directory shipnative,
+ select **add File** and select the downloaded GoogleService-Info.plist and add it to the project.
 
----
+- *You dont need to modify the [`AppDelegate.mm`](/frontend/ios/shipnative/AppDelegate.mm) yourself. Its already configured for you.*
 
-### 3. Configure App Client
+**For Web**
 
-At the Firebase Console click on **settings**, select **project settings**, scroll down until you see your Web App and select it.
+- Click on the **web app icon** and create it
 
-Below **SDK setup and configuration**, select the **Configuration** option. Copy the `firebaseConfig` object from the code snipped.
-
-Go to **[firebase-client.js](/frontend/config/firebase-client.js)** file, replace the initial firebaseConfig with the `firebaseConfig` you copied from firebase.
+- Choose an name for the web-app and submit
 
 ---
 
-### 4. Setup Firebase Features
+### 3. Configure Firebase Client
 
-Follow the Setup Guides for the required Firebase-Features
+In the Firebase Console, click on **project settings** and 
+scroll down to your web app and click on it.
 
-**[Firebase Authentication](/documentations/firebase-setup/Firebase_Authentication_Setup_Guide.md)**
+In the menu below **"SDK setup and configuration"**, select the **"Configuration"** option. 
+Then copy the `firebaseConfig` in shown code snipped.
 
-**[Firebase Firestore](/documentations/firebase-setup/Firestore_Setup_Guide.md)**
+Navigate in your local project to the **[firebase-client.js](/frontend/config/firebase-client.js)** file. 
+Replace the sample config with your actual `firebaseConfig`. And save the file.
 
-**[Firebase Storage](/documentations/firebase-setup/Firebase_Storage_Setup_Guide.md)**
+---
 
-**[Firebase Functions](/documentations/firebase-setup/Firebase_Functions_Setup.md)**
+### 4. Required Firebase Features
 
-### 5. Install Node Packages
+The links below providing ypu a simple step by step guide how to add the features to your firebase project.
 
-Install the package requirements from `package.json`
+Make sure you habe them all setup properly.
 
-Switch to the [root directory](/frontend/) and run:
+**[Firebase Authentication](/documentations/firebase-setup/Firebase_Authentication_Setup_Guide.md)** used for handling users, auth and sessions 
+
+**[Firebase Firestore](/documentations/firebase-setup/Firestore_Setup_Guide.md)** document baded database 
+
+**[Firebase Storage](/documentations/firebase-setup/Firebase_Storage_Setup_Guide.md)** an cdn like storage bucket for saving files.
+
+**[Firebase Functions](/documentations/firebase-setup/Firebase_Functions_Setup.md)** serverless backend functions
+
+### 5. Install Dependencies
+
+Install the requirements from `package.json`, 
+recommend is using yarn but you can use other package management systems as well.
+
+Go to the [root directory](/frontend/) with your terminal and install all dependencies by using yarn:
 
 ```bash
 yarn
 ```
 
-Or using NPM:
+Using NPM:
 
 ```bash
 npm install --legacy-peer-debs --save
@@ -93,25 +103,27 @@ npm install --legacy-peer-debs --save
 
 ---
 
-**Starting the App**
+**Run the App**
 
 Make sure you have an running emulator or a usb-connected device to run the app with.
 
 **Run on iOS**
 
-Switch into the [ios folder](/frontend/ios/) and run:
+Switch into the [ios folder](/frontend/ios/) and updating the iOS pods with by running:
 
 ```bash
 pod install --repo-update
 ```
 
-Now run:
+After that you can start with:
 
 ```bash
 npx react-native run-ios
 ```
 
 **Run on Android**
+
+You can jump right into with running:
 
 ```bash
 npx react-native run-android
