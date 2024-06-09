@@ -7,19 +7,17 @@ class FirebaseAuthCacheController {
       if (cachedData) {
         const { response, timestamp } = JSON.parse(cachedData);
         const now = new Date().getTime();
-        // Prüfe, ob die Daten noch innerhalb des 5-Minuten Zeitfensters sind
+
         if (now - timestamp < 300000 * 2) {
-          // 600000ms = 10 Minuten
-          // console.log('resolving response from cache..');
+          // 300000ms = 5min
           return response;
         } else {
-          // console.log('deleting expired response from cache..');
           return null;
         }
       }
       return null;
     } catch (error) {
-      console.error('Fehler beim Lesen des Caches', error);
+      console.error('Error while parsing cache:', error);
       return null;
     }
   }
@@ -32,8 +30,6 @@ class FirebaseAuthCacheController {
       try {
         const response = await fetchApiCallback(); // method to execute if no cache is found
 
-        // console.log('storing request to cache.. key:', query, response);
-        // Speichere die neue Antwort im Cache
         await AsyncStorage.setItem(
           query,
           JSON.stringify({
