@@ -13,10 +13,12 @@ const useVirusTotal = () => {
     setVirusTotalResult(null);
 
     try {
+      
       const headers = {
         'x-apikey': 'YOUR_API_KEY',
         'Content-Type': 'application/x-www-form-urlencoded',
       };
+      
       var response = await fetch('https://www.virustotal.com/api/v3/urls', {
         method: 'POST',
         headers: headers,
@@ -29,30 +31,28 @@ const useVirusTotal = () => {
 
       var data = await response.json();
       const { links } = data.data;
+      
       response = await fetch(links.self, {
         method: 'GET',
         headers: headers,
       });
+      
       if (!response.ok) {
         throw new Error(`API call failed with status: ${response.status}`);
       }
+      
       data = await response.json();
       const { attributes } = data.data;
       const attr = attributes.results;
+      
       var badDetections = Object.keys(attr).filter(k => {
         let { result } = attr[k];
         return result !== 'unrated' && result !== 'clean';
       });
-      /*console.log(
-        attributes.results,
-        badDetections.length ? `bad url` : 'clean',
-      );*/
-
-      // Die folgende Logik hängt davon ab, wie die Daten von VirusTotal strukturiert sind.
-      // Dieses Beispiel geht davon aus, dass die API eine Eigenschaft liefert, die Gefährlichkeit angibt.
-      // Du musst dies entsprechend der tatsächlichen API-Antwort anpassen.
+  
       setVirusTotalResult(attributes.results);
       setIsDangerous(badDetections.length > 0);
+    
     } catch (error) {
       setApiError(error.message);
     } finally {
