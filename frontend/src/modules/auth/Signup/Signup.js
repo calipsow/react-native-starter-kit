@@ -16,6 +16,7 @@ import useRegisterUser from '../../../hooks/auth/use-registrar-user';
 import { appThemeColor, screenPadding } from '../../../styles/partials';
 import { ModalContext } from '../../provider/ModalProvider';
 
+
 export default function SignUp() {
   const navigation = useNavigation();
   const { showModalAlert } = useContext(ModalContext);
@@ -34,10 +35,9 @@ export default function SignUp() {
     role: 'user',
   });
 
-  // Funktion zum Aktualisieren der Formulardaten
+
   const handleInputChange = ({ text, id }) => {
     setFormData(prevState => ({ ...prevState, [id]: text }));
-    // Entferne Fehlermeldungen für dieses Feld, falls vorhanden
     if (formErrors[id]) {
       setFormErrors(prevErrors => {
         const newErrors = { ...prevErrors };
@@ -47,7 +47,7 @@ export default function SignUp() {
     }
   };
 
-  // Funktion zum Überprüfen der Formulareingaben und Anzeigen von Fehlermeldungen
+
   const validateForm = () => {
     let errors = {};
     if (!formData.name.length) {
@@ -63,12 +63,9 @@ export default function SignUp() {
     return Object.keys(errors).length === 0;
   };
 
-  // Funktion zum Verarbeiten der Anmeldung
+
   const handleSubmit = async () => {
     if (validateForm()) {
-      // Führe die Registrierung durch, wenn keine Fehler vorliegen
-      console.log('Submitting form with data:', formData);
-      // Hier könnte die Logik zum Aufrufen einer API oder Firebase Auth hinzugefügt werden
       await SecureStorage.save('username', formData.name);
       registerUser(formData.name, formData.email, formData.password);
     } else {
@@ -80,6 +77,7 @@ export default function SignUp() {
       );
     }
   };
+  
 
   return (
     <KeyboardAwareScrollView
@@ -120,7 +118,6 @@ export default function SignUp() {
               onChange={handleInputChange}
               value={formData.password}
             />
-
             <SmallCaptionHint caption="Mit der Account Erstellung stimmst du den Datenschutzregelungen zu." />
             <SmallCaptionLink linkText="Datenschutzregelungen" />
             <FormSubmitButton
@@ -130,11 +127,11 @@ export default function SignUp() {
             />
           </View>
         </React.Fragment>
-
         <SigninHint />
       </View>
     </KeyboardAwareScrollView>
   );
+
 
   function SigninHint() {
     return (
@@ -142,7 +139,6 @@ export default function SignUp() {
         <Text style={styles.signUpRedirectText}>
           Du hast bereits ein Konto?
         </Text>
-
         <Pressable
           onPress={() => navigation.navigate('Sign In')}
           style={{ padding: 5 }}
@@ -153,6 +149,7 @@ export default function SignUp() {
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
