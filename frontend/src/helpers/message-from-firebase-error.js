@@ -1,25 +1,25 @@
 export default function getFriendlyErrorMessage(errorCode = '') {
   switch (true) {
     case errorCode.includes('auth/email-already-in-use'):
-      return 'Diese E-Mail-Adresse wird bereits verwendet. Bitte verwenden Sie eine andere E-Mail-Adresse oder melden Sie sich an.';
+      return 'This e-mail address is already in use. Please use a different e-mail address or log in.';
     case errorCode.includes('auth/invalid-email'):
-      return 'Die eingegebene E-Mail-Adresse ist ungültig. Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.';
+      return 'The e-mail address you entered is invalid. Please check your entry and try again.';
     case errorCode.includes('auth/operation-not-allowed'):
-      return 'Diese Operation ist nicht erlaubt. Bitte kontaktieren Sie den Support, wenn Sie denken, dass dies ein Fehler ist.';
+      return 'This operation is not allowed. Please contact support if you think this is a mistake.';
     case errorCode.includes('auth/weak-password'):
-      return 'Das gewählte Passwort ist zu schwach. Bitte wählen Sie ein stärkeres Passwort.';
+      return 'The selected password is too weak. Please choose a stronger password.';
     case errorCode.includes('auth/user-disabled'):
-      return 'Dieser Benutzer wurde deaktiviert. Bitte kontaktieren Sie den Support für weitere Informationen.';
+      return 'This user has been deactivated. Please contact support for further information.';
     case errorCode.includes('auth/user-not-found'):
-      return 'Es konnte kein Benutzer mit diesen Anmeldeinformationen gefunden werden. Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.';
+      return 'No user with these credentials could be found. Please check your entry and try again.';
     case errorCode.includes('auth/wrong-password'):
-      return 'Das eingegebene Passwort ist falsch. Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.';
+      return 'The password you entered is incorrect. Please check your entry and try again.';
     case errorCode.includes('auth/invalid-login-credentials'):
-      return 'Das eingegebene Passwort oder Email ist falsch. Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.';
+      return 'The password or email you entered is incorrect. Please check your entry and try again.';
     case errorCode.includes('auth/too-many-requests'):
-      return 'Zu viele Anfragen. Bitte warten Sie einen Moment, bevor Sie es erneut versuchen.';
+      return 'Too many requests. Please wait a moment before trying again.';
     case errorCode.includes('auth/permission-denied'):
-      return 'Sie haben keine Berechtigung, diese Aktion auszuführen. Bitte überprüfen Sie Ihre Berechtigungseinstellungen oder kontaktieren Sie den Support.';
+      return 'You do not have permission to perform this action. Please check your authorization settings or contact support.';
     case !errorCode:
       return '';
     default:

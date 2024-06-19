@@ -8,8 +8,8 @@ import {
   Pressable,
 } from 'react-native';
 import { colors, fonts } from '../../../styles';
-import { categories } from '../../availableInFullVersion/sample-data';
 import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import { fbImage } from '../../../constants/constants';
 // import BlurImageFilter from '../../../components/SkiaImage';
 
 export const CategoryCard = ({
@@ -52,20 +52,22 @@ export const CategoryCard = ({
 const ShopCategories = ({ navigation }) => {
   return (
     <View style={styles.gridContainer}>
-      {categories.map((category, index) => (
-        <CategoryCard
-          category_id={category.id || 'tAxog5nLAkIDtPjav2iYBfDpnZfQWjA8'}
-          navigation={navigation}
-          key={index}
-          title={category.title}
-          imageUrl={category.imageUrl}
-          onPress={ID =>
-            navigation.navigate('Collection', {
-              category_ID: ID,
-            })
-          }
-        />
-      ))}
+      {[{ id: 'category-1', title: 'some title', imageUrl: fbImage }].map(
+        (category, index) => (
+          <CategoryCard
+            category_id={category.id || 'tAxog5nLAkIDtPjav2iYBfDpnZfQWjA8'}
+            navigation={navigation}
+            key={index}
+            title={category.title}
+            imageUrl={category.imageUrl}
+            onPress={ID =>
+              navigation.navigate('Collection', {
+                category_ID: ID,
+              })
+            }
+          />
+        ),
+      )}
     </View>
   );
 };

@@ -1,187 +1,59 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import {
-  ActivityIndicator,
   Dimensions,
   Image,
   ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Tag from '../../components/Tag';
-import updateFirestoreDocument from '../../functions/firestore/update-document-field-async';
 import getFontSize from '../../functions/ui/resolve-relative-font-size';
-import { resolveAdminAccessLevel } from '../../hooks/auth/use-auth-listener';
-import useFetchPublicUserData from '../../hooks/firebase/use-fetch-public-user-data';
-import useGetDocument from '../../hooks/firebase/use-get-document';
-import { useToastNotify } from '../../hooks/screen/use-toast-notification';
-import useExternalLink from '../../hooks/utilities/use-external-link';
-import { useImageDimensionsDynamic } from '../../hooks/utilities/use-size-from-sourced-image';
-import useDeleteArticle from '../../hooks/workflows/use-delete-article';
 import { colors, fonts, height, width } from '../../styles';
 import {
   appThemeColor,
   bodyTextRegular,
   flexBoxRow,
   mediumHeadlineText,
-  regularTextLight,
   screenPadding,
   sectionTitleCreme,
 } from '../../styles/partials';
-import { AccountContext } from '../AppView';
 import { SubmitButton } from '../../components/SubmitButton';
-import ScreenWrapper from '../app/ScreenWrapper';
 import { DividerCaption } from '../../components/DividerCaption';
+
+import LightboxView from 'react-native-lightbox-v2';
+import useImageDimensions from '../../hooks/utilities/use-size-from-sourced-image';
 import { ModalContext } from '../provider/ModalProvider';
-import { AvatarComponent } from './UI/ArticlePreviewCard';
-import { LightboxView } from './articles/ArticlePage';
+import useExternalLink from '../../hooks/utilities/use-external-link';
+import { AvatarComponent } from '../../components/ArticlePreviewCard';
+
+const documentData = {
+  content_sections: [
+    {
+      section_title: 'New Stater Kit to ship apps fast!',
+      section_content:
+        'Magna laboris dolor veniam occaecat magna consectetur enim nulla nulla. Anim exercitation commodo irure nostrud Lorem reprehenderit est fugiat officia exercitation. Reprehenderit proident adipisicing excepteur excepteur et ad laborum deserunt consectetur in pariatur nostrud deserunt est.Officia non aliquip sint ea reprehenderit velit tempor proident eu.',
+    },
+  ],
+  external_links: [
+    {
+      url: 'https://development.callipson.com',
+      linkText: 'App Development',
+      nodeID: 'hypF8Nio1Y',
+    },
+  ],
+};
 
 const SingleArticleView = ({ navigation, route }) => {
-  const delArt = useDeleteArticle();
-  const [accessLvl, setAccessLvl] = useState(null);
-  const { article_id } = route.params;
-  const { documentData, getDocument, loading, error } = useGetDocument();
-  const { getImageDimensions, relativeHeight } = useImageDimensionsDynamic();
-  const { fetchUserData, userData, loadingUser } = useFetchPublicUserData();
-  const [accountCtx, setAccountCtx] = useContext(AccountContext);
-  const extLinkHook = useExternalLink();
+  const { article_id, event_id } = route.params;
+  const img =
+    'https://private-user-images.githubusercontent.com/86490046/341034341-b75f23d6-9ddc-4723-96ad-b6537427acc9.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTg3OTM0OTEsIm5iZiI6MTcxODc5MzE5MSwicGF0aCI6Ii84NjQ5MDA0Ni8zNDEwMzQzNDEtYjc1ZjIzZDYtOWRkYy00NzIzLTk2YWQtYjY1Mzc0MjdhY2M5LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA2MTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNjE5VDEwMzMxMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZjYWRlMDFhOTUwZWEwY2QxZjFkNDRjNmIyOWRmMTgzYWZjODBjOTdjMWY5NzUyNzcyYTY1MGIyMjQ4Mzc4MTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.1JrIvWMBVZMIUQEDyWuMP5Basp9YTWfqJ3xXMagxC_0';
+  const { relativeHeight } = useImageDimensions(img);
   const { showModalConfirmation } = useContext(ModalContext);
-  const { showToastNotification } = useToastNotify();
+  const { stateLessOpenLink } = useExternalLink();
 
-  const handleDeletion = () => {
-    showModalConfirmation(
-      'Achtung!',
-      'Möchtest du wirklich diesen Artikel löschen? Diese Aktion ist irreversibel.',
-      () => delArt.deleteArticle({ article_id }),
-    );
-  };
-
-  useEffect(() => {
-    // gets image dimensions and creator data if the doc is loaded
-
-    if (documentData?.poster) {
-      console.log('loading dimensions...');
-
-      getImageDimensions(documentData.poster, width);
-    }
-    if (documentData?.creator_uid) {
-      console.log('loading creator...');
-
-      fetchUserData(documentData.creator_uid);
-    }
-  }, [documentData]);
-
-  useEffect(() => {
-    // initial loading
-
-    if (documentData || loading || !accountCtx) return;
-    getDocument({
-      collectionPath: 'Newsletter',
-      document_id: article_id,
-    });
-    resolveAdminAccessLevel(accountCtx.uid).then(permission => {
-      setAccessLvl(permission);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!error) return;
-    if (error.includes('offline')) {
-      setTimeout(() => {
-        getDocument({
-          collectionPath: 'Newsletter',
-          document_id: article_id,
-        });
-      }, 1000);
-    }
-  }, [error]);
-
-  // updating the views if the content is loaded
-  useEffect(() => {
-    if (documentData && userData && relativeHeight) {
-      updateFirestoreDocument(
-        'Newsletter',
-        article_id,
-        'views',
-        typeof documentData.views === 'number' ? documentData.views + 1 : 1,
-      );
-    }
-  }, [documentData, userData, relativeHeight]);
-
-  useEffect(() => {
-    if ((accessLvl !== 'full' && accessLvl !== 'article') || !delArt.succeeded)
-      return;
-    showToastNotification({ msg: 'Der Artikel wurde gelöscht' });
-    // setTimeout(() => navigation.goBack(), 15000);
-  }, [delArt.succeeded]);
-
-  if (delArt.loading)
-    return (
-      <ScreenWrapper>
-        <>
-          <ActivityIndicator
-            size={'small'}
-            style={{ margin: 'auto' }}
-            color={colors.bluish}
-          />
-          <Text
-            style={[regularTextLight, { margin: 'auto', textAlign: 'center' }]}
-          >
-            Lösche Artikel..
-          </Text>
-        </>
-      </ScreenWrapper>
-    );
-
-  if (delArt.succeeded)
-    return (
-      <ScreenWrapper>
-        <>
-          <Text
-            style={[
-              mediumHeadlineText,
-              { margin: 'auto', textAlign: 'center' },
-            ]}
-          >
-            Artikel wurde gelöscht.
-          </Text>
-          <SubmitButton
-            style={{ margin: 'auto' }}
-            text="Zurück"
-            onPress={() => navigation.goBack()}
-          />
-        </>
-      </ScreenWrapper>
-    );
-
-  if (!documentData || !userData || !relativeHeight)
-    return (
-      <View
-        style={[
-          styles.container,
-          { flex: 1, justifyContent: 'center', alignItems: 'center' },
-        ]}
-      >
-        {!error ? (
-          <ActivityIndicator
-            style={{ margin: 'auto' }}
-            size={'large'}
-            color={colors.bluish}
-          />
-        ) : (
-          <Text
-            style={[
-              mediumHeadlineText,
-              { margin: 'auto', textAlign: 'center' },
-            ]}
-          >
-            Der Artikel wurde nicht gefunden. Möglicherweise wurde dieser
-            entfernt.
-          </Text>
-        )}
-      </View>
-    );
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}
@@ -202,51 +74,42 @@ const SingleArticleView = ({ navigation, route }) => {
           ]}
         >
           <AvatarComponent
-            createdAt={
-              documentData.pub_date
-                ? new Date(
-                    documentData.pub_date.seconds * 1000,
-                  ).toLocaleString()
-                : '2024'
+            createdAt={'2024'}
+            createdBy={'user546'}
+            imageLink={
+              'https://private-user-images.githubusercontent.com/86490046/341034341-b75f23d6-9ddc-4723-96ad-b6537427acc9.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTg3OTM0OTEsIm5iZiI6MTcxODc5MzE5MSwicGF0aCI6Ii84NjQ5MDA0Ni8zNDEwMzQzNDEtYjc1ZjIzZDYtOWRkYy00NzIzLTk2YWQtYjY1Mzc0MjdhY2M5LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA2MTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNjE5VDEwMzMxMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZjYWRlMDFhOTUwZWEwY2QxZjFkNDRjNmIyOWRmMTgzYWZjODBjOTdjMWY5NzUyNzcyYTY1MGIyMjQ4Mzc4MTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.1JrIvWMBVZMIUQEDyWuMP5Basp9YTWfqJ3xXMagxC_0'
             }
-            createdBy={userData}
-            imageLink={userData?.photoURL || documentData.poster}
           />
-          {accessLvl === 'article' || accessLvl === 'full' ? (
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                flex: 1,
-                maxHeight: 80,
-              }}
-            >
-              <SubmitButton
-                style={{ margin: 'auto', borderColor: colors.brightRed }}
-                textStyle={{ color: colors.lightRed }}
-                text="Artikel Löschen"
-                onPress={handleDeletion}
-              />
-            </View>
-          ) : null}
+
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flex: 1,
+              maxHeight: 80,
+            }}
+          >
+            <SubmitButton
+              style={{ margin: 'auto', borderColor: colors.brightRed }}
+              textStyle={{ color: colors.lightRed }}
+              text="Artikel Löschen"
+              onPress={() => {}}
+            />
+          </View>
         </View>
         {/* Article Title */}
         <Text style={[mediumHeadlineText, screenPadding]}>
-          {documentData.article_title &&
-            documentData.article_title.replace(
-              documentData.article_title.charAt(0),
-              documentData.article_title[0].toUpperCase(),
-            )}
+          Fancy Article About Ship Native
         </Text>
         {/* Tags Partials */}
 
         <View
           style={[
             flexBoxRow,
-            { gap: 8, ...screenPadding, flexWrap: 'wrap', marginTop: 3 },
+            { gap: 8, paddingHorizontal: 12, flexWrap: 'wrap', marginTop: 3 },
           ]}
         >
-          {documentData.tags
+          {['shipnative', 'callipson']
             .filter(t => t)
             .map((tag, i) => (
               <Tag
@@ -271,7 +134,9 @@ const SingleArticleView = ({ navigation, route }) => {
               onOpen={() => {}}
             >
               <Image
-                src={documentData.poster}
+                src={
+                  'https://private-user-images.githubusercontent.com/86490046/341034341-b75f23d6-9ddc-4723-96ad-b6537427acc9.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTg3OTM0OTEsIm5iZiI6MTcxODc5MzE5MSwicGF0aCI6Ii84NjQ5MDA0Ni8zNDEwMzQzNDEtYjc1ZjIzZDYtOWRkYy00NzIzLTk2YWQtYjY1Mzc0MjdhY2M5LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA2MTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNjE5VDEwMzMxMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWZjYWRlMDFhOTUwZWEwY2QxZjFkNDRjNmIyOWRmMTgzYWZjODBjOTdjMWY5NzUyNzcyYTY1MGIyMjQ4Mzc4MTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.1JrIvWMBVZMIUQEDyWuMP5Basp9YTWfqJ3xXMagxC_0'
+                }
                 style={[
                   styles.postImage,
                   {
@@ -344,7 +209,7 @@ const SingleArticleView = ({ navigation, route }) => {
         {/* Article Links (If Given) */}
         {documentData?.external_links &&
         Array.isArray(documentData?.external_links) ? (
-          <View style={[{ gap: 5, ...screenPadding }]}>
+          <View style={[{ gap: 5, paddingHorizontal: 12 }]}>
             <Text
               style={[
                 sectionTitleCreme,
@@ -361,8 +226,7 @@ const SingleArticleView = ({ navigation, route }) => {
                     showModalConfirmation(
                       'Webseite im Browser besuchen',
                       `Möchtest du zur Webseite ${extLink.url} wechseln?`,
-                      async () =>
-                        await extLinkHook.stateLessOpenLink(extLink.url),
+                      async () => await stateLessOpenLink(extLink.url),
                     );
                   }}
                 >
@@ -383,17 +247,7 @@ const SingleArticleView = ({ navigation, route }) => {
             </View>
           </View>
         ) : null}
-        <DividerCaption caption={'Danke fürs lesen'} />
-        {/*<Comment
-          comment={{
-            author: 'test',
-            content: 'some comment for this article',
-            nested_comment_relation: [],
-            replies: [],
-            upvotes: 4,
-          }}
-        />
-        <CommentForm />*/}
+        <DividerCaption caption={'Thanks for reading'} />
       </View>
     </ScrollView>
   );
@@ -458,7 +312,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopWidth: 1,
     borderColor: '#333333',
-    ...screenPadding,
+    paddingHorizontal: 12,
   },
   input: {
     color: colors.textLightBlue,

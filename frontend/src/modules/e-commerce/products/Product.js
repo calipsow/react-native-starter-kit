@@ -12,18 +12,14 @@ import {
   grayCaption,
   screenPadding,
 } from '../../../styles/partials';
-import {
-  User07,
-  _imagesArray,
-  productImage,
-  productPackages,
-} from '../../availableInFullVersion/sample-data';
+
 import BuyButtonSection from './partials/BuyButton';
 import PaymentBadge from './partials/PayBadge';
 import { ProductListItem } from './partials/ProductListItem';
 import { ProductPageSection } from './partials/ProductPageSection';
 import { ScrollView } from 'react-native-gesture-handler';
 import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import { fbImage } from '../../../constants/constants';
 
 const Product = () => {
   return (
@@ -33,7 +29,7 @@ const Product = () => {
       showsVerticalScrollIndicator={false}
     >
       <ImageSnapCarousel
-        imagesArray={_imagesArray}
+        imagesArray={[fbImage]}
         imageStyles={{ borderRadius: 5 }}
       />
       {/* Product Title */}
@@ -100,15 +96,17 @@ const Product = () => {
       <PaymentBadge />
       {/* Buy Button */}
       {/* Displaying package options dynamically */}
-      {productPackages.map((pkg, index) => (
-        <BuyButtonSection
-          key={index}
-          title={pkg.title}
-          price={pkg.price}
-          description={pkg.description}
-          onBuyNow={() => console.log(`Buying ${pkg.title}`)}
-        />
-      ))}
+      {[{ title: 'some kind of', imageUrl: fbImage, price: 20.99 }].map(
+        (pkg, index) => (
+          <BuyButtonSection
+            key={index}
+            title={pkg.title}
+            price={pkg.price}
+            description={pkg.description}
+            onBuyNow={() => console.log(`Buying ${pkg.title}`)}
+          />
+        ),
+      )}
       {/* Product Description */}
       <ProductPageSection title="Product Overview">
         <Text style={[styles.text, styles.paragraph]}>
@@ -138,7 +136,7 @@ const Product = () => {
       <ProductPageSection title="Reviews">
         <View style={{ paddingVertical: 10 }}>
           <View style={[flexBoxRow, { marginVertical: 5 }]}>
-            <Image source={{ uri: User07 }} style={styles.authorImage} />
+            <Image source={{ uri: fbImage }} style={styles.authorImage} />
             <Text style={grayCaption}>Simona Lürwer</Text>
           </View>
           <Rating stars="55555" />
@@ -149,7 +147,7 @@ const Product = () => {
       </ProductPageSection>
 
       {/* Cross sell category or product */}
-      {<Image source={productImage} style={styles.productImage} />}
+      {<Image source={fbImage} style={styles.productImage} />}
     </ScrollView>
   );
 };
@@ -163,7 +161,7 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    ...screenPadding,
+    paddingHorizontal: 12,
     backgroundColor: appThemeColor.darkBlue,
   },
   productImage: {

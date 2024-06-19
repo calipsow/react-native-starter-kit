@@ -13,12 +13,12 @@ import {
   sectionTitleCreme,
   subHeaderTextLightGray,
 } from '../../../styles/partials';
-import { sampleProducts } from '../../availableInFullVersion/sample-data';
 import { ProductCard } from '../products/partials/ProductCard';
 import { SectionPageLinks } from './partials/SectionPageLinks';
 import { ScreenFooter } from './partials/ScreenFooter';
 import { SpotlightProduct } from './partials/SpotlightProduct';
 import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import { fbImage } from '../../../constants/constants';
 
 function ShopPage() {
   const navigation = useNavigation();
@@ -74,7 +74,13 @@ function ShopPage() {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
         >
-          {sampleProducts.map((item, i) => (
+          {[
+            {
+              title: 'Air Force Fighter',
+              imageUrl: fbImage,
+              price: 14.99,
+            },
+          ].map((item, i) => (
             <View
               key={`card-${i}`}
               style={{ width: Dimensions.get('window').width * 0.65 }}
@@ -174,7 +180,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: appThemeColor.darkBlue,
-    ...screenPadding,
+    paddingHorizontal: 12,
   },
   contentContainer: {
     flexWrap: 'nowrap',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -11,7 +11,6 @@ import {
 import getDocsFromCollection from '../../../functions/firestore/load-docs-from-collection-async';
 import isPastInGermany from '../../../helpers/is-past-timestamp';
 import replaceUmlauts from '../../../helpers/replace-umlaute';
-import useResetScreen from '../../../hooks/screen/use-screen-reset';
 import { colors, width } from '../../../styles';
 import { appThemeColor, sectionTitleCreme } from '../../../styles/partials';
 import { BackButton } from '../../blogs/ArticleIndex';
@@ -22,15 +21,6 @@ const LocalEvent = ({ navigation, route }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(province.province_image);
-
-  useResetScreen(resetScreen);
-
-  function resetScreen() {
-    setImage(province.province_image);
-    setData([]);
-    setLoading(false);
-    fetchDocs();
-  }
 
   const fetchDocs = async () => {
     setLoading(true);
@@ -50,6 +40,13 @@ const LocalEvent = ({ navigation, route }) => {
     setData(provinceEvents);
     setLoading(false);
   };
+
+  useEffect(() => {
+    setImage(province.province_image);
+    setData([]);
+    setLoading(false);
+    fetchDocs();
+  }, []);
 
   return (
     <View style={styles.container}>

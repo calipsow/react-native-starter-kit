@@ -1,71 +1,60 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Text, Pressable, View } from 'react-native';
 import getFriendlyErrorMessage from '../helpers/message-from-firebase-error';
-import { colors } from '../styles';
-import { smallCaptionTextGray } from '../styles/partials';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import { useNavigation } from '@react-navigation/native';
 
 export function HintTextCaption({ caption = '' }) {
   return (
-    <Text style={[smallCaptionTextGray, styles.subHeader]}>{caption}</Text>
+    <Text className="text-gray-400 text-center text-lg mb-7.5">{caption}</Text>
   );
 }
+
 export function TextCaptionWarning({ errorText = '', text = '' }) {
   return (
-    <Text
-      style={[
-        styles.subHeader,
-        {
-          color: colors.brightYellow,
-        },
-      ]}
-    >
+    <Text className="text-amber-300 text-center text-lg font-semibold">
       {errorText ? getFriendlyErrorMessage(errorText) : text}
     </Text>
   );
 }
 
 export const SmallCaptionHint = ({ caption = '' }) => (
-  <Text style={[smallCaptionTextGray, { textAlign: 'center' }]}>{caption}</Text>
+  <Text className="text-gray-400 text-center text-lg">{caption}</Text>
 );
 
 export const SmallCaptionLink = ({
   linkText = '',
   onPress = function () {},
 }) => (
-  <Pressable onPress={onPress} style={{ padding: 5 }}>
-    <Text
-      style={[
-        smallCaptionTextGray,
-        styles.linkText,
-        {
-          marginBottom: 13,
-          textAlign: 'center',
-        },
-      ]}
-    >
-      {linkText}
-    </Text>
+  <Pressable onPress={onPress} className="py-1.5">
+    <Text className="text-indigo-300 text-center text-lg mb-2">{linkText}</Text>
   </Pressable>
 );
+export function CaptionWithLink({
+  screen = 'Sign Up',
+  navigationParams = { params: {} },
+  caption = '',
+  linkText = '',
+}) {
+  const navigation = useNavigation();
+  return (
+    <View className="flex-row justify-center items-center flex-wrap">
+      <Text className="text-gray-400">
+        {caption || 'Don&#39;t have an account?'}
+      </Text>
+      <Pressable onPress={() => navigation.navigate(screen, navigationParams)}>
+        <Text className="text-indigo-300">{linkText || 'Register'}</Text>
+      </Pressable>
+    </View>
+  );
+}
+export function LinkText({ screen = '', linkText = '', className = '' }) {
+  const navigation = useNavigation();
 
-const styles = StyleSheet.create({
-  subHeader: {
-    fontSize: getFontSize(16),
-    color: '#9CA3AF', // text-gray-400
-    textAlign: 'center',
-    marginBottom: 30,
-  },
-  agreementText: {
-    fontSize: getFontSize(15),
-    color: '#9CA3AF', // text-gray-500
-    textAlign: 'center',
-
-    lineHeight: 17,
-  },
-  linkText: {
-    color: '#818CF8', // purple-500
-    lineHeight: 14,
-  },
-  S,
-});
+  return (
+    <Pressable onPress={() => navigation.navigate(screen)} className="py-1.5">
+      <Text className={'text-indigo-300 ' + className}>
+        {linkText || 'Forgot Password?'}
+      </Text>
+    </Pressable>
+  );
+}

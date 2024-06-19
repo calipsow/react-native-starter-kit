@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -11,10 +11,14 @@ import {
   View,
 } from 'react-native';
 import FBImage from '../../components/FBImage';
-import { ZusammenStehenWir_LOGO_SRC } from '../../constants/constants';
+import {
+  LOGO_SRC,
+  fbImage,
+  sampleArticleData,
+} from '../../constants/constants';
 import getFontSize from '../../functions/ui/resolve-relative-font-size';
 import useFirestoreCollection from '../../hooks/firebase/use-firestore-collection';
-import useResetScreen from '../../hooks/screen/use-screen-reset';
+
 import { colors, fonts, width } from '../../styles';
 import {
   appThemeColor,
@@ -28,7 +32,7 @@ import {
   tag,
   tagText,
 } from '../../styles/partials';
-import { fallback_img } from '../availableInFullVersion/sample-data';
+
 import { TopBarMenu } from '../../components/TopScreenDescription';
 
 export const BackButton = ({
@@ -46,7 +50,7 @@ export const BackButton = ({
             padding: 5,
 
             fontSize: getFontSize(16),
-            ...screenPadding,
+            paddingHorizontal: 12,
             color: colors.bluish,
             marginBottom: 0,
             paddingVertical: 12,
@@ -79,15 +83,12 @@ export const ArticlePreviewCard = ({
   };
 
   return (
-    <View
-      key={`idx-${article.article_title || article.title}-${idx}`}
-      style={styles.article}
-    >
+    <View key={`idx-${article.title}-${idx}`} style={styles.article}>
       <TouchableOpacity onPress={handleClick}>
-        <View style={{ width: '100%', ...screenPadding }}>
+        <View style={{ width: '100%', paddingHorizontal: 12 }}>
           <FBImage
             fallbackStyles={{}}
-            src={article.poster || fallback_img}
+            src={article.poster || fbImage}
             style={styles.featuredImage}
           />
         </View>
@@ -101,7 +102,7 @@ export const ArticlePreviewCard = ({
             alignItems: 'center',
             marginTop: 10,
             gap: 0,
-            ...screenPadding,
+            paddingHorizontal: 12,
           }}
         >
           <Text
@@ -118,9 +119,7 @@ export const ArticlePreviewCard = ({
               },
             ]}
           >
-            {article?.author?.includes('@')
-              ? 'Zusammen Stehen Wir · Admin'
-              : article?.author}
+            {article?.author}
           </Text>
 
           <Text
@@ -130,14 +129,12 @@ export const ArticlePreviewCard = ({
               { lineHeight: 16, fontStyle: 'italic', marginLeft: -6 },
             ]}
           >
-            am{' '}
-            {article.pub_date?.seconds
-              ? new Date(article.pub_date?.seconds * 1000).toLocaleDateString()
-              : article.pub_date?.toString()}
+            from{' '}
+            {new Date(article.pub_date?.seconds * 1000).toLocaleDateString()}
           </Text>
         </View>
 
-        <View style={{ ...screenPadding }}>
+        <View style={{ paddingHorizontal: 12 }}>
           <Text
             style={[
               mediumHeadlineText,
@@ -149,7 +146,7 @@ export const ArticlePreviewCard = ({
               },
             ]}
           >
-            {article.article_title || article.title}
+            {article.title}
           </Text>
           <View
             style={{
@@ -191,7 +188,7 @@ export const ArticlePreviewCard = ({
         <View style={styles.articleInfo}>
           {/* Author */}
           <View style={styles.avatars}>
-            <Image src={ZusammenStehenWir_LOGO_SRC} style={styles.avatar} />
+            <Image src={LOGO_SRC} style={styles.avatar} />
           </View>
         </View>
       )}
@@ -200,34 +197,29 @@ export const ArticlePreviewCard = ({
 };
 
 const ArticleIndexScreen = ({ navigation, route }) => {
-  const paginationHook = useFirestoreCollection();
-  const {
+  const { blog_id } = route.params;
+  console.log(
+    'open articles from blog:',
+    blog_id || 'not send via routing params',
+  );
+  /* const {
     loading,
     error,
     documents,
     fetchDocuments,
     hasMore,
     resetLoadedProgress,
-  } = useFirestoreCollection();
+  } = useFirestoreCollection(); */
+
+  // If you want to display large amount of content you can use page based rendering with this hook
 
   const loadingContent = async () => {
-    resetLoadedProgress();
-
-    fetchDocuments({
-      collectionPath: 'Newsletter',
-      maxItems: 10,
-      sortedBy: 'pub_date,desc',
-      pageIndex: 0,
-    });
-    paginationHook.fetchDocuments({
-      collectionPath: 'Events',
-      maxItems: 10,
-      pageIndex: 0,
-      sortedBy: 'approval.approved_since,desc',
-    });
+    console.log('loading content triggered..');
   };
 
-  useResetScreen(loadingContent);
+  useEffect(() => {
+    loadingContent(); // fetch initial data
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -263,17 +255,19 @@ const ArticleIndexScreen = ({ navigation, route }) => {
           </Text>
         </View>
 
-        {/* Error and Loading */}
-        {loading || error ? (
+        {/* Error or/and Loading Depending */}
+        {/* eslint-disable-next-line no-constant-condition*/}
+        {false && (
           <View
             style={{
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              ...screenPadding,
+              paddingHorizontal: 12,
             }}
           >
-            {loading ? (
+            {/* eslint-disable-next-line no-constant-condition*/}
+            {false ? (
               <ActivityIndicator
                 style={{ marginTop: 150 }}
                 size={'large'}
@@ -285,12 +279,12 @@ const ArticleIndexScreen = ({ navigation, route }) => {
               </Text>
             )}
           </View>
-        ) : null}
+        )}
 
-        {/* Articles List */}
-        {documents.length ? (
+        {/* Dependency if no data could be loaded */}
+        {sampleArticleData.length && (
           <View style={styles.articlesList}>
-            {documents.map((article, idx) => (
+            {sampleArticleData.map((article, idx) => (
               <ArticlePreviewCard
                 article={article}
                 idx={idx}
@@ -298,49 +292,48 @@ const ArticleIndexScreen = ({ navigation, route }) => {
               />
             ))}
           </View>
-        ) : null}
+        )}
 
         {/* More Events Button */}
-        {!loading ? (
-          <View
-            style={{
-              ...screenPadding,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+
+        <View
+          style={{
+            paddingHorizontal: 12,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Text
+            style={[
+              smallCaptionTextGray,
+              {
+                fontSize: getFontSize(17),
+                color: colors.bluish,
+                opacity: 0.8,
+              },
+            ]}
+          >
+            Das waren alle Newsletter bis jetzt.
+          </Text>
+          <Pressable
+            onPress={() =>
+              navigation.navigate('Events', { screen: 'Event Feed' })
+            }
           >
             <Text
               style={[
                 smallCaptionTextGray,
                 {
-                  fontSize: getFontSize(17),
-                  color: colors.bluish,
-                  opacity: 0.8,
+                  fontSize: getFontSize(20),
+                  color: colors.lightBlue,
+                  padding: 10,
                 },
               ]}
             >
-              Das waren alle Newsletter bis jetzt.
+              Events aufrufen
             </Text>
-            <Pressable
-              onPress={() =>
-                navigation.navigate('Events', { screen: 'Event Feed' })
-              }
-            >
-              <Text
-                style={[
-                  smallCaptionTextGray,
-                  {
-                    fontSize: getFontSize(20),
-                    color: colors.lightBlue,
-                    padding: 10,
-                  },
-                ]}
-              >
-                Events aufrufen
-              </Text>
-            </Pressable>
-          </View>
-        ) : null}
+          </Pressable>
+        </View>
       </ScrollView>
     </View>
   );
@@ -411,7 +404,7 @@ const styles = StyleSheet.create({
     color: colors.textLight,
   },
   pageHeader: {
-    ...screenPadding,
+    paddingHorizontal: 12,
     marginTop: 3,
   },
   pageTitle: {

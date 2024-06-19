@@ -14,7 +14,6 @@ import {
   tagText,
   tagsWrapperBox,
 } from '../styles/partials';
-import { lastUpdate } from '../../availableInFullVersion/sample-data';
 
 const BlogCard = ({
   blogTitle,
@@ -25,7 +24,6 @@ const BlogCard = ({
   likes,
   comments,
   id,
-  data,
 }) => {
   const navigation = useNavigation();
   // console.log(data);
@@ -63,7 +61,7 @@ const BlogCard = ({
             {blogTitle}
           </Text>
           <Text style={smallCaptionTextGray}>
-            {lastUpdate} - {publisher}
+            {'01.01.2022'} - {publisher}
           </Text>
         </View>
 

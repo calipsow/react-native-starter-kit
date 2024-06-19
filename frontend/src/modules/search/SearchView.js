@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: appThemeColor.darkBlue,
   },
   searchBar: {
-    ...screenPadding,
+    paddingHorizontal: 12,
     paddingVertical: 0,
     width: '100%',
     marginBottom: 6,

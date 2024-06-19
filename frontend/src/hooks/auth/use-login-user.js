@@ -9,12 +9,7 @@ const useSignIn = () => {
   const [idToken, setIdToken] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const signIn = useCallback(async ({ email = '', passwd = '' }) => {
-    if (email.toLowerCase() === 'admin_account@dummy.com') {
-      setError('Die Login Daten sind invalide, bitte prüfe deine Eingaben.');
-      return;
-    }
-
+  const signIn = useCallback(async ({ email = '', password = '' }) => {
     setSucceeded(false);
     setError('');
     setIdToken('');
@@ -24,7 +19,7 @@ const useSignIn = () => {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        passwd,
+        password,
       );
       const token = await userCredential.user.getIdToken();
       // console.log(token);

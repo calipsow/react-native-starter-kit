@@ -13,11 +13,11 @@ import {
 } from '../../../styles/partials';
 import ShopCategories from './Categories';
 import { ProductCard } from '../products/partials/ProductCard';
-import { productCollection } from '../../availableInFullVersion/sample-data';
 import React, { useEffect, useState } from 'react';
 import { colors } from '../../../styles';
 import PaginationNumeric from '../../../components/PaginationNumeric';
 import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import { fbImage } from '../../../constants/constants';
 
 const ProductCategory = ({ navigation, route }) => {
   var { category_ID } = route.params;
@@ -27,7 +27,9 @@ const ProductCategory = ({ navigation, route }) => {
   const groupItems = () => {
     let groupedItm = [],
       tmp = [];
-    for (var prod of productCollection) {
+    for (var prod of [
+      [{ title: 'some kind of', imageUrl: fbImage, price: 20.99 }],
+    ]) {
       if (tmp.length >= 4) {
         groupedItm.push(tmp);
         tmp = [];
@@ -94,7 +96,7 @@ const ProductCategory = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    ...screenPadding,
+    paddingHorizontal: 12,
     backgroundColor: appThemeColor.darkBlue,
     flex: 1,
   },

@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   pagePadding: {
-    ...screenPadding,
+    paddingHorizontal: 12,
     paddingVertical: 16,
   },
   backToListingText: {

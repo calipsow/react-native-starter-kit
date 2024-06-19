@@ -10,8 +10,8 @@ import {
   screenPadding,
   smallCaptionTextGray,
 } from '../../styles/partials';
-import { STATIC_BLOGS } from '../availableInFullVersion/sample-data';
 import BlogCard from '../../components/BlogCard';
+import { STATIC_BLOGS } from '../../constants/constants';
 
 export const BlogIndexHeader = ({
   headerText = 'Entdecke Blogs',
@@ -78,7 +78,6 @@ const BlogArticlesFeed = () => {
           {/* Placeholder for MeetupsPosts */}
           {STATIC_BLOGS.map(blog => {
             const {
-              articles,
               coverImage,
               description,
               id,
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingVertical: 0, // Tailwind class: p-4
-    ...screenPadding,
+    paddingHorizontal: 12,
     // Here you might handle the responsive max width with conditional styles or a wrapping View
   },
   title: {

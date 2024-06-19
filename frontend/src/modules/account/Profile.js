@@ -18,7 +18,6 @@ import {
   screenPadding,
   smallCaptionTextGray,
 } from '../../styles/partials';
-import PostedEventSection from './profile/sections/PostedEvents';
 
 function Profile({ navigation }) {
   return (
@@ -59,7 +58,7 @@ function Profile({ navigation }) {
         <View
           style={[
             flexBoxRow,
-            { justifyContent: 'center', gap: 5, ...screenPadding },
+            { justifyContent: 'center', gap: 5, paddingHorizontal: 12 },
           ]}
         >
           <Text style={styles.profileBio}>
@@ -85,13 +84,13 @@ function Profile({ navigation }) {
         </View>
 
         {/* Sections */}
-        <View style={[styles.fileCategories, { ...screenPadding }]}>
+        <View style={[styles.fileCategories, { paddingHorizontal: 12 }]}>
           <Text style={smallCaptionTextGray}>Contributions</Text>
         </View>
 
         {/* Theme Sections */}
         <View style={{ marginTop: 20 }}>
-          <PostedEventSection />
+          <></>
         </View>
       </View>
     </ScrollView>

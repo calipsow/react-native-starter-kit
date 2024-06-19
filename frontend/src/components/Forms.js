@@ -11,19 +11,24 @@ export function FormField({
   keyboardType,
   id,
   value,
+  className = '',
 }) {
   return (
-    <View style={styles.formFieldContainer}>
-      {false && (
-        <Text style={styles.label}>
-          {label} <Text style={styles.required}>*</Text>
+    <View className="mb-2 mt-2">
+      {label && (
+        <Text className="block text-sm text-slate-400 font-medium mb-1">
+          {label} <Text className="text-red-900">*</Text>
         </Text>
       )}
       <TextInput
         onChangeText={text => onChange({ text, label, id })}
         style={fieldStyles ? fieldStyles : styles.input}
+        className={
+          'bg-slate-800 text-gray-200 rounded-lg px-3 py-3.5 text-lg w-full text-sm text-slate-400 font-medium' +
+            className || ''
+        }
         placeholder={placeholder}
-        placeholderTextColor="#CCCCCC"
+        placeholderTextColor="#71717ae0"
         secureTextEntry={type === 'password'}
         keyboardType={keyboardType}
         value={value}
@@ -44,8 +49,6 @@ const styles = StyleSheet.create({
     color: '#EF4444', // text-red-600
   },
   input: {
-    backgroundColor: '#1F2937', // Assuming a dark input bg like bg-gray-800
-    color: '#D1D5DB', // text-gray-300
     borderRadius: 6,
     paddingHorizontal: 12,
     paddingVertical: 12,

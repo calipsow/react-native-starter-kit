@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { colors } from './src/styles/colors'; // TODO dark light mode
+import { colors } from './src/styles/colors';
 import { persistor, store } from './src/redux/store';
 import { app, auth, db, storage } from './config/firebase-client';
 import AppView from './src/modules/AppViewContainer';
@@ -13,11 +13,11 @@ import { ModalProvider } from './src/modules/provider/ModalProvider';
 // make sure you have setup your firebase account before starting the app
 // the app uses these fb free services:
 // -------------------------------------------
-// Firestore (document based database)
-// Authentication (used to handle user logins and sessions)
-// Storage CDN (used to up- and download files)
-// Firebase Analytics
-// Firebase Functions
+// Firestore (document based database) - required
+// Authentication (used to handle user logins and sessions) - required
+// Storage CDN (used to up- and download files) - optional
+// Firebase Analytics - optional
+// Firebase Functions - optional
 
 export const Firebase = createContext({
   auth: null,

@@ -152,14 +152,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerSection: {
-    ...screenPadding,
+    paddingHorizontal: 12,
   },
   bodySection: {
-    ...screenPadding,
+    paddingHorizontal: 12,
     rowGap: 5,
   },
   footerSection: {
-    ...screenPadding,
+    paddingHorizontal: 12,
     rowGap: 10,
   },
 });

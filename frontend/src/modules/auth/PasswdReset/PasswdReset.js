@@ -1,153 +1,73 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
-import useResetPassword from '../../../hooks/auth/use-passwd-reset';
-import { fonts } from '../../../styles';
-import {
-  appThemeColor,
-  maxWidth,
-  screenPadding,
-} from '../../../styles/partials';
 import {
   HintTextCaption,
+  SmallCaptionHint,
+  SmallCaptionLink,
   TextCaptionWarning,
 } from '../../../components/TextCaptions';
 import { FormSubmitButton } from '../../../components/SubmitButton';
-
+import useResetPassword from '../../../hooks/auth/use-passwd-reset';
+import { FormField } from '../../../components/Forms';
+import { EMAIL_REG } from '../../../constants/constants';
 
 export default function ResetPassword() {
   const navigation = useNavigation();
   const { resetPassword, emailSent, error, loading } = useResetPassword();
   const [email, setEmail] = useState('');
-  
-  
+  useEffect(() => {
+    if (loading && email) setEmail('');
+  }, [loading]);
+
   return (
     <KeyboardAwareScrollView
-      contentContainerStyle={styles.container}
+      className="antialiased bg-slate-900 text-slate-200 tracking-tight"
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
-      <View style={styles.maxWidthContainer}>
-        <Text style={styles.header}>Passwort vergessen?</Text>
-        {!error && !emailSent ? (
-          <HintTextCaption
-            caption={
-              'Erhalte eine Mail mit den Link zum zurücksetzten deines Passworts.'
-            }
+      <View className="container h-screen justify-center mx-auto px-3 py-0 max-w-[500px]">
+        <Text className="text-white text-center font-bold text-[24px]">
+          Forgot Password?
+        </Text>
+        {error && (
+          <TextCaptionWarning
+            errorText={error}
+            text="Something went wrong, try it later again."
           />
-        ) : null}
+        )}
         {/* Error Messages */}
-        <TextCaptionWarning
-          errorText={error || null}
-          text={
+        <SmallCaptionHint
+          caption={
             emailSent
-              ? 'Wir haben dir die Email zum zurücksetzten des Passworts gesendet.'
-              : null
+              ? 'We have sent you an email to resetting your password.'
+              : 'Receive an email with the link to reset your password.'
           }
         />
-        {/* Passwd Reset Form */}
-        <View style={styles.formContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="#CCCCCC"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            onChangeText={text => setEmail(text)}
+        {/* Password Reset Form */}
+        <View className="mt-2">
+          <FormField
+            id="email"
+            label=""
+            type="email"
+            onChange={({ text }) => setEmail(text)}
+            placeholder="example@mail.com"
+            value={email}
+            className="mb-0"
           />
           <FormSubmitButton
             handleSubmit={() => resetPassword(email)}
             loading={loading}
-            title="Passwort Zurücksetzen"
-            disabled={!email}
+            title="Reset Password"
+            disabled={!EMAIL_REG.test(email)}
           />
         </View>
-        <BackLinkText />
+        <SmallCaptionLink
+          linkText="Back to login"
+          onPress={() => navigation.navigate('Sign In')}
+        />
       </View>
     </KeyboardAwareScrollView>
   );
-
-
-  function BackLinkText() {
-    return (
-      <TouchableOpacity
-        style={styles.cancelButton}
-        onPress={() => navigation.navigate('Sign In')}
-      >
-        <Text style={styles.cancelButtonText}>Zurück</Text>
-      </TouchableOpacity>
-    );
-  }
 }
-
-
-export const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 20,
-    backgroundColor: appThemeColor.darkBlue,
-  },
-  maxWidthContainer: {
-    width: '100%',
-    margin: 'auto',
-    ...maxWidth,
-    ...screenPadding,
-  },
-  header: {
-    fontSize: getFontSize(22),
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    textAlign: 'center',
-    marginBottom: 3,
-  },
-  subHeader: {
-    fontSize: getFontSize(16),
-    color: '#9CA3AF', // text-gray-400
-    textAlign: 'center',
-    marginBottom: 30,
-  },
-  formContainer: {
-    marginBottom: 24,
-  },
-  input: {
-    backgroundColor: '#1F2937', // Assuming a dark theme input
-    color: '#D1D5DB',
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 15,
-    fontSize: getFontSize(16),
-    marginBottom: 15,
-    width: '100%',
-  },
-  resetButton: {
-    backgroundColor: '#8B5CF6', // bg-purple-600
-    paddingVertical: 12,
-    borderRadius: 6,
-    alignItems: 'center',
-    marginBottom: 0,
-  },
-  resetButtonText: {
-    color: '#FFFFFF',
-    fontSize: getFontSize(17),
-    fontFamily: fonts.primaryBold,
-  },
-  cancelButton: {
-    alignItems: 'center',
-    marginBottom: 0,
-    padding: 8,
-  },
-  cancelButtonText: {
-    color: '#8E9AFC', // text-purple-600
-    fontSize: getFontSize(16),
-  },
-});

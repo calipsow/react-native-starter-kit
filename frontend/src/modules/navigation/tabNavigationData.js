@@ -4,10 +4,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import getFontSize from '../../functions/ui/resolve-relative-font-size';
 import { colors } from '../../styles';
-import ProfileStackNavigator from '../account/profile/ProfileStack';
 import BlogStackNavigator from '../blogs/BlogStack';
 import EventStackNavigator from '../events/EventStack';
 import HomeScreen from '../home/HomeView';
+import ProfileStackNavigator from '../account/ProfileStack';
 
 // implement default fall back route
 const tabNavigationData = [

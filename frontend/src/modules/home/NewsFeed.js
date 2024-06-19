@@ -1,19 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import RNSButton from '../../../components/Button';
-import shuffleArray from '../../../helpers/shuffle-array';
-import useFirestoreCollection from '../../../hooks/firebase/use-firestore-collection';
-import { colors } from '../../../styles';
-import { flexBoxRow, screenPadding } from '../../../styles/partials';
-import FeedArticlePost from '../../blogs/UI/FeedPost';
-import SubSectionLayout from '../../../components/SubSectionLayout';
+import { StyleSheet, View } from 'react-native';
+import SubSectionLayout from '../../components/SubSectionLayout';
+import { SubmitButton } from '../../components/SubmitButton';
 import {
   ARTICLE_SCHEME,
   EVENT_SCHEME,
-} from '../../../constants/firestore-schemes';
+} from '../../constants/firestore-schemes';
+import { colors } from '../../styles';
+import { flexBoxRow, screenPadding } from '../../styles/partials';
+import FeedArticlePost from '../blogs/UI/FeedPost';
 
-// TODO ADD SAMPLE DATA
 const NewsFeed = () => {
   const navigation = useNavigation();
 
@@ -75,13 +71,13 @@ const NewsFeed = () => {
   function SeeMoreButtons() {
     return (
       <View style={[flexBoxRow, styles.seeMoreBtnBox]}>
-        <RNSButton
+        <SubmitButton
           caption="Beiträge"
           bordered
           secondary
           onPress={() => navigation.navigate('Blogs')}
         />
-        <RNSButton
+        <SubmitButton
           caption="Kommende Events"
           bgColor={colors.primaryDark}
           onPress={() =>
@@ -104,7 +100,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    ...screenPadding,
+    paddingHorizontal: 12,
   },
 });
 

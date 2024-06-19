@@ -1,50 +1,20 @@
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
-import { colors, fonts } from '../styles';
+import React from 'react';
+import { Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 export const SubmitButton = ({
   onPress = function () {},
   text = '',
-  style,
-  textStyle,
+  className = '',
   disabled = false,
 }) => (
-  <TouchableOpacity onPress={onPress} disabled={disabled}>
-    <View
-      style={[
-        {
-          justifyContent: 'center',
-          alignItems: 'center',
-          ...styles.input,
-          paddingVertical: 8,
-          paddingHorizontal: 13,
-          borderRadius: 4,
-        },
-        style && style,
-      ]}
-    >
-      <Text
-        style={[
-          {
-            verticalAlign: 'middle',
-            margin: 'auto',
-            fontSize: getFontSize(16),
-            lineHeight: 16,
-            color: colors.bluish,
-            opacity: 0.9,
-          },
-          textStyle && textStyle,
-        ]}
-      >
-        {text}
-      </Text>
-    </View>
+  <TouchableOpacity
+    onPress={onPress}
+    disabled={disabled}
+    className={`justify-center items-center p-2 rounded ${className}`}
+  >
+    <Text className="align-middle text-blue-500 opacity-90 text-lg">
+      {text}
+    </Text>
   </TouchableOpacity>
 );
 
@@ -57,69 +27,18 @@ export function FormSubmitButton({
   return (
     <TouchableOpacity
       disabled={typeof disabled === 'boolean' ? disabled : loading}
-      style={styles.formSubmitButton}
+      className={`bg-slate-800 text-gray-200 rounded-lg px-3 py-3.5 w-full items-center mt-2 mb-2 ${
+        loading ? 'bg-gray-400' : 'bg-slate-500'
+      } ${disabled ? 'opacity-50' : ''}`}
       onPress={handleSubmit}
     >
       {!loading ? (
-        <Text style={styles.formSubmitButtonText}>{title}</Text>
+        <Text className="text-white text-[17px] font-semibold opacity-[.8]">
+          {title}
+        </Text>
       ) : (
-        <ActivityIndicator
-          size={'small'}
-          color={colors.bluish}
-          style={{ margin: 'auto' }}
-        />
+        <ActivityIndicator size="small" color="#3b82f6" />
       )}
     </TouchableOpacity>
   );
 }
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  formContainer: {
-    flex: 1,
-    paddingHorizontal: 10,
-    maxWidth: 600,
-  },
-  input: {
-    backgroundColor: colors.primary,
-    marginBottom: 15,
-    paddingHorizontal: 10,
-    borderRadius: 4,
-    color: colors.bluish,
-    borderColor: colors.primaryDark,
-    borderWidth: 1,
-    borderStyle: 'solid',
-    fontSize: getFontSize(16),
-    lineHeight: 20,
-    height: 'auto', // Damit das Textfeld dynamisch wächst
-    paddingVertical: 9,
-  },
-  textField: {
-    height: 'auto', // Damit das Textfeld dynamisch wächst
-    minHeight: 40, // Mindesthöhe des Textfelds (optional)
-    fontFamily: fonts.primarySemiBold,
-    fontSize: getFontSize(16),
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 8,
-  },
-  flex: {
-    flex: 1,
-  },
-  formSubmitButton: {
-    backgroundColor: '#8B5CF6', // bg-purple-600
-    paddingVertical: 14,
-    borderRadius: 6,
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  formSubmitButtonText: {
-    color: '#FFFFFF',
-    fontSize: getFontSize(17),
-    fontFamily: fonts.primaryBold,
-  },
-});

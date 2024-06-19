@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   },
   contentArea: {
     paddingVertical: 32,
-    ...screenPadding,
+    paddingHorizontal: 12,
   },
   pageHeader: {
     fontSize: getFontSize(24),

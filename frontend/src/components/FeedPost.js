@@ -12,7 +12,6 @@ import {
 import Entypo from 'react-native-vector-icons/Entypo';
 import PopupMenu from './PopUpMenu';
 import { fbImage } from '../constants/constants';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
 import formatDateTimeString from '../helpers/format-datetime';
 import useSharing from '../hooks/app/use-sharing';
 import useImageDimensions from '../hooks/utilities/use-size-from-sourced-image';
@@ -25,8 +24,8 @@ import {
   mediumHeadlineText,
   screenPadding,
 } from '../styles/partials';
-import { SocialInteractionBadge } from '../modules/events/EventPage';
 import { AccountMeta } from './AccountMetaLoader';
+import getFontSize from '../functions/ui/resolve-relative-font-size';
 
 const ContentPost = ({ poster = '', description, title }) => {
   const [openMenu, setOpenMenu] = useState(false); // handles menu
@@ -58,7 +57,6 @@ const ContentPost = ({ poster = '', description, title }) => {
         <Pressable onPress={() => {}}>
           <View>
             <CardImage />
-            <SocialInteractions />
             <CardTitle title={title} />
             <PublishedAt />
           </View>
@@ -66,7 +64,7 @@ const ContentPost = ({ poster = '', description, title }) => {
         {/* Text Content */}
         <Pressable onPress={() => setReadMore(!readMore)}>
           <Text
-            style={[bodyTextRegular, { ...screenPadding }]}
+            style={[bodyTextRegular, { paddingHorizontal: 12 }]}
             numberOfLines={readMore ? 5000 : 5}
           >
             {description ||
@@ -141,7 +139,7 @@ export const styles = StyleSheet.create({
     letterSpacing: 0,
     marginBottom: 0,
     opacity: 0.83,
-    ...screenPadding,
+    paddingHorizontal: 12,
     fontSize: getFontSize(19),
   },
   post: {
@@ -167,7 +165,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center', // items-start in Tailwind
     marginBottom: 0, // Tailwind's mb-3
-    ...screenPadding,
+    paddingHorizontal: 12,
   },
   userContainer: {
     marginLeft: -2,
@@ -206,7 +204,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start', // Tailwind's space-x-4
     gap: 30,
-    ...screenPadding,
+    paddingHorizontal: 12,
   },
   footerText: {
     color: colors.bluish, // Tailwind's text-slate-400
@@ -219,7 +217,7 @@ export const styles = StyleSheet.create({
     ...flexBoxRow,
 
     columnGap: 12,
-    ...screenPadding,
+    paddingHorizontal: 12,
     marginHorizontal: 0,
     marginTop: 2,
   },
@@ -251,41 +249,17 @@ function CardTitle({ title = '' }) {
 
 function PublishedAt({ timeString = new Date().toISOString() }) {
   return (
-    <View style={[flexBoxRow, { opacity: 0.8, ...screenPadding }]}>
+    <View style={[flexBoxRow, { opacity: 0.8, paddingHorizontal: 12 }]}>
       <Text
         style={[
           {
             ...blueCaptionText,
-            ...screenPadding,
+            paddingHorizontal: 12,
           },
         ]}
       >
         {formatDateTimeString(timeString)}
       </Text>
-    </View>
-  );
-}
-
-function SocialInteractions({ data = { views: 450, comments: 950 } }) {
-  return (
-    <View style={styles.socialInteractionBox}>
-      <SocialInteractionBadge
-        textStylesCount={styles.socialCounter}
-        textStylesCaption={styles.socialCaptionTxt}
-        containerStyles={{ columnGap: 4, opacity: 0.8 }}
-        count={data.views}
-        countCaptionVariants={['Aufruf', 'Aufrufe']}
-        icon={() => <></>}
-      />
-
-      <SocialInteractionBadge
-        textStylesCount={styles.socialCounter}
-        textStylesCaption={styles.socialCaptionTxt}
-        containerStyles={{ columnGap: 4, opacity: 0.8 }}
-        count={data.comments}
-        countCaptionVariants={['Zusage', 'Zusagen']}
-        icon={() => <></>}
-      />
     </View>
   );
 }

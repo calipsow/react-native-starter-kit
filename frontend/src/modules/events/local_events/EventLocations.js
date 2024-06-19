@@ -67,7 +67,7 @@ const EventLocations = ({ navigation, route }) => {
         contentContainerStyle={{
           justifyContent: 'center',
           alignItems: 'center',
-          ...screenPadding,
+          paddingHorizontal: 12,
         }}
       >
         <Text

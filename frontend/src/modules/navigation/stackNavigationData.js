@@ -2,17 +2,17 @@ import TabNavigator from './MainTabNavigator';
 
 import { HEADER_BACKGROUND_IMAGE, isIOS } from '../../constants/constants';
 import getFontSize from '../../functions/ui/resolve-relative-font-size';
-import { colors, fonts } from '../../styles'; //TODO - Change Color Theme
-import ProfileStackNavigator from '../account/profile/ProfileStack';
+import { colors, fonts } from '../../styles';
 import { AuthStackNavigation } from '../auth/AuthStack';
 import BlogStackNavigator from '../blogs/BlogStack';
 import SingleArticleView from '../blogs/ArticlePage';
 import EventStackNavigator from '../events/EventStack';
-import SingleEventView from '../events/EventPage';
+import SingleEventView from '../blogs/ArticlePage';
 import { SearchStackNavigation } from '../search/SearchStack';
 import { SettingStackNavigation } from '../settings/SettingStack';
 import { headerLeftComponent } from './headerLeftComponent';
 import LoadingView, { LoadingFirebaseView } from '../pages/LoadingViews';
+import ProfileStackNavigator from '../account/ProfileStack';
 
 export const InitAppStackScreens = {
   'Loading Screen': {

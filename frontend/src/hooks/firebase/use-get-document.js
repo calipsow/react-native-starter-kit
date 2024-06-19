@@ -1,33 +1,46 @@
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { useState } from 'react';
 
+/**
+ * A React hook to fetch a document from Firebase Firestore.
+ * Handles loading state, success, and error state.
+ *
+ * @return {Object} An object containing the document data, error, loading state, and a function to initiate fetching.
+ */
 const useGetDocument = () => {
+  // State to indicate if the fetch operation was successful
   const [succeed, setSucceed] = useState(false);
+  // State to indicate if the fetch operation is in progress
   const [loading, setLoading] = useState(false);
+  // State to store the document data fetched from Firestore
   const [documentData, setDocumentData] = useState(null);
+  // State to store any error that occurs during fetching
   const [error, setError] = useState('');
 
+  /**
+   * Fetches a document from Firestore based on the provided collection path and document ID.
+   * Sets loading state and clears previous data and errors before starting a new fetch.
+   *
+   * @param {Object} params An object containing the collection path and document ID.
+   * @param {string} params.collectionPath Firestore collection path.
+   * @param {string} params.document_id The ID of the document to fetch.
+   */
   const getDocument = async ({ collectionPath, document_id }) => {
     setLoading(true);
     setDocumentData(null);
     setError('');
     try {
-      // console.log(collectionPath, document_id);
       const db = getFirestore();
       const docRef = doc(db, collectionPath, document_id);
-      // console.log(docRef);
       const documentSnapshot = await getDoc(docRef);
-      // Dokument aus der Firestore-Datenbank abrufen
-      const data = documentSnapshot.data();
 
+      const data = documentSnapshot.data();
       if (data) {
-        // Dokument existiert, Daten extrahieren
         setDocumentData(data);
         setSucceed(true);
       } else {
-        // Dokument existiert nicht
         setError('Das angeforderte Dokument existiert nicht.');
-        console.log(
+        console.error(
           'Das angeforderte Dokument existiert nicht.',
           collectionPath,
           document_id,
@@ -36,8 +49,8 @@ const useGetDocument = () => {
       }
     } catch (err) {
       setError(err.message);
-      // Fehlerbehandlung
       if (err.message.includes('offline')) {
+        // Retry logic for offline error
         await new Promise(resolve => setTimeout(resolve, 2000));
         await getDocument({ collectionPath, document_id });
       } else {
@@ -48,12 +61,12 @@ const useGetDocument = () => {
   };
 
   return {
-    succeed,
-    documentData,
-    error,
-    getDocument,
-    loading,
-    setDocumentData,
+    succeed, // Indicates success of the operation
+    documentData, // Data of the fetched document
+    error, // Error message if an error occurred
+    getDocument, // Function to initiate the document fetch
+    loading, // Indicates if the operation is in progress
+    setDocumentData, // Exposes function to manually set document data
   };
 };
 

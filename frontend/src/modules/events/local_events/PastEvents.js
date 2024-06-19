@@ -10,7 +10,6 @@ import {
 import getDocsFromCollection from '../../../functions/firestore/load-docs-from-collection-async';
 import sortObjectArrayByDate from '../../../functions/firestore/timestamp-based-sort';
 import isPastInGermany from '../../../helpers/is-past-timestamp';
-import useResetScreen from '../../../hooks/screen/use-screen-reset';
 import { colors } from '../../../styles';
 import { appThemeColor } from '../../../styles/partials';
 import { BackButton } from '../../blogs/ArticleIndex';
@@ -22,14 +21,6 @@ const PastEvents = ({ navigation, route }) => {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const batchSize = 20; // Anzahl der Elemente, die pro "Batch" geladen werden sollen
-
-  useResetScreen(resetScreen);
-
-  function resetScreen() {
-    setData([]);
-    setLoading(false);
-    fetchDocs();
-  }
 
   const fetchDocs = async () => {
     if (loading) return;

@@ -56,7 +56,7 @@ const ChangeUsername = ({ navigation, route }) => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
-      <View style={{ ...maxWidth, ...screenPadding }}>
+      <View style={{ ...maxWidth, paddingHorizontal: 12 }}>
         <Text style={styles.header}>Ändere deinen Nutzernamen.</Text>
 
         {/* Divider */}

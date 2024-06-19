@@ -15,7 +15,7 @@ export const SuccessMessage = ({
       flex: 1,
       paddingTop: 8,
       gap: 10,
-      ...screenPadding,
+      paddingHorizontal: 12,
       justifyContent: 'center',
       alignSelf: 'center',
     }}

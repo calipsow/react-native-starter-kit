@@ -7,11 +7,11 @@ import {
   mediumHeadlineText,
 } from '../../../styles/partials';
 import SearchBar from '../../../components/Searchbar';
-import { productCollection } from '../../availableInFullVersion/sample-data';
 import { ProductCard } from '../products/partials/ProductCard';
 import FeedArticlePost from '../../blogs/UI/FeedPost';
 import BlogCard from '../../blogs/UI/BlogCard';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { fbImage } from '../../../constants/constants';
 
 const SearchPage = ({ navigation, route }) => {
   var { query } = route.params;
@@ -32,7 +32,14 @@ const SearchPage = ({ navigation, route }) => {
         </View>
         {/* Section Search Results */}
         <View style={styles.searchResults}>
-          {productCollection.map((itm, i) => {
+          {[
+            {
+              type: 'product',
+              title: 'some kind of',
+              imageUrl: fbImage,
+              price: 20.99,
+            },
+          ].map((itm, i) => {
             // console.log(itm);
             switch (itm.type) {
               case 'product':
@@ -81,7 +88,7 @@ const SearchPage = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: appThemeColor.darkBlue,
-    ...screenPadding,
+    paddingHorizontal: 12,
     flex: 1,
   },
   heroSection: {

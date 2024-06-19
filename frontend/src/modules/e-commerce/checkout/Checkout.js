@@ -261,7 +261,7 @@ const CheckoutScreen = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    ...screenPadding,
+    paddingHorizontal: 12,
     backgroundColor: appThemeColor.darkBlue,
     flex: 1,
   },

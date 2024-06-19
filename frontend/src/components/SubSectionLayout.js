@@ -17,7 +17,7 @@ export const SubSectionLayout = ({ children, title, subTitle, styles }) => {
             marginBottom: 20,
             marginVertical: 5,
             paddingHorizontal: 10,
-            ...screenPadding,
+            paddingHorizontal: 12,
             alignItems: 'center',
           },
           styles && styles,

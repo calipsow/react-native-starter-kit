@@ -15,10 +15,12 @@ Click `Create database`.
 Go to Rules and edit the rule set it to:
 
 ```
+rules_version = '2';
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if request.auth != null;
+    match /{documents=**} {
+      allow create, read, write, delete: if request.auth != null;
     }
   }
 }

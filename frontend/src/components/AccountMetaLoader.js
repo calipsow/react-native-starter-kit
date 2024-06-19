@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Image, Pressable, Text, View } from 'react-native';
 import { styles } from './FeedPost';
 import FBImage from './FBImage';
-import { pbImage } from '../constants/constants';
+import { fbImage, pbImage } from '../constants/constants';
 import { colors } from '../styles';
 
 export const AccountMeta = ({
@@ -67,7 +67,7 @@ export const AccountMetaLoader = () => {
     <Animated.View style={{ opacity: fadeAnim }}>
       <View style={styles.userContainer}>
         <Image
-          source={require('../../../../assets/images/default-avatar.png')}
+          source={{ uri: fbImage }}
           style={[styles.userImage, { backgroundColor: 'white' }]}
         />
         <View style={{ paddingTop: 5 }}>
