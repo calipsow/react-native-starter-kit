@@ -6,7 +6,7 @@ import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
  * A custom React hook for updating a specific field in a Firestore document.
  * Manages the update status, error state, and the updated document's snapshot.
  *
- * @returns {Object} An object containing the function to update a document field, status of the operation, any occurred error, and the updated document snapshot.
+ * returns  An object containing the function to update a document field, status of the operation, any occurred error, and the updated document snapshot.
  */
 const useUpdateDocumentField = () => {
   const { db } = useContext(Firebase); // Accessing the Firestore database instance from Firebase context

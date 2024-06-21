@@ -6,7 +6,7 @@ import { doc, deleteDoc } from 'firebase/firestore';
  * A React hook to delete a document from Firestore.
  * Manages the success state of the deletion operation and permission state to perform the operation.
  *
- * @returns {Object} Contains the function to delete a document and states indicating success and permission status.
+ * returns  Contains the function to delete a document and states indicating success and permission status.
  */
 const useDeleteDocument = () => {
   const { db } = useContext(Firebase); // Access the Firebase database instance from context

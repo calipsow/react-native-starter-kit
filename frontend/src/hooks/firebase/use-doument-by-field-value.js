@@ -6,7 +6,7 @@ import { Firebase } from '../../../App';
  * A React hook for fetching documents from a Firestore collection based on a field value.
  * Manages the loading state, success status, fetched documents, and any errors that occur.
  *
- * @returns {Object} Contains the function to fetch documents, fetched documents array, loading, success, and error states.
+ * returns  Contains the function to fetch documents, fetched documents array, loading, success, and error states.
  */
 const useGetDocumentsByFieldValue = () => {
   const [succeed, setSucceed] = useState(false); // State to indicate if the fetch operation was successful

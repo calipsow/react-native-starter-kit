@@ -14,7 +14,7 @@ import { firebase } from '@react-native-firebase/auth';
  * Custom React hook to manage and track Firebase authentication status and user details.
  * Provides functionality for handling login state, user information, and performing account actions like logout, delete, and updating credentials.
  *
- * @returns {Object} An object containing various states and functions related to Firebase authentication.
+ * returns  An object containing various states and functions related to Firebase authentication.
  */
 const useAuthState = () => {
   const { auth } = useContext(Firebase);

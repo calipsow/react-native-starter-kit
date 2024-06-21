@@ -6,7 +6,7 @@ import { ref, deleteObject } from 'firebase/storage';
  * A React hook to delete an image from Firebase Storage.
  * Manages the success state of the deletion operation, errors, and permission state.
  *
- * @returns {Object} Contains the function to delete an image and states indicating success, error, and permission status.
+ * returns  Contains the function to delete an image and states indicating success, error, and permission status.
  */
 const useDeleteImage = () => {
   const { storage } = useContext(Firebase); // Access the Firebase storage instance from context

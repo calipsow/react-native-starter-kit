@@ -8,7 +8,6 @@ import { Firebase } from '../../../App';
  *
  * @param {object} accountCtx - The context or state representing the user's account information.
  * @param {function} setAccountCtx - Function to update the account context or state.
- * @returns {Object} An object containing functions for updating the user profile and states reflecting the operation status.
  */
 const useUserProfile = (accountCtx, setAccountCtx) => {
   const [error, setError] = useState(null); // State to store any error that occurs during profile updates

@@ -6,7 +6,7 @@ import { useToastNotify } from '../screen/use-toast-notification';
  * Custom hook to manage and handle sharing content to various services including SMS, WhatsApp,
  * Facebook Messenger, and more generic sharing interfaces provided by the device.
  *
- * @returns {Object} An object containing functions for initiating shares to different services,
+ * returns  An object containing functions for initiating shares to different services,
  * and states indicating the outcome of these sharing actions.
  */
 const useSharing = () => {

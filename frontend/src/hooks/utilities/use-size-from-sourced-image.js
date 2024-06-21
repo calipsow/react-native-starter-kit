@@ -9,7 +9,7 @@ import { width } from '../../styles';
  *
  * @param {string} imageUrl - URL of the image whose dimensions are to be fetched.
  * @param {number} windowWidth - The width of the window (or container) in which the image will be displayed.
- * @returns {Object} An object containing image width, height, relative height, and any potential error.
+ * returns  An object containing image width, height, relative height, and any potential error.
  */
 const useImageDimensions = (imageUrl, windowWidth) => {
   const [imgWidth, setImgWidth] = useState(null);
@@ -47,7 +47,7 @@ const useImageDimensions = (imageUrl, windowWidth) => {
  * A dynamic variant of the useImageDimensions hook that allows for on-demand dimension calculations.
  * It supports fallback to a default image when the specified image fails to load.
  *
- * @returns {Object} An object containing image dimensions, a function to trigger dimension calculation, and any errors.
+ * returns  An object containing image dimensions, a function to trigger dimension calculation, and any errors.
  */
 export const useImageDimensionsDynamic = () => {
   const [imgWidth, setImgWidth] = useState(null);

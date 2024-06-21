@@ -8,7 +8,7 @@ import { fbImage } from '../../constants/constants';
  * A React hook for fetching public user data from Firebase using a cloud function.
  * Manages user data, error handling, and loading state.
  *
- * @returns {Object} Contains the user data, error state, loading state, and function to initiate user data fetching.
+ * returns  Contains the user data, error state, loading state, and function to initiate user data fetching.
  */
 const useFetchPublicUserData = () => {
   const [userData, setUserData] = useState(null); // State to store the user data fetched

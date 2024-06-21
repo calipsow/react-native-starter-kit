@@ -12,7 +12,7 @@ import { handlePushNotification } from './use-navigate-push-notification';
  * Hook that manages push notifications for a React Native app using Firebase Messaging.
  * It handles requesting permissions, receiving new notifications, and user interactions with them.
  *
- * @returns {Object} An object containing the last notification and states related to notification handling.
+ * returns  An object containing the last notification and states related to notification handling.
  */
 const usePushNotification = () => {
   const { showToastNotification } = useToastNotify();

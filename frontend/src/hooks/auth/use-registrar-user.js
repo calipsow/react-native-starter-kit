@@ -12,7 +12,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth/react-native';
  * @param {string} params.username - The username for the new user.
  * @param {string} params.role - The role assigned to the new user.
  * @param {string} params.passwd - The password for the new user account.
- * @returns {Object} An object containing functions and states related to the registration process.
+ * returns  An object containing functions and states related to the registration process.
  */
 const useRegisterUser = ({ email, username, role, passwd }) => {
   const { auth } = useContext(Firebase); // Access Firebase Authentication context

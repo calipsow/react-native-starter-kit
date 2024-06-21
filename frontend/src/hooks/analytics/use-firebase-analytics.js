@@ -5,7 +5,7 @@ import { useRef } from 'react';
  * A custom React hook that facilitates tracking screen views in a React Native application using Firebase Analytics.
  * It should be integrated with the navigation system to monitor and log changes in the screen navigation.
  *
- * @returns {Object} An object containing refs to track the current and previous route names, and functions to handle navigation state changes and initialization.
+ * returns  An object containing refs to track the current and previous route names, and functions to handle navigation state changes and initialization.
  */
 const useScreenViewAnalytics = () => {
   const routeNameRef = useRef(); // Ref to keep track of the current route name for comparison

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
  * Custom hook for handling click and custom event analytics using Firebase Analytics.
  * This hook abstracts the complexity of logging analytics events and handles errors.
  *
- * @returns {Object} An object containing functions to log different types of analytics events.
+ * returns  An object containing functions to log different types of analytics events.
  */
 const useClickAnalytics = () => {
   const [error, setError] = useState(null); // State to store any error that occurs during event logging.

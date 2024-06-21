@@ -5,7 +5,7 @@ import { useState } from 'react';
  * A custom React hook for managing toast notifications within a React Native application.
  * It leverages the `react-native-toast-notifications` library to show and manage these notifications.
  *
- * @returns {Object} An object containing functions to show and hide toast notifications, and the toast instance itself.
+ * returns  An object containing functions to show and hide toast notifications, and the toast instance itself.
  */
 export const useToastNotify = () => {
   const [shownToastIDs, setShownToastIDs] = useState([]); // State to track the IDs of shown toasts

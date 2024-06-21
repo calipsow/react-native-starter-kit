@@ -1,7 +1,7 @@
 /**
  * Ersetzt alle `undefined` Werte in einem Objekt mit `null`.
  * @param {Object} obj - Das Objekt, das bearbeitet werden soll.
- * @returns {Object} Das bearbeitete Objekt mit `null` anstelle von `undefined`.
+ * returns  Das bearbeitete Objekt mit `null` anstelle von `undefined`.
  */
 function replaceUndefinedWithNull(obj) {
   if (obj !== null && typeof obj === 'object') {

@@ -14,7 +14,7 @@ import {
 /**
  * A React hook for fetching documents from a Firestore collection with support for sorting, pagination, and real-time updates.
  *
- * @returns {Object} The fetched documents, loading status, error information, and functions for fetching and managing the documents.
+ * returns  The fetched documents, loading status, error information, and functions for fetching and managing the documents.
  */
 const useFirestoreCollection = () => {
   const { db } = useContext(Firebase); // Context hook to access Firebase database instance

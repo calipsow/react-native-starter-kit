@@ -6,7 +6,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth/react-native';
  * Custom React hook for handling user sign-in with Firebase Authentication.
  * Manages sign-in status, loading state, any error messages, and the ID token of the authenticated user.
  *
- * @returns {Object} An object containing the sign-in function and states related to the sign-in process.
+ * returns  An object containing the sign-in function and states related to the sign-in process.
  */
 const useSignIn = () => {
   const { auth } = useContext(Firebase); // Access Firebase Authentication context

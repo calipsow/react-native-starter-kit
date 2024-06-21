@@ -8,7 +8,7 @@ import getNestedProperty from '../../helpers/search-property-in-object';
  * A React hook for performing debounced search queries in a Firestore collection.
  * It manages loading state, search results, search completion, and search errors.
  *
- * @returns {Object} The state values and functions for managing and performing searches.
+ * returns  The state values and functions for managing and performing searches.
  */
 function useFirestoreSearch() {
   const [loading, setLoading] = useState(false); // Tracks loading state of search

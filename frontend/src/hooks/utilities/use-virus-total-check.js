@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
  * A custom React hook for performing URL security checks using the VirusTotal API.
  * It manages the API request lifecycle, including loading state, result processing, and error handling.
  *
- * @returns {Object} An object containing states for the API call status, results, and a function to initiate the URL check.
+ * returns  An object containing states for the API call status, results, and a function to initiate the URL check.
  */
 const useVirusTotalURLCheck = () => {
   const [isPending, setIsPending] = useState(false); // Tracks whether the API request is in progress

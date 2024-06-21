@@ -7,7 +7,7 @@ import { fbImage } from '../../constants/constants';
  * A custom React hook to manage the process of sending push notifications via Firebase Functions.
  * Supports broadcasting notifications to all app users and sending targeted notifications to individual users.
  *
- * @returns {Object} An object containing functions for sending notifications, and states indicating the operation status.
+ * returns  An object containing functions for sending notifications, and states indicating the operation status.
  */
 const useBroadcastPushNotification = () => {
   const [loading, setLoading] = useState(false); // Indicates if the notification request is in progress

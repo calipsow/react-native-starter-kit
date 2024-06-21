@@ -6,7 +6,7 @@ import { sendPasswordResetEmail } from 'firebase/auth/react-native';
  * Custom React hook for sending a password reset email to a user's email address.
  * Manages the state of the email sent status, loading status, and any errors that may occur during the process.
  *
- * @returns {Object} An object containing the function to initiate a password reset email, and states indicating the process status.
+ * returns  An object containing the function to initiate a password reset email, and states indicating the process status.
  */
 const useResetPassword = () => {
   const { auth } = useContext(Firebase); // Access Firebase Authentication context

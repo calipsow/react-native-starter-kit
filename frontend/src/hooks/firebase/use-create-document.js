@@ -6,7 +6,7 @@ import { collection, doc, getFirestore, setDoc } from 'firebase/firestore';
  * A React hook to create or update a document in Firestore.
  * Manages the success and error states related to the document creation or update operation.
  *
- * @returns {Object} The function to create or update a document and the states indicating success or error.
+ * returns  The function to create or update a document and the states indicating success or error.
  */
 const useCreateDocument = () => {
   const { db } = useContext(Firebase); // Accessing the Firestore instance from the context

@@ -15,7 +15,7 @@ import { ModalContext } from '../../modules/provider/ModalProvider';
  * Custom React hook for uploading images to Firebase Storage.
  * Includes state for upload progress, upload completion, error handling, and the resulting image URL.
  *
- * @returns {Object} An object containing functions and state related to the image upload process.
+ * returns  An object containing functions and state related to the image upload process.
  */
 const useImageUpload = () => {
   const { app } = useContext(Firebase); // Access Firebase instance from context
