@@ -6,7 +6,7 @@ import { View, Text } from 'react-native';
 
 import { colors, fonts, width } from '../styles';
 import { maxWidth } from '../styles/partials';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 
 class RNSDropDown extends React.Component {
   static defaultProps = {

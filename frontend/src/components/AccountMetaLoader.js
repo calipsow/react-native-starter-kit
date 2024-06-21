@@ -1,11 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Image, Pressable, Text, View } from 'react-native';
-import { styles } from './FeedPost';
 import FBImage from './FBImage';
 import { fbImage, pbImage } from '../constants/constants';
-import { colors } from '../styles';
 
-export const AccountMeta = ({
+const AccountMeta = ({
   userData = {},
   captionText = '',
   containerStyles = {},
@@ -13,70 +11,62 @@ export const AccountMeta = ({
   const handleClick = async () => {};
 
   return (
-    <Pressable onPress={handleClick}>
-      <View style={[styles.userContainer, containerStyles]}>
-        <FBImage
-          src={pbImage}
-          fallbackSrc={pbImage}
-          style={[styles.userImage, { backgroundColor: colors.white }]}
-          fallbackStyles={{
-            width: 34,
-            height: 34,
-            backgroundColor: colors.white,
-          }}
-        />
-
-        <View style={{ paddingTop: 5 }}>
-          {<Text style={styles.userName}>calipsow</Text>}
-          <Text style={styles.postTime} numberOfLines={1}>
-            published an update
-          </Text>
-        </View>
+    <Pressable onPress={handleClick} className="flex-row items-center p-2">
+      <FBImage
+        src={pbImage}
+        fallbackSrc={pbImage}
+        className="w-8 h-8 rounded-full bg-white"
+      />
+      <View className="pt-1.5 pl-2">
+        <Text className="text-lg font-semibold">calipsow</Text>
+        <Text className="text-sm text-gray-500 truncate">
+          published an update
+        </Text>
       </View>
     </Pressable>
   );
 };
 
 // Loading Animation
-
-export const AccountMetaLoader = () => {
-  const fadeAnim = useRef(new Animated.Value(0)).current; // initiale Transparenz
+const AccountMetaLoader = () => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     const fadeInOut = () => {
       Animated.sequence([
         Animated.timing(fadeAnim, {
-          toValue: 1, // vollständig sichtbar
-          duration: 1000, // 1 Sekunde für Fade-In
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true, // optimiert die Animation
-        }),
-        Animated.timing(fadeAnim, {
-          toValue: 0, // vollständig unsichtbar
-          duration: 1000, // 1 Sekunde für Fade-Out
+          toValue: 1,
+          duration: 1000,
           easing: Easing.inOut(Easing.quad),
           useNativeDriver: true,
         }),
-      ]).start(() => fadeInOut()); // Schleife wiederholen
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 1000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]).start(() => fadeInOut());
     };
-
-    fadeInOut(); // Animation starten
-  }, [fadeAnim]); // Effekt wird bei Veränderung von `fadeAnim` ausgelöst
+    fadeInOut();
+  }, [fadeAnim]);
 
   return (
     <Animated.View style={{ opacity: fadeAnim }}>
-      <View style={styles.userContainer}>
+      <View className="flex-row items-center p-2">
         <Image
           source={{ uri: fbImage }}
-          style={[styles.userImage, { backgroundColor: 'white' }]}
+          className="w-8 h-8 rounded-full bg-white"
         />
-        <View style={{ paddingTop: 5 }}>
-          <Text style={styles.userName}>{'Zusammen Stehen Wir · Nutzer'}</Text>
-          <Text style={styles.postTime} numberOfLines={1}>
-            {'Hat etwas mit der Community geteilt..'}
+        <View className="pt-1.5 pl-2">
+          <Text className="text-lg font-semibold">Ship Native · User</Text>
+          <Text className="text-sm text-gray-500 truncate">
+            Shared something with the community...
           </Text>
         </View>
       </View>
     </Animated.View>
   );
 };
+
+export { AccountMeta, AccountMetaLoader };

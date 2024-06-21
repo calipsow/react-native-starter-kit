@@ -7,10 +7,15 @@ import {
   getAuth,
   updateProfile,
 } from 'firebase/auth/react-native';
-import { firebase } from '@react-native-firebase/auth';
-import { app } from '../../../config/firebase-client';
 import { ModalContext } from '../../modules/provider/ModalProvider';
+import { firebase } from '@react-native-firebase/auth';
 
+/**
+ * Custom React hook to manage and track Firebase authentication status and user details.
+ * Provides functionality for handling login state, user information, and performing account actions like logout, delete, and updating credentials.
+ *
+ * @returns {Object} An object containing various states and functions related to Firebase authentication.
+ */
 const useAuthState = () => {
   const { auth } = useContext(Firebase);
   const [authStatus, setAuthStatus] = useState('loading'); // 'loading', 'authenticated', 'unauthenticated'
@@ -21,6 +26,20 @@ const useAuthState = () => {
   const [currentUserJSON, setCurrentUserJSON] = useState(null);
   const [firebaseAccountCtx, setFirebaseAccountCtx] = useState(null);
   const { showModalAlert } = useContext(ModalContext);
+  const [succeeded, setSucceeded] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  const setError = err => {
+    console.error(err);
+    setFirebaseError(err);
+    setSucceeded(false);
+    setLoading(false);
+  };
+  const resetStates = () => {
+    setFirebaseError('');
+    setSucceeded(false);
+    setLoading(true);
+  };
 
   useEffect(() => {
     if (!auth) return;
@@ -55,23 +74,19 @@ const useAuthState = () => {
    * @returns {Promise} Promise an error if something goes wrong otherwise null
    */
   const changeUsername = async (newUsername = '') => {
-    setFirebaseError('');
-    if (!currentUser) {
-      console.error('user is not authenticated can not update username');
-      return 'user is not authenticated can not update username';
-    }
+    resetStates();
+    if (!currentUser)
+      return setError('user is not authenticated can not update username');
     if (newUsername !== currentUser.displayName && newUsername) {
       try {
         await updateProfile(currentUser, {
           displayName: newUsername.trim(),
         });
-        return null;
+        setLoading(false);
       } catch (error) {
-        console.error(error);
-        return error.message;
+        setError(error.message);
       }
-    }
-    return 'the provided username can not be updated';
+    } else setError('the provided username can not be updated');
   };
 
   // exception handling listener
@@ -81,67 +96,65 @@ const useAuthState = () => {
     switch (true) {
       case firebaseError.toString().includes('(auth/requires-recent-login)'):
         showModalAlert(
-          'Erneutes Einloggen notwendig',
-          'Deine Sitzung ist abgelaufen, bitte logge dich erneut ein bevor du fortfährst.',
+          'Log in again necessary',
+          'Your session has expired, please log in again before continuing.',
           logout,
         );
         break;
       default:
-        console.error(firebaseError);
+        console.warn(firebaseError);
         break;
     }
   }, [firebaseError]);
 
   const logout = async () => {
     try {
-      setFirebaseError('');
+      resetStates();
       await signOut(auth);
+      setSucceeded(true);
       setAuthStatus('unauthenticated');
       setUser(null);
       setCurrentUser(null);
       setRole('');
       setCurrentUserJSON(null);
       setFirebaseAccountCtx(null);
+      setLoading(false);
     } catch (error) {
-      console.warn('Fehler beim Ausloggen:', error);
-      setFirebaseError(error);
+      setError(error.message);
     }
   };
 
   const deleteAccount = async () => {
     try {
-      setFirebaseError('');
+      resetStates();
       console.log('deleting user account..');
-      let firebaseAuth = getAuth(app);
-      await deleteUser(firebaseAuth.currentUser);
+      const auth = getAuth();
+      if (!auth.currentUser) throw Error('user is not signed in!');
+      await deleteUser(auth.currentUser);
+      setSucceeded(true);
       setAuthStatus('unauthenticated');
       setUser(null);
       setCurrentUser(null);
       setRole('');
       setCurrentUserJSON(null);
       setFirebaseAccountCtx(null);
+      setLoading(false);
     } catch (error) {
-      console.warn('Fehler beim Löschen des Accounts:', error);
-      setFirebaseError(error);
+      setError(error.message);
     }
   };
 
-  const changePassword = async (currentPasswd, newPasswd) => {
-    setFirebaseError('');
-    const emailCred = firebase.auth.EmailAuthProvider.credential(
-      firebase.auth().currentUser,
-      currentPasswd,
-    );
-    firebase
-      .auth()
-      .currentUser?.reauthenticateWithCredential(emailCred)
-      .then(() => {
-        return firebase.auth().currentUser?.updatePassword(newPasswd);
-      })
-      .catch(error => {
-        console.error(error);
-        setFirebaseError(error);
-      });
+  const changePassword = async _email => {
+    resetStates();
+    try {
+      const auth = firebase.auth();
+      if (!_email) throw Error('Your email is incorrect.');
+      await auth.sendPasswordResetEmail(_email);
+      setLoading(false);
+      setSucceeded(true);
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return {
@@ -156,6 +169,8 @@ const useAuthState = () => {
     currentUserJSON,
     firebaseAccountCtx,
     changeUsername,
+    succeeded,
+    isLoading,
   };
 };
 

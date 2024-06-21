@@ -8,7 +8,7 @@ import {
   smallCaptionTextGray,
 } from '../styles/partials';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 
 export const TopBarMenu = ({
   navigation,

@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import useGetDocumentsByFieldValue from '../../../hooks/firebase/use-doument-by-field-value';
 import { colors } from '../../../styles';
 import {
@@ -20,7 +20,6 @@ import {
 } from '../../../styles/partials';
 import { DividerCaption } from '../../../components/DividerCaption';
 import useGetDocument from '../../../hooks/firebase/use-get-document';
-import writeDocument from '../../../functions/firestore/write-document-async';
 
 const DocumentHeader = ({ docTitle = '', document = {} }) => {
   return (

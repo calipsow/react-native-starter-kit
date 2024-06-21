@@ -22,13 +22,13 @@ export const chatIcon = require('../../assets/images/pages/chat.png');
 export const loginIcon = require('../../assets/images/pages/login.png');
 export const blogIcon = require('../../assets/images/pages/blog.png');
 export const fbImage =
-  'https://firebasestorage.googleapis.com/v0/b/fir-zsw.appspot.com/o/public%2Fapp%2Fimages%2Fimage-error-fallback.png?alt=media&token=4274571f-c47e-4a4f-ab0f-9fc225d9383b';
+  'https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
 export const pbImage =
-  'https://firebasestorage.googleapis.com/v0/b/fir-zsw.appspot.com/o/public%2Fapp%2Fimages%2Fdefault-avatar.png?alt=media&token=44a5f0a9-6a04-45fa-83d1-f0a95e49f7b5';
+  'https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
 export const LOGO_SRC =
-  'https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/448601705_436008006020846_1453418735369893560_n.png?stp=dst-png_p960x960&_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_ohc=l2frGdsKZK4Q7kNvgHCMrBl&_nc_ht=scontent-dus1-1.xx&oh=00_AYAxkL5LBHa3eyst4nhARGo1i1iBP_snWyYjICuvr0jJnA&oe=6678CBCD';
+  'https://cdn.shopify.com/s/files/1/0655/5087/6900/files/callipson-white-bg_24987243-6d3f-45b2-af85-dbe810c769ec.png?v=1690002775';
 
 export const DEEP_LINKING_CONFIG = {
   prefixes: ['https://shipnative.app/', 'shipnative://'],
@@ -266,20 +266,18 @@ export const EMAIL_REG = new RegExp(
 );
 
 // SAMPLE DATA
-export const STATIC_BLOGS = [
-  {
-    articles: [],
-    coverImage: fbImage,
-    description:
-      'Eu quis mollit ut pariatur adipisicing nulla reprehenderit magna laboris magna anim labore.',
-    id: '8vc2cIRiGWEFxTiaiH02',
-    publisher: 'callipson',
-    tags: ['shipNative'],
-    title: 'Aliquip ipsum labore ullamco',
-    total_comments: 50,
-    total_likes: 600,
-  },
-];
+export const STATIC_BLOG = {
+  articles: [],
+  coverImage: fbImage,
+  description:
+    'Eu quis mollit ut pariatur adipisicing nulla reprehenderit magna laboris magna anim labore.',
+  id: '8vc2cIRiGWEFxTiaiH02',
+  publisher: 'callipson',
+  tags: ['shipNative'],
+  title: 'Aliquip ipsum labore ullamco',
+  total_comments: 50,
+  total_likes: 600,
+};
 
 export const sampleArticleData = [
   {

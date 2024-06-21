@@ -8,37 +8,44 @@ import {
   ActivityIndicator,
   Pressable,
 } from 'react-native';
-import { colors, fonts } from '../styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useNavigation } from '@react-navigation/native';
 import useFirestoreSearch from '../hooks/firebase/use-collection-search';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
+import { colors, fonts } from '../styles';
 
+/**
+ * A search bar component that integrates with Firebase to perform live search queries.
+ *
+ * @param {Object} props The component props.
+ * @param {string} props.placeholder Placeholder text for the search input.
+ * @param {function} props.onSearchResults Callback function that receives the search results.
+ * @param {function} props.onLoading Callback function that indicates the loading status.
+ * @param {function} props.queryText Callback function that sends back the current query text.
+ * @param {string} props.collectionID Firestore collection ID to perform the search on.
+ * @param {Array} props.fieldPaths Fields within the collection to search against.
+ * @returns {JSX.Element} A fully functional search bar component.
+ */
 const SearchBar = ({
   placeholder,
   onSearchResults = function (results = []) {},
   onLoading = function (isLoading) {},
   queryText = function (queryText) {},
+  collectionID = 'Users',
+  fieldPaths = ['username'],
 }) => {
+  const [searchQuery, setSearchQuery] = useState('');
   const { loading, search, searchError, searchResults, searchDone } =
     useFirestoreSearch();
-  const [searchQuery, setSearchQuery] = useState('');
-  const navigation = useNavigation();
 
   const handleSearch = (query = '') => {
     setSearchQuery(query);
-    if (!query || !query.trim()) return;
-    // Implement your search logic here
-    // console.log('Searching for:', query);
-    search(
-      'Events',
-      ['name', 'location.province', 'location.city', 'location.street'],
-      query.trim(),
-    );
+    if (!query.trim()) return;
+    search(collectionID, fieldPaths, query.trim());
   };
 
   useEffect(() => {
+    console.log(!searchResults.length ? 'nothing found!' : searchResults);
     onSearchResults(searchResults);
   }, [searchResults]);
 
@@ -47,7 +54,7 @@ const SearchBar = ({
   }, [loading]);
 
   useEffect(() => {
-    if (searchError) console.error(searchError);
+    if (searchError) console.error('Search Error:', searchError);
   }, [searchError]);
 
   useEffect(() => {
@@ -61,22 +68,16 @@ const SearchBar = ({
         onChangeText={handleSearch}
         value={searchQuery}
         placeholder={placeholder}
-        placeholderTextColor="#C1D6EA" // Tailwind class: text-slate-500
+        placeholderTextColor="#C1D6EA"
         returnKeyType="search"
       />
       <View style={styles.iconButton}>
         {!loading ? (
-          <>
-            {!searchQuery ? (
-              <FontAwesome name="search" size={19} color={colors.lightBlue} />
-            ) : null}
-          </>
+          !searchQuery ? (
+            <FontAwesome name="search" size={19} color={colors.lightBlue} />
+          ) : null
         ) : (
-          <ActivityIndicator
-            size={'small'}
-            color={colors.lightGray}
-            style={{ margin: 'auto' }}
-          />
+          <ActivityIndicator size="small" color={colors.lightGray} />
         )}
       </View>
       {searchQuery && !loading ? (
@@ -93,21 +94,18 @@ const SearchBar = ({
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    // Tailwind class: bg-white for light mode
-    // for dark mode, use dark:bg-slate-800
+    backgroundColor: colors.primary, // Typically 'white' or light color for better visibility
   },
   input: {
-    height: 45, // Adjust as needed
-    paddingLeft: 36, // Tailwind class: pl-9, adjust based on your icon size and padding
-    paddingRight: 12, // Tailwind class: pr-3
-    borderRadius: 12, // Adjust as needed
-    backgroundColor: colors.primary, // Tailwind class: bg-white for light mode
-    // for dark mode, use dark:bg-slate-800
-    borderColor: colors.primaryDark, // Tailwind class: border-slate-200
+    height: 45,
+    paddingLeft: 36,
+    paddingRight: 12,
+    borderRadius: 12,
+    backgroundColor: colors.primary,
+    borderColor: colors.primaryDark,
     borderWidth: 1,
-    fontSize: getFontSize(16), // Adjust as needed
-    color: colors.textLight, // Tailwind class: text-slate-800
-    // for dark mode, text color
+    fontSize: getFontSize(16),
+    color: colors.textLight,
     fontFamily: fonts.primarySemiBold,
   },
   iconButton: {
@@ -115,17 +113,8 @@ const styles = StyleSheet.create({
     left: 0,
     height: '100%',
     justifyContent: 'center',
-    paddingHorizontal: 10, // Adjust based on your icon size
-  },
-  icon: {
-    width: 19, // Adjust as needed
-    height: 19, // Adjust as needed
-    tintColor: '#9CA3AF', // Tailwind class: text-slate-500
+    paddingHorizontal: 10,
   },
 });
-
-SearchBar.defaultProps = {
-  placeholder: 'Search…',
-};
 
 export default SearchBar;

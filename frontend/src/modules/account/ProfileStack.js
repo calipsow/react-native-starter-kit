@@ -3,11 +3,12 @@ import { Image } from 'react-native';
 
 import { styles } from '../navigation/RootNavigation';
 import Profile from './Profile';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { headerLeftComponent } from '../navigation/headerLeftComponent';
 import { HEADER_BACKGROUND_IMAGE, isIOS } from '../../constants/constants';
 import { colors, fonts } from '../../styles';
 import { appThemeColor } from '../../styles/partials';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 const ProfileStack = createStackNavigator();
 
 const ProfileStacks = [

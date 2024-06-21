@@ -12,7 +12,7 @@ import Product from './products/Product';
 import ProductCategory from './categories/Category';
 import SearchPage from './search/SearchPage';
 import CheckoutScreen from './checkout/Checkout';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 const ShopStacks = [
   {

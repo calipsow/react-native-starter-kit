@@ -2,7 +2,7 @@ import React from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 
 import { colors, fonts } from '../styles';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 
 function applyGeneralStyles({
   style,

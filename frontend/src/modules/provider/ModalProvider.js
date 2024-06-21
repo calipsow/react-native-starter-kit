@@ -6,14 +6,14 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
-import { colors, fonts, width } from '../../styles';
 import {
-  bodyTextRegular,
-  flexBoxRow,
-  mediumHeadlineText,
-} from '../../styles/partials';
-import { SubmitButton } from '../../components/SubmitButton';
+  SecondarySubmitButton,
+  SubmitButton,
+} from '../../components/SubmitButton';
+
+import { colors, fonts, width } from '../../styles';
+import { flexBoxRow } from '../../styles/partials';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 // create documentation
 const ModalContext = createContext({
@@ -77,69 +77,47 @@ const ModalProvider = ({ children }) => {
             <View style={styles.modalBackground}>
               <TouchableWithoutFeedback onPress={e => e.stopPropagation()}>
                 {/* Modal nicht schließen */}
-                <View style={styles.modalContent}>
-                  <Text style={styles.modalTitle}>{modalContent.title}</Text>
-
-                  <Text style={[bodyTextRegular, { textAlign: 'center' }]}>
+                <View
+                  style={styles.modalContent}
+                  className="pt-4 pb-2 bg-slate-800 light:bg-white px-3"
+                >
+                  <Text className="text-center font-bold text-slate-200 text-[18px]">
+                    {modalContent.title}
+                  </Text>
+                  <Text className="text-center font-semibold text-slate-300 text-[16px]">
                     {modalContent.captionText}
                   </Text>
-                  {modalContent.type === 'alert' ? (
+                  {modalContent.type === 'alert' && (
                     <SubmitButton
                       text="OK"
                       onPress={() => {
                         if (modalContent.onSubmit) modalContent.onSubmit(); // Optional
                         hideModal(); // Modal schließen
                       }}
-                      style={{
-                        width: 121,
-                        marginTop: 12,
-                        backgroundColor: colors.primaryDark,
-                      }}
-                      textStyle={{
-                        ...mediumHeadlineText,
-                        fontSize: getFontSize(15),
-                        marginBottom: 0,
-                      }}
                     />
-                  ) : null}
-                  {modalContent.type === 'confirmation' ? (
+                  )}
+                  {modalContent.type === 'confirmation' && (
                     <View
-                      style={[
-                        flexBoxRow,
-                        {
-                          gap: 8,
-                          marginTop: 12,
-                          justifyContent: 'space-between',
-                        },
-                      ]}
+                      className="w-full px-5 justify-evenly"
+                      style={[flexBoxRow]}
                     >
-                      <SubmitButton
-                        text="Abbrechen"
+                      <SecondarySubmitButton
+                        text="Cancel"
                         onPress={() => {
                           if (modalContent.onCancel) modalContent.onCancel(); // Optional
                           hideModal(); // Modal schließen
                         }}
-                        style={{ width: 121 }}
                       />
                       <SubmitButton
-                        text="Bestätigen"
+                        text="Submit"
                         onPress={() => {
                           if (modalContent.onCustomEvent)
                             modalContent.onCustomEvent(); // Optional
                           hideModal(); // Modal schließen
                         }}
-                        style={{
-                          width: 121,
-                          backgroundColor: colors.primaryDark,
-                        }}
-                        textStyle={{
-                          ...mediumHeadlineText,
-                          fontSize: getFontSize(15),
-                          marginBottom: 0,
-                        }}
                       />
                     </View>
-                  ) : null}
+                  )}
                 </View>
               </TouchableWithoutFeedback>
             </View>
@@ -158,15 +136,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Transparenter Hintergrund
   },
   modalContent: {
-    backgroundColor: colors.primary,
-    padding: 10,
-    borderRadius: 10,
+    borderRadius: 24,
     width: 350 <= width - 20 ? 350 : width * 0.8 < 600 ? width * 0.8 : 600,
     alignItems: 'center',
     justifyContent: 'center',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: colors.primaryDark,
     gap: 8,
   },
   modalTitle: {

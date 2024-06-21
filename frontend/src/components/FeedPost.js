@@ -25,7 +25,7 @@ import {
   screenPadding,
 } from '../styles/partials';
 import { AccountMeta } from './AccountMetaLoader';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 
 const ContentPost = ({ poster = '', description, title }) => {
   const [openMenu, setOpenMenu] = useState(false); // handles menu

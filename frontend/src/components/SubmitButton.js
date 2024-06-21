@@ -10,9 +10,37 @@ export const SubmitButton = ({
   <TouchableOpacity
     onPress={onPress}
     disabled={disabled}
-    className={`justify-center items-center p-2 rounded ${className}`}
+    className={
+      className ||
+      `bg-slate-500 text-gray-200 rounded-lg px-6 py-2 items-center mt-2 mb-2`
+    }
   >
-    <Text className="align-middle text-blue-500 opacity-90 text-lg">
+    <Text className="text-white text-[16px] font-semibold opacity-[.8]">
+      {text}
+    </Text>
+  </TouchableOpacity>
+);
+
+export const SecondarySubmitButton = ({
+  onPress = function () {},
+  text = '',
+  className = '',
+  textClassName = '',
+  disabled = false,
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    disabled={disabled}
+    className={
+      className ||
+      `rounded-lg px-6 py-2 items-center mt-2 mb-2 border-slate-300 border-solid border`
+    }
+  >
+    <Text
+      className={
+        textClassName || 'text-slate-300 text-[16px] font-semibold opacity-[.8]'
+      }
+    >
       {text}
     </Text>
   </TouchableOpacity>
@@ -42,3 +70,22 @@ export function FormSubmitButton({
     </TouchableOpacity>
   );
 }
+
+// eslint-disable-next-line no-undef
+export const DangerButton = ({
+  onPress = function () {},
+  text = '',
+  className,
+  textClassName,
+}) => {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      className={`rounded-xl px-2 py-1 items-center border-red-300 border-solid border`}
+    >
+      <Text className={'text-red-300 text-[16px] font-semibold opacity-[.8]'}>
+        {text}
+      </Text>
+    </TouchableOpacity>
+  );
+};

@@ -8,7 +8,7 @@ import {
   smallCaptionTextGray,
 } from '../styles/partials';
 import calculatePercentageInRange from '../functions/calculations/calculate-percentage-in-range-value';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 
 const example_data = ['ACTIVITY', 'ACTIVITY'].map((_, i) => ({
   name: _,
@@ -73,7 +73,11 @@ const CircularChart = ({
             numberOfLines={7}
             style={[
               smallCaptionTextGray,
-              { textAlign: 'center', lineHeight: 14,  fontSize: getFontSize(14), },
+              {
+                textAlign: 'center',
+                lineHeight: 14,
+                fontSize: getFontSize(14),
+              },
               label.subLabelTextStyle || {},
             ]}
           >

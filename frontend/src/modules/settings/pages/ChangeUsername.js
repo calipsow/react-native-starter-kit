@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import useAuthState from '../../../hooks/auth/use-auth-state';
 import { colors, fonts, height } from '../../../styles';
 import {
@@ -19,6 +19,9 @@ import {
 import { AccountContext } from '../../AppView';
 import { ModalContext } from '../../provider/ModalProvider';
 import useUserProfile from '../../../hooks/auth/use-update-profile';
+import { FormField } from '../../../components/Forms';
+import { FormSubmitButton } from '../../../components/SubmitButton';
+import { DividerCaption } from '../../../components/DividerCaption';
 
 const ChangeUsername = ({ navigation, route }) => {
   const [accountCtx, setAccountCtx] = useContext(AccountContext);
@@ -36,15 +39,15 @@ const ChangeUsername = ({ navigation, route }) => {
   useEffect(() => {
     if (success) {
       showModalAlert(
-        'Dein Nutzername wurde erfolgreich geändert.',
-        'Es kann einen Moment dauern bis die Änderung überall zu sehen ist.',
+        'Your username has been successfully changed.',
+        'It may take a moment for the change to be visible everywhere.',
         () => navigation.goBack(),
       );
     }
     if (error) {
       showModalAlert(
-        'Nutzername konnte nicht geändert werden.',
-        'Probiere es später nochmal',
+        'User name could not be changed.',
+        'Try it again later',
         () => navigation.goBack(),
       );
     }
@@ -57,51 +60,28 @@ const ChangeUsername = ({ navigation, route }) => {
       showsVerticalScrollIndicator={false}
     >
       <View style={{ ...maxWidth, paddingHorizontal: 12 }}>
-        <Text style={styles.header}>Ändere deinen Nutzernamen.</Text>
+        <Text style={styles.header}>Change your username.</Text>
 
         {/* Divider */}
-        <View style={styles.dividerContainer}>
-          <View style={styles.dividerLine} />
-          <Text style={styles.dividerText}>
-            Gebe dein gewünschten Nutzernamen ein.
-          </Text>
-          <View style={styles.dividerLine} />
-        </View>
+        <DividerCaption caption="Enter your desired username." />
 
-        {/* Passwort Formular */}
         <View style={{ width: '100%' }}>
-          <TextInput
-            style={styles.input}
-            placeholder="Neuer Nutzername.."
-            secureTextEntry={false}
+          <FormField
+            placeholder={'Username'}
+            type={'text'}
+            id={'username'}
+            onChange={({ text }) => setNewUsername(text)}
             value={newUsername}
-            placeholderTextColor="lightgray"
-            onChangeText={text => setNewUsername(text)}
           />
 
-          {/* Fehlermeldung anzeigen */}
-          {error ? (
-            <Text style={styles.error}>
-              {typeof error !== 'string' ? error?.toString() : error}
-            </Text>
-          ) : null}
+          {error && <Text style={styles.error}>{`${error}`}</Text>}
 
-          {/* Submit Button */}
-          <TouchableOpacity
-            style={styles.signInButton}
+          <FormSubmitButton
             disabled={!newUsername.length || loading}
-            onPress={handleSubmit}
-          >
-            {!loading ? (
-              <Text style={styles.signInButtonText}>Nutzernamen ändern</Text>
-            ) : (
-              <ActivityIndicator
-                size={'small'}
-                color={colors.bluish}
-                style={{ margin: 'auto' }}
-              />
-            )}
-          </TouchableOpacity>
+            handleSubmit={handleSubmit}
+            loading={loading}
+            title="Update"
+          />
         </View>
       </View>
     </ScrollView>

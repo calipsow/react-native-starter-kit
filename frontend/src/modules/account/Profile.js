@@ -10,7 +10,7 @@ import {
 import FBImage from '../../components/FBImage';
 import { SubmitButton } from '../../components/SubmitButton';
 import { fbImage } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { colors, fonts } from '../../styles';
 import {
   appThemeColor,
@@ -18,6 +18,7 @@ import {
   screenPadding,
   smallCaptionTextGray,
 } from '../../styles/partials';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 function Profile({ navigation }) {
   return (

@@ -16,7 +16,7 @@ import {
   fbImage,
   sampleArticleData,
 } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import useFirestoreCollection from '../../hooks/firebase/use-firestore-collection';
 
 import { colors, fonts, width } from '../../styles';
@@ -33,40 +33,12 @@ import {
   tagText,
 } from '../../styles/partials';
 
+import BackButtonTop from '../../components/BackButtonTop';
+
 import { TopBarMenu } from '../../components/TopScreenDescription';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
-export const BackButton = ({
-  navigation,
-  styles = {},
-  navigationState = null,
-  backbuttonTitle = '',
-}) => (
-  <Pressable onPress={() => navigation.goBack()}>
-    <View style={[flexBoxRow, { alignItems: 'center' }]}>
-      <Text
-        style={[
-          grayCaption,
-          {
-            padding: 5,
-
-            fontSize: getFontSize(16),
-            paddingHorizontal: 12,
-            color: colors.bluish,
-            marginBottom: 0,
-            paddingVertical: 12,
-            lineHeight: 16,
-            opacity: 0.9,
-          },
-          styles && styles,
-        ]}
-        numberOfLines={1}
-      >
-        <Text style={{ color: colors.lightBlue, opacity: 1 }}>Zurück</Text>{' '}
-        {backbuttonTitle ? '· ' + backbuttonTitle : ''}
-      </Text>
-    </View>
-  </Pressable>
-);
+export const BackButton = BackButtonTop;
 
 export const ArticlePreviewCard = ({
   article,
@@ -161,10 +133,12 @@ export const ArticlePreviewCard = ({
             {Array.isArray(article.tags) &&
               article.tags.map((text, i) => (
                 <View
-                  style={[tag, { marginVertical: 0, borderRadius: 5 }]}
+                  className="px-3 py-1 bg-slate-600 rounded-lg"
                   key={text + i}
                 >
-                  <Text style={tagText}>{text?.toLowerCase()}</Text>
+                  <Text className="text-lg font-semibold text-slate-200">
+                    {text?.toLowerCase()}
+                  </Text>
                 </View>
               ))}
           </View>
@@ -184,37 +158,15 @@ export const ArticlePreviewCard = ({
           </Text>
         </View>
       </Pressable>
-      {false && (
-        <View style={styles.articleInfo}>
-          {/* Author */}
-          <View style={styles.avatars}>
-            <Image src={LOGO_SRC} style={styles.avatar} />
-          </View>
-        </View>
-      )}
     </View>
   );
 };
 
 const ArticleIndexScreen = ({ navigation, route }) => {
-  const { blog_id } = route.params;
-  console.log(
-    'open articles from blog:',
-    blog_id || 'not send via routing params',
-  );
-  /* const {
-    loading,
-    error,
-    documents,
-    fetchDocuments,
-    hasMore,
-    resetLoadedProgress,
-  } = useFirestoreCollection(); */
-
-  // If you want to display large amount of content you can use page based rendering with this hook
+  const { blog_id } = route.params; // use nav params to pass the id of your content and fetch it then
 
   const loadingContent = async () => {
-    console.log('loading content triggered..');
+    console.log('loading content triggered..'); // write here the logic down of your api fetches
   };
 
   useEffect(() => {
@@ -223,64 +175,11 @@ const ArticleIndexScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      {false && (
-        <View
-          style={[
-            screenPadding,
-            { paddingBottom: 5, opacity: 0.8, paddingVertical: 3 },
-          ]}
-        >
-          <Text style={mediumHeadlineText}>Newsletter</Text>
-        </View>
-      )}
-      <TopBarMenu
-        navigation={navigation}
-        hideActionButton={true}
-        title="Newsletter"
-      />
+      <BackButton navigation={navigation} backbuttonTitle="" />
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
-        {/* Page Header */}
-        <View style={styles.pageHeader}>
-          <Text
-            style={[
-              smallCaptionTextGray,
-              { maxWidth: 300, fontSize: getFontSize(13) },
-            ]}
-          >
-            Mit unseren Artikeln zu den neuesten Themen bliebst du mit dem
-            Bündnis auf dem neuesten Stand.
-          </Text>
-        </View>
-
-        {/* Error or/and Loading Depending */}
-        {/* eslint-disable-next-line no-constant-condition*/}
-        {false && (
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingHorizontal: 12,
-            }}
-          >
-            {/* eslint-disable-next-line no-constant-condition*/}
-            {false ? (
-              <ActivityIndicator
-                style={{ marginTop: 150 }}
-                size={'large'}
-                color={colors.bluish}
-              />
-            ) : (
-              <Text style={mediumHeadlineText}>
-                Etwas ist schiefgelaufen, probiere es später nochmal.
-              </Text>
-            )}
-          </View>
-        )}
-
         {/* Dependency if no data could be loaded */}
         {sampleArticleData.length && (
           <View style={styles.articlesList}>
@@ -293,47 +192,6 @@ const ArticleIndexScreen = ({ navigation, route }) => {
             ))}
           </View>
         )}
-
-        {/* More Events Button */}
-
-        <View
-          style={{
-            paddingHorizontal: 12,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <Text
-            style={[
-              smallCaptionTextGray,
-              {
-                fontSize: getFontSize(17),
-                color: colors.bluish,
-                opacity: 0.8,
-              },
-            ]}
-          >
-            Das waren alle Newsletter bis jetzt.
-          </Text>
-          <Pressable
-            onPress={() =>
-              navigation.navigate('Events', { screen: 'Event Feed' })
-            }
-          >
-            <Text
-              style={[
-                smallCaptionTextGray,
-                {
-                  fontSize: getFontSize(20),
-                  color: colors.lightBlue,
-                  padding: 10,
-                },
-              ]}
-            >
-              Events aufrufen
-            </Text>
-          </Pressable>
-        </View>
       </ScrollView>
     </View>
   );

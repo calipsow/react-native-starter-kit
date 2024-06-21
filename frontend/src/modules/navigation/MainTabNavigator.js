@@ -4,8 +4,9 @@ import { StyleSheet, View } from 'react-native';
 import { colors, width } from '../../styles';
 
 import { hasOldHomeButton, isIOS } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import tabNavigationData from './tabNavigationData';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 const Tab = createBottomTabNavigator();
 

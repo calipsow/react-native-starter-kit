@@ -5,7 +5,7 @@ import { appThemeColor, screenPadding } from '../../../styles/partials';
 import { FilterButton } from './partials/FilterButton';
 import { ProductCard } from './partials/ProductCard';
 import PaginationNumeric from '../../../components/PaginationNumeric';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 
 const ProductCollection = ({ navigation, route }) => {
   return (

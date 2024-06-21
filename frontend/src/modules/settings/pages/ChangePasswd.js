@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import useAuthState from '../../../hooks/auth/use-auth-state';
 import { fonts, height } from '../../../styles';
 import {
@@ -16,40 +16,35 @@ import {
   screenPadding,
 } from '../../../styles/partials';
 import { ModalContext } from '../../provider/ModalProvider';
-// TODO FIX THIS METHOD
-const ChangePassword = ({ navigation, route }) => {
-  const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
-  const { changePassword, firebaseError } = useAuthState();
-  const { showModalAlert } = useContext(ModalContext);
+import { DividerCaption } from '../../../components/DividerCaption';
+import { FormField } from '../../../components/Forms';
+import { FormSubmitButton } from '../../../components/SubmitButton';
+import { useToastNotify } from '../../../hooks/screen/use-toast-notification';
 
-  const handleChangeOldPassword = text => setOldPassword(text);
-  const handleChangeNewPassword = text => setNewPassword(text);
-  const handleChangeConfirmPassword = text => setConfirmPassword(text);
+const ChangePassword = ({ navigation, route }) => {
+  const [email, setEmail] = useState('');
+  const { changePassword, firebaseError, succeeded, isLoading } =
+    useAuthState();
+  const { showModalAlert } = useContext(ModalContext);
+  const { showToastNotification } = useToastNotify();
 
   const handleSubmit = async () => {
-    setError('');
-    if (!newPassword || !confirmPassword || !oldPassword) {
-      setError('Fülle das Formular bitte vollständig aus.');
-      return;
-    }
-    // Überprüfen, ob das neue Passwort und die Bestätigung übereinstimmen
-    if (newPassword !== confirmPassword) {
-      setError('Die Passwörter stimmen nicht überein');
-      return;
-    }
-    await changePassword(oldPassword, newPassword);
+    await changePassword(email);
+  };
 
-    if (!firebaseError) {
-      showModalAlert('Dein Passwort wurde aktualisiert.', '✅', () =>
-        navigation.goBack(),
+  useEffect(() => {
+    if (firebaseError) {
+      console.log(firebaseError);
+      showToastNotification({ msg: firebaseError, type: 'warning' });
+    }
+    if (succeeded) {
+      showModalAlert(
+        'Password reset mail sent!',
+        'Please check your inbox, for resetting your password',
+        () => navigation.goBack(),
       );
     }
-    // Hier den Code für die Passwortänderung mit Firebase-Auth hinzufügen
-    // Beispiel: auth.currentUser.updatePassword(newPassword)
-  };
+  }, [succeeded, firebaseError]);
 
   return (
     <KeyboardAwareScrollView
@@ -58,57 +53,34 @@ const ChangePassword = ({ navigation, route }) => {
       showsVerticalScrollIndicator={false}
     >
       <View style={{ ...maxWidth, paddingHorizontal: 12 }}>
-        <Text style={styles.header}>Ändere dein Passwort.</Text>
+        <Text style={styles.header}>Change your password.</Text>
 
-        {/* Divider */}
-        <View style={styles.dividerContainer}>
-          <View style={styles.dividerLine} />
-          <Text style={styles.dividerText}>
-            Gebe dein aktuelles Passwort ein.
-          </Text>
-          <View style={styles.dividerLine} />
-        </View>
+        <DividerCaption caption="Your current email" />
 
-        {/* Passwort Formular */}
         <View style={{ width: '100%' }}>
-          <TextInput
-            style={styles.input}
-            placeholder="Aktuelles Passwort"
-            secureTextEntry={true}
-            placeholderTextColor="lightgray"
-            value={oldPassword}
-            onChangeText={handleChangeOldPassword}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Neues Passwort"
-            secureTextEntry={true}
-            placeholderTextColor="lightgray"
-            value={newPassword}
-            onChangeText={handleChangeNewPassword}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Passwort bestätigen"
-            secureTextEntry={true}
-            placeholderTextColor="lightgray"
-            value={confirmPassword}
-            onChangeText={handleChangeConfirmPassword}
+          <FormField
+            id="email"
+            type={'email'}
+            placeholder="example@mail.com"
+            value={email}
+            onChange={({ text, label, id }) => setEmail(text)}
           />
 
-          {/* Fehlermeldung anzeigen */}
-          {firebaseError || error ? (
+          {firebaseError && (
             <Text style={styles.error}>
-              {error
-                ? error
-                : 'Etwas ist schiefgelaufen, bitte versuche es später erneut.'}
+              {firebaseError
+                ? firebaseError
+                : 'Something went wrong, please try again later.'}
             </Text>
-          ) : null}
+          )}
 
           {/* Submit Button */}
-          <TouchableOpacity style={styles.signInButton} onPress={handleSubmit}>
-            <Text style={styles.signInButtonText}>Passwort ändern</Text>
-          </TouchableOpacity>
+          <FormSubmitButton
+            handleSubmit={handleSubmit}
+            title="Update password"
+            loading={isLoading}
+            disabled={isLoading || !email}
+          />
         </View>
       </View>
     </KeyboardAwareScrollView>

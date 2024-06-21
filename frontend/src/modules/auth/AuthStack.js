@@ -1,13 +1,14 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image } from 'react-native';
 import { HEADER_BACKGROUND_IMAGE } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { colors, fonts } from '../../styles';
 import { styles } from '../navigation/RootNavigation';
 import { headerLeftComponent } from '../navigation/headerLeftComponent';
 import PasswdReset from './PasswdReset/PasswdReset';
 import Signin from './Signin/Signin';
 import Signup from './Signup/Signup';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 const AuthStack = createStackNavigator();
 

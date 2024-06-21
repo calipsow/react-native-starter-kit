@@ -1,31 +1,14 @@
-import { StyleSheet, View } from 'react-native';
-import { appThemeColor } from '../../styles/partials';
+import React from 'react';
+import { View } from 'react-native';
 
 const ScreenWrapper = ({ children }) => (
-  <View style={styles.container}>{children}</View>
+  <View className="flex-1 bg-slate-800 justify-center items-center">
+    {children}
+  </View>
 );
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: appThemeColor.darkBlue,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export const ScreenWrapperDefault = ({ children, styles }) => {
-  <View
-    style={[
-      {
-        flex: 1,
-        backgroundColor: appThemeColor.darkBlue,
-      },
-      styles && styles,
-    ]}
-  >
-    {children}
-  </View>;
-};
+export const ScreenWrapperDefault = ({ children, customStyles }) => (
+  <View className={`flex-1 bg-slate-800 ${customStyles}`}>{children}</View>
+);
 
 export default ScreenWrapper;

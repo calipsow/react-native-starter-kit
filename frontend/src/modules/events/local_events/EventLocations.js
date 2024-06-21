@@ -7,29 +7,15 @@ import {
   Text,
   View,
 } from 'react-native';
-import { DEUTSCHLAND_BNDL } from '../../../constants/constants';
+import { fbImage } from '../../../constants/constants';
 import { colors } from '../../../styles';
-import {
-  appThemeColor,
-  flexBoxRow,
-  screenPadding,
-  sectionTitleCreme,
-  smallCaptionTextGray,
-} from '../../../styles/partials';
-import { SubmitButton } from '../../../components/SubmitButton';
-import { DividerCaption } from '../../../components/DividerCaption';
+import { appThemeColor, flexBoxRow } from '../../../styles/partials';
 
 const LocationBadge = ({ province, navigation }) => {
   return (
-    <View style={{ justifyContent: 'center' }}>
-      <Pressable
-        onPress={() =>
-          navigation.navigate('Lokale Veranstaltungen', {
-            province: province,
-          })
-        }
-      >
-        <View style={styles.locationBadge}>
+    <View className="justify-center">
+      <Pressable onPress={() => {}}>
+        <View className="bg-slate-900 border-4 w-16 h-16">
           <View style={{ justifyContent: 'center' }}>
             <View style={{ position: 'absolute', zIndex: -1, top: 0, left: 0 }}>
               <Image
@@ -45,10 +31,7 @@ const LocationBadge = ({ province, navigation }) => {
           </View>
         </View>
       </Pressable>
-      <Text
-        numberOfLines={1}
-        style={[smallCaptionTextGray, { textAlign: 'center', maxWidth: 150 }]}
-      >
+      <Text numberOfLines={1} className="text-lg font-medium text-slate-200">
         {province.province}
       </Text>
     </View>
@@ -57,9 +40,7 @@ const LocationBadge = ({ province, navigation }) => {
 
 const EventLocations = ({ navigation, route }) => {
   return (
-    <View style={{ backgroundColor: appThemeColor.darkBlue, flex: 1 }}>
-      {/*<BackButton backbuttonTitle="Event Feed" navigation={navigation} />*/}
-
+    <View className="bg-slate-800 flex-1">
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
@@ -70,12 +51,9 @@ const EventLocations = ({ navigation, route }) => {
           paddingHorizontal: 12,
         }}
       >
-        <Text
-          style={[sectionTitleCreme, { textAlign: 'center', marginBottom: 0 }]}
-        >
-          Regionale Veranstaltungen
+        <Text className="text-2xl text-center font-bold">
+          More Places for Features
         </Text>
-        <DividerCaption caption="Finde das nächste Event direkt vor deiner Haustür." />
 
         <View
           style={[
@@ -90,33 +68,29 @@ const EventLocations = ({ navigation, route }) => {
             },
           ]}
         >
-          {DEUTSCHLAND_BNDL.filter(itm => itm.province_image).map(
-            (province, i) => (
+          {Array(3)
+            .map((_, i) => ({
+              province_image: fbImage,
+              slug: 'image-example' + i,
+              province: 'In amet culpa pariatur',
+            }))
+            .filter(itm => itm.province_image)
+            .map((province, i) => (
               <LocationBadge
                 navigation={navigation}
                 key={i + province.slug}
                 province={province}
               />
-            ),
-          )}
+            ))}
         </View>
-        <SubmitButton
-          style={{ marginBottom: 20 }}
-          onPress={() => navigation.navigate('Vergangene Veranstaltungen')}
-          text="Vergangene Events anzeigen"
-        />
       </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: appThemeColor.darkBlue,
-  },
   locationBadge: {
     borderRadius: 15,
-    backgroundColor: colors.primary,
     height: 150,
     width: 150,
   },

@@ -1,8 +1,9 @@
 import { ToastProvider } from 'react-native-toast-notifications';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { colors } from '../../styles';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 const ToastProviderWrapper = ({ children }) => (
   <ToastProvider

@@ -1,98 +1,107 @@
 import { useNavigation, useNavigationState } from '@react-navigation/native';
 import { useEffect } from 'react';
 import parseRouteAndParams from '../../helpers/parse-deeplink';
-import SecureStorage from '../../helpers/secure-storage';
 import useDeepLink from './use-deep-link';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
- * This hook will try to store all deeplink data persistent in case the app is not able to redirect to the target and it will also try to navigate to the screen if an running auth session is found and an stored deep link is found
+ * Custom hook to manage deep linking in a React Native application. This hook handles storing
+ * unresolved deep links when the app cannot navigate immediately, and resolves these links
+ * once the application state allows for navigation (e.g., when user authentication is confirmed).
  *
- * @param {*} accountCtx current accountCtx to check if the app is loaded and an active session exists
+ * @param {*} accountCtx - The current user account context used to verify if there is an active session.
  */
 const useDeepLinkResolver = accountCtx => {
-  const initialUrl = useDeepLink();
-  const navigation = useNavigation();
+  const initialUrl = useDeepLink(); // Hook to retrieve the initial deep link URL
+  const navigation = useNavigation(); // Hook to access navigation functionality
   const currentRouteName = useNavigationState(
-    state => state.routes[state.index]?.name,
+    state => state.routes[state.index]?.name, // Retrieve the current active route name
   );
 
+  /**
+   * Stores deep link data persistently in AsyncStorage.
+   *
+   * @param {string} route - The navigation route associated with the deep link.
+   * @param {string} params - Parameters for the route.
+   */
   const storeDeepLinkData = async (route, params) => {
-    console.log(route, params);
+    console.log(route, params); // Log route and parameters for debugging
     await AsyncStorage.setItem(
       'unresolved-deeplink',
-      JSON.stringify({
-        route: route,
-        params: params,
-      }),
-    ).catch(e => console.log(e));
+      JSON.stringify({ route, params }),
+    ).catch(e => console.log('Error storing deep link data:', e));
   };
+
+  /**
+   * Handles unresolved deep links by attempting to navigate to the target route if the conditions allow.
+   */
   const handleUnresolvedDeeplink = async () => {
     const unresolvedLinkRaw = await AsyncStorage.getItem(
       'unresolved-deeplink',
-    ).catch(e => console.log(e));
-    if (!unresolvedLinkRaw) return;
-    console.log('found unresolved deeplink, try to navigate to target...');
+    ).catch(e => console.log('Error retrieving unresolved deep link:', e));
+    if (!unresolvedLinkRaw) return; // Exit if no unresolved link is stored
 
+    console.log('Found unresolved deep link, attempting to navigate...');
     await AsyncStorage.removeItem('unresolved-deeplink').catch(e =>
-      console.log(e),
+      console.log('Error removing unresolved deep link:', e),
     );
+
     let unresolvedLink;
     try {
-      unresolvedLink = unresolvedLinkRaw ? JSON.parse(unresolvedLinkRaw) : null;
-      console.log(unresolvedLink);
+      unresolvedLink = JSON.parse(unresolvedLinkRaw); // Parse the stored JSON string
+      console.log('Parsed unresolved deep link:', unresolvedLink);
     } catch (error) {
       console.warn(
-        'error while parsing unresolved deeplink string to json obj: raw data',
+        'Error parsing unresolved deep link JSON:',
         unresolvedLinkRaw,
       );
-      unresolvedLink = null;
+      return;
     }
-    if (!unresolvedLink) return;
+
     const { route, params } = unresolvedLink;
     if (currentRouteName === route) {
       console.log(
-        'deleting unresolved deeplink because the required screen is already shown up',
+        'Current route is already active, ignoring deep link:',
+        route,
       );
       return;
-    } else {
-      console.log('navigate to unresolved deeplink');
-      switch (route) {
-        case 'event':
-          navigation.navigate('Single Event', {
-            event_id: params,
-          });
-          break;
-        case 'article':
-          navigation.navigate('Single Article', {
-            article_id: params,
-          });
-          break;
-        default:
-          console.warn('No Route found for', route);
-          break;
-      }
+    }
+
+    console.log('Navigating to unresolved deep link:', route);
+    // Navigate based on the route
+    switch (route) {
+      case 'event':
+        navigation.navigate('Single Event', { event_id: params });
+        break;
+      case 'article':
+        navigation.navigate('Single Article', { article_id: params });
+        break;
+      default:
+        console.warn('No navigation route found for:', route);
+        break;
     }
   };
 
   useEffect(() => {
     if (initialUrl) {
-      // Parse the URL to find the route and parameters
-      // Beispiel: zsw://event/1234
-      const [route, params] = parseRouteAndParams(initialUrl);
-      console.log('got deeplink:', route, 'params', params);
-      if (!route || !params) return;
-      // Stelle sicher, dass alle notwendigen Daten geladen sind
+      const [route, params] = parseRouteAndParams(initialUrl); // Parse the initial URL
+      console.log('Received deep link:', route, 'with params:', params);
+      if (!route || !params) return; // Check if the URL is valid
       if (!accountCtx) {
-        console.log('storing deeplink data:', route, 'params', params);
+        console.log(
+          'Storing deep link data due to no active session:',
+          route,
+          params,
+        );
         storeDeepLinkData(route, params);
       }
     }
   }, [initialUrl]);
 
   useEffect(() => {
-    if (!accountCtx) return;
-    handleUnresolvedDeeplink();
+    if (accountCtx) {
+      handleUnresolvedDeeplink(); // Handle unresolved deep links if there is an active session
+    }
   }, [accountCtx]);
 };
 

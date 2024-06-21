@@ -42,7 +42,7 @@ function useFirestoreSearch() {
               const lowerQueryText = queryText.toLowerCase();
               const lowerFieldValue = fieldValue.toLowerCase();
               // Handle different matching criteria based on query length
-              if (queryText.length >= 5) {
+              if (queryText.length >= 3) {
                 if (lowerFieldValue.includes(lowerQueryText)) {
                   if (!searchResults.has(doc.id)) {
                     searchResults.set(doc.id, doc.data());

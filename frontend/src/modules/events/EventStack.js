@@ -1,13 +1,14 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image } from 'react-native';
 import { HEADER_BACKGROUND_IMAGE, isIOS } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { colors, fonts } from '../../styles';
 import { appThemeColor } from '../../styles/partials';
 import { styles } from '../navigation/RootNavigation';
 import { headerLeftComponent } from '../navigation/headerLeftComponent';
 import EventLocations from './local_events/EventLocations';
 import LocalEvent from './local_events/LocalEvent';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 const EventStack = createStackNavigator();
 
 const EventStacks = [

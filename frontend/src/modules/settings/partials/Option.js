@@ -2,7 +2,7 @@ import { View, StyleSheet, Switch, Text, TouchableOpacity } from 'react-native';
 import { colors } from '../../../styles';
 import { useEffect, useState } from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 
 const Option = ({
   text,
@@ -32,7 +32,7 @@ const Option = ({
   else if (setting_type === 'switch')
     return (
       <View style={styles.option}>
-        <Text style={styles.optionText}>{text}</Text>
+        <Text className="font-normal text-lg text-slate-400">{text}</Text>
         <Switch
           style={{ marginRight: 12 }}
           value={typeof enabled === 'boolean' ? enabled : enabledState}
@@ -52,12 +52,20 @@ const ActionOption = ({
 }) => {
   return (
     <TouchableOpacity onPress={() => onPress(setting_id, setting_type)}>
-      <View style={styles.option}>
-        <Text style={styles.optionText}>{text}</Text>
+      <View style={styles.option} className="py-4 border-gray-800">
+        <Text
+          className={
+            setting_id !== 'delete_account'
+              ? 'font-normal text-[16px] text-slate-300 ml-3'
+              : 'font-normal text-[16px] text-red-400 ml-3'
+          }
+        >
+          {text}
+        </Text>
         <Entypo
           name="chevron-right"
-          size={16}
-          color={colors.white}
+          size={21}
+          color={colors.lightGray}
           style={{ marginRight: 12 }}
         />
       </View>
@@ -70,11 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.6,
-    borderColor: colors.primaryDark + 'ef',
-    paddingVertical: 12,
-    borderBottomColor: colors.primaryDark + 'e0',
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
   optionText: {
     color: colors.white, // Adjust the color to match your design

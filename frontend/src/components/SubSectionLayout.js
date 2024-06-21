@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 import { colors } from '../styles';
 import {
   grayCaption,

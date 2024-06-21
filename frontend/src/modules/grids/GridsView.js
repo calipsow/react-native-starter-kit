@@ -12,7 +12,6 @@ import {
 import { colors, fonts } from '../../styles';
 
 import { RadioGroup, GridRow } from '../../components';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
 
 export default class GridsScreen extends React.Component {
   _getRenderItemFunction = () =>

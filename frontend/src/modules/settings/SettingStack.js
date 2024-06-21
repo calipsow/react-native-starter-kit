@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image } from 'react-native';
 import { HEADER_BACKGROUND_IMAGE, isIOS } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { colors, fonts } from '../../styles';
 import { appThemeColor } from '../../styles/partials';
 import { styles } from '../navigation/RootNavigation';
@@ -10,6 +10,7 @@ import SettingsView from './SettingsView';
 import ChangePassword from './pages/ChangePasswd';
 import ChangeUsername from './pages/ChangeUsername';
 import LegalDocument from './pages/LegalDocument';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 const SettingStackNavigator = createStackNavigator();
 
 const SettingStacks = [

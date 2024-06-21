@@ -7,19 +7,21 @@ import {
   Text,
   View,
 } from 'react-native';
+import { LOGO_SRC, fbImage } from '../constants/constants';
 
 export const AvatarComponent = () => {
   const imageUri = 'https://example.com/default-image.png'; // Static image URL
 
   return (
-    <View style={styles.avatars}>
+    <View style={styles.avatars} className="p-3">
       <Image
-        source={{ uri: imageUri }}
+        source={{ uri: LOGO_SRC }}
         style={styles.avatar}
         onError={() => console.log('Error loading image')}
+        className="mr-2"
       />
-      <View style={[{ flexWrap: 'wrap', marginLeft: -3 }]}>
-        <Text style={styles.more}>Standard User</Text>
+      <View style={[{ flexWrap: 'wrap', columnGap: 3 }]} className="flex-row">
+        <Text style={styles.more}>Ship Native ·</Text>
         <Text style={styles.more}>01.01.2022</Text>
       </View>
     </View>
@@ -28,12 +30,9 @@ export const AvatarComponent = () => {
 
 const ArticlePreviewCard = () => {
   return (
-    <View style={styles.article}>
+    <View style={styles.article} className="px-3">
       <View style={styles.imageLink}>
-        <Image
-          source={{ uri: 'https://example.com/default-cover.jpg' }}
-          style={styles.coverImage}
-        />
+        <Image source={{ uri: fbImage }} style={styles.coverImage} />
       </View>
 
       <View style={styles.content}>
@@ -90,8 +89,7 @@ const styles = StyleSheet.create({
   avatars: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
-    marginLeft: -5,
+    marginLeft: 0,
   },
   avatar: {
     width: 39,
@@ -100,10 +98,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     backgroundColor: '#377dff',
     borderColor: '#ffffff',
-    marginRight: -5,
   },
   more: {
-    paddingLeft: 15,
+    paddingLeft: 0,
     fontSize: 16,
     color: '#9ca3af',
     fontWeight: 'bold',

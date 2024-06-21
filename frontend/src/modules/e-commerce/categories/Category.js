@@ -16,7 +16,7 @@ import { ProductCard } from '../products/partials/ProductCard';
 import React, { useEffect, useState } from 'react';
 import { colors } from '../../../styles';
 import PaginationNumeric from '../../../components/PaginationNumeric';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import { fbImage } from '../../../constants/constants';
 
 const ProductCategory = ({ navigation, route }) => {

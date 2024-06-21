@@ -1,9 +1,10 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SETTINGS } from '../../constants/firestore-schemes';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { appThemeColor } from '../../styles/partials';
 import Panel from './partials/SectionPanel';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 const Settings = () => {
   return (
@@ -13,6 +14,7 @@ const Settings = () => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
+      <Text className="font-medium mt-4 mx-2 text-2xl">Settings</Text>
       {SETTINGS.map((setting, i) => {
         return (
           <Panel

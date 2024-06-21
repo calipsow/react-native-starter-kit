@@ -1,7 +1,7 @@
 import TabNavigator from './MainTabNavigator';
 
 import { HEADER_BACKGROUND_IMAGE, isIOS } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { colors, fonts } from '../../styles';
 import { AuthStackNavigation } from '../auth/AuthStack';
 import BlogStackNavigator from '../blogs/BlogStack';
@@ -13,6 +13,7 @@ import { SettingStackNavigation } from '../settings/SettingStack';
 import { headerLeftComponent } from './headerLeftComponent';
 import LoadingView, { LoadingFirebaseView } from '../pages/LoadingViews';
 import ProfileStackNavigator from '../account/ProfileStack';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 export const InitAppStackScreens = {
   'Loading Screen': {

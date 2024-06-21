@@ -18,7 +18,7 @@ import PaymentBadge from './partials/PayBadge';
 import { ProductListItem } from './partials/ProductListItem';
 import { ProductPageSection } from './partials/ProductPageSection';
 import { ScrollView } from 'react-native-gesture-handler';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import { fbImage } from '../../../constants/constants';
 
 const Product = () => {

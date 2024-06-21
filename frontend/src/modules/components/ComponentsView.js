@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import { colors, fonts } from '../../styles';
 
 import { Button, RadioGroup, Dropdown } from '../../components';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 export default function ComponentsScreen(props) {
   const route = useRoute();

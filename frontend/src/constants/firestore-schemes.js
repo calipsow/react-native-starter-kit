@@ -76,33 +76,33 @@ export const ARTICLE_SCHEME = {
 };
 export const SETTINGS = [
   {
-    sectionTitle: 'Account',
-    description: 'Finde hier alle Einstellungen zu deinem Account',
+    sectionTitle: null,
+    description: null,
     subSections: [
       {
-        subsectionTitle: 'Account und Sicherheit',
+        subsectionTitle: 'Account and security',
         options: [
           {
-            title: 'Ausloggen',
+            title: 'Logout',
             id: 'logout',
             setting_type: 'action',
             value: function () {},
           },
           {
-            title: 'Account löschen',
-            id: 'delete_account',
-            setting_type: 'action',
-            value: function () {},
-          },
-          {
-            title: 'Passwort ändern',
+            title: 'Change Password',
             id: 'change_password',
             setting_type: 'action',
             value: function () {},
           },
           {
-            title: 'Nutzernamen ändern',
+            title: 'Change Username',
             id: 'change_username',
+            setting_type: 'action',
+            value: function () {},
+          },
+          {
+            title: 'Remove Account',
+            id: 'delete_account',
             setting_type: 'action',
             value: function () {},
           },
@@ -111,20 +111,20 @@ export const SETTINGS = [
     ],
   },
   {
-    sectionTitle: 'Rechtliches',
-    description: 'Lese hier alle rechtlich relevanten Dokumente nach.',
+    sectionTitle: null,
+    description: null,
     subSections: [
       {
-        subsectionTitle: 'Nutzungsbedingungen',
+        subsectionTitle: 'Terms of Use',
         options: [
           {
-            title: 'Datenschutzerklärung',
+            title: 'Privacy',
             id: 'privacy',
             setting_type: 'document',
             value: function () {},
           },
           {
-            title: 'Lizenzvereinbarung',
+            title: 'Terms of use',
             id: 'license',
             setting_type: 'document',
             value: function () {},
@@ -154,29 +154,20 @@ export const LEGAL_DOCUMENT = {
   content_sections: [{ section_title: null, section_content: null }],
 };
 export const USER_SCHEME = {
-  firebase_auth_data: {},
+  push_notification_token: null,
   username: null,
   firebase_uid: undefined,
   uid: undefined,
-  bookmarks: [],
-  chats: [],
-  event_commitments: [],
-  comments: [],
-  liked_content: [],
-  events_posted: [],
   account_activated: true,
   suspended_until: null,
-  account_follows: [],
   blocked_users: [],
   follower: [],
   restrictions: {
-    event_posting: false,
     liking_content: false,
     commenting: false,
   },
   role: 'user',
 };
-
 export const PROMOTION = {
   promo_title: null,
   promo_content: null,
@@ -184,7 +175,6 @@ export const PROMOTION = {
   external_link: null,
   promo_id: undefined,
 };
-
 export const COMMENT = {
   comment_id: undefined,
   comment: null,
@@ -196,27 +186,7 @@ export const COMMENT = {
   related_content_id: undefined,
   content_type: undefined, // article, event
 };
-
-/**uid: firebase id
-bookmarks: array[content id]
-chats: array[chat id]
-event_commitments: array[event id]
-comments: array[comment id]
-liked_content: array[content id]
-events_posted: array[event id]
-account_activated: Boolean
-suspended_until: Timestamp || Null
-account_follows: array[account id]
-blocked_users: array[account id]
-follower: [account id]
-restrictions: {
-event_posting: Boolean
-liking_content: Boolean
-commenting: Boolean
-}
-role: User || Admin */
-
-export const Push_Notification_Token = {
+export const PUSH_NOTIFICATION_TOKEN = {
   token: null,
   device_type: null,
   created_at: new Date(new Date().getTime()),

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import useAuthState from '../../../hooks/auth/use-auth-state';
 import { colors } from '../../../styles';
 import { appThemeColor, defaultCardTheme } from '../../../styles/partials';
@@ -16,7 +16,6 @@ const SubSection = ({
 }) => {
   return (
     <View style={styles.section}>
-      <Text style={styles.sectionHeader}>{subSectionTitle}</Text>
       {settingOptions.map((option, i) => (
         <Option
           enabledState={option.setting_type === 'switch' ? option.value : null}
@@ -86,11 +85,12 @@ const Panel = ({ sectionTitle, sectionDescription, subSections }) => {
     }
   };
   return (
-    <View style={styles.panel}>
-      <View style={{ paddingLeft: 8 }}>
-        <Text style={styles.panelHeader}>{sectionTitle}</Text>
-        <Text style={styles.panelHeader_s}>{sectionDescription}</Text>
-      </View>
+    <View style={styles.panel} className="rounded-xl bg-slate-700 mx-2 my-3">
+      {sectionTitle && (
+        <View className="pl-3 py-4">
+          <Text className="font-bold text-[19px]">{sectionTitle}</Text>
+        </View>
+      )}
       {/* General sections */}
       {subSections.map((subSec, i) => (
         <SubSection
@@ -109,16 +109,12 @@ const styles = StyleSheet.create({
   panel: {
     // Use the appropriate color from your theme
     borderRadius: 5,
-    paddingTop: 20,
     borderBottomWidth: 1,
     shadowColor: '#000', // Shadow color for iOS
     shadowOffset: { width: 0, height: 1 }, // Shadow offset for iOS
     shadowOpacity: 0.2, // Shadow opacity for iOS
     shadowRadius: 1.41, // Shadow radius for iOS
     elevation: 2, // Elevation for Android
-    ...defaultCardTheme,
-    borderColor: colors.primary,
-    backgroundColor: appThemeColor.darkBlue,
   },
   panelHeader_s: {
     fontSize: getFontSize(15),
@@ -133,14 +129,9 @@ const styles = StyleSheet.create({
     color: colors.bluish, // Adjust the color to match your design
     paddingBottom: 10,
   },
-  section: {
-    marginTop: 10,
-  },
+
   sectionHeader: {
     fontSize: getFontSize(18),
-    fontWeight: 'bold',
-    color: colors.textLight, // Adjust the color to match your design
-    paddingBottom: 5,
     paddingLeft: 8,
   },
 });

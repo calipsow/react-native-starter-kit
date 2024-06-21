@@ -17,7 +17,7 @@ import { colors } from '../../../styles';
 import Tag from '../../../components/Tag';
 import { Dropdown } from '../../../components';
 import { bundeslaenderDeutschland } from '../../../constants/constants';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 
 export const LocationForm = ({ onChangeLocation = locationState => {} }) => {
   const [location, setLocation] = useState({

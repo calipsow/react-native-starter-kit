@@ -3,6 +3,14 @@ import { Image } from 'react-native';
 import { fbImage } from '../../constants/constants';
 import { width } from '../../styles';
 
+/**
+ * A custom hook for obtaining the dimensions of an image based on its URL and the window width.
+ * It calculates and adjusts the image dimensions to fit within the provided window width.
+ *
+ * @param {string} imageUrl - URL of the image whose dimensions are to be fetched.
+ * @param {number} windowWidth - The width of the window (or container) in which the image will be displayed.
+ * @returns {Object} An object containing image width, height, relative height, and any potential error.
+ */
 const useImageDimensions = (imageUrl, windowWidth) => {
   const [imgWidth, setImgWidth] = useState(null);
   const [imgHeight, setImgHeight] = useState(null);
@@ -10,35 +18,24 @@ const useImageDimensions = (imageUrl, windowWidth) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Bereinigung und Initialisierung
-    setImgWidth(null);
-    setImgHeight(null);
-    setRelativeHeight(null);
-    setError(null);
-
-    // Prüfen, ob eine gültige URL bereitgestellt wurde
     if (!imageUrl) {
-      setError('Keine gültige Bild-URL bereitgestellt');
+      setError('No valid image URL provided');
       return;
     }
 
-    // Verwendung von Image.getSize, um die Breite und Höhe des Bildes zu bekommen
     Image.getSize(
       imageUrl,
       (width, height) => {
         setImgWidth(width);
         setImgHeight(height);
-        // Berechne die relative Höhe basierend auf der Fensterbreite
         if (windowWidth && width) {
           const scalingFactor = windowWidth / width;
           const scaledHeight = scalingFactor * height;
           setRelativeHeight(scaledHeight);
         }
-        setError(null);
       },
       failureReason => {
-        // Fehlerbehandlung
-        setError('Fehler beim Laden des Bildes: ' + failureReason);
+        setError('Error loading image: ' + failureReason);
       },
     );
   }, [imageUrl, windowWidth]);
@@ -46,6 +43,12 @@ const useImageDimensions = (imageUrl, windowWidth) => {
   return { imgWidth, imgHeight, relativeHeight, error };
 };
 
+/**
+ * A dynamic variant of the useImageDimensions hook that allows for on-demand dimension calculations.
+ * It supports fallback to a default image when the specified image fails to load.
+ *
+ * @returns {Object} An object containing image dimensions, a function to trigger dimension calculation, and any errors.
+ */
 export const useImageDimensionsDynamic = () => {
   const [imgWidth, setImgWidth] = useState(null);
   const [imgHeight, setImgHeight] = useState(null);
@@ -54,36 +57,25 @@ export const useImageDimensionsDynamic = () => {
   const [imageUrlFb, setImageUrlFb] = useState(null);
 
   const getImageDimensions = (imageUrl, windowWidth) => {
-    // Bereinigung und Initialisierung
-    setImgWidth(null);
-    setImgHeight(null);
-    setRelativeHeight(null);
-    setError(null);
-
-    // Prüfen, ob eine gültige URL bereitgestellt wurde
     if (!imageUrl) {
-      setError('Keine gültige Bild-URL bereitgestellt');
+      setError('No valid image URL provided');
       return;
     }
 
-    // Verwendung von Image.getSize, um die Breite und Höhe des Bildes zu bekommen
     Image.getSize(
       imageUrl,
       (width, height) => {
         setImgWidth(width);
         setImgHeight(height);
-        // Berechne die relative Höhe basierend auf der Fensterbreite
         if (windowWidth && width) {
           const scalingFactor = windowWidth / width;
           const scaledHeight = scalingFactor * height;
           setRelativeHeight(scaledHeight);
         }
-        setError(null);
       },
       failureReason => {
-        // Fehlerbehandlung
-        setImageUrlFb(fbImage);
-        setError('Fehler beim Laden des Bildes: ' + failureReason);
+        setImageUrlFb(fbImage); // Set fallback image
+        setError('Error loading image: ' + failureReason);
       },
     );
   };

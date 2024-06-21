@@ -8,7 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import { colors, fonts } from '../../../styles';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import { fbImage } from '../../../constants/constants';
 // import BlurImageFilter from '../../../components/SkiaImage';
 

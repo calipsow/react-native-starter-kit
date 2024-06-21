@@ -2,12 +2,13 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import { colors } from '../../styles';
 import BlogStackNavigator from '../blogs/BlogStack';
 import EventStackNavigator from '../events/EventStack';
 import HomeScreen from '../home/HomeView';
 import ProfileStackNavigator from '../account/ProfileStack';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 // implement default fall back route
 const tabNavigationData = [

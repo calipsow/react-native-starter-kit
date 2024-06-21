@@ -10,16 +10,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { DEEP_LINKING_CONFIG } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
+
 import useAuthState from '../../hooks/auth/use-auth-state';
 import { colors } from '../../styles';
 import { AccountContext } from '../AppView';
 import NavigatorView from './RootNavigation';
 import useFirebaseAnalytics from '../../hooks/analytics/use-firebase-analytics';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 const drawerData = [
   {
-    name: 'AGB', // translate 
+    name: 'AGB', // translate
     route: {
       main_screen: 'Settings',
       target_screen: 'Rechtliches Dokument',

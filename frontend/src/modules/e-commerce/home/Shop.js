@@ -17,7 +17,7 @@ import { ProductCard } from '../products/partials/ProductCard';
 import { SectionPageLinks } from './partials/SectionPageLinks';
 import { ScreenFooter } from './partials/ScreenFooter';
 import { SpotlightProduct } from './partials/SpotlightProduct';
-import getFontSize from '../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 import { fbImage } from '../../../constants/constants';
 
 function ShopPage() {

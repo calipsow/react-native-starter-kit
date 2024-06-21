@@ -3,15 +3,29 @@ import functions from '@react-native-firebase/functions';
 import '@react-native-firebase/functions';
 import { fbImage } from '../../constants/constants';
 
-// TODO add description how the data needs set to ensure the app navigation 
+/**
+ * A custom React hook to manage the process of sending push notifications via Firebase Functions.
+ * Supports broadcasting notifications to all app users and sending targeted notifications to individual users.
+ *
+ * @returns {Object} An object containing functions for sending notifications, and states indicating the operation status.
+ */
 const useBroadcastPushNotification = () => {
-  const [loading, setLoading] = useState(false);
-  const [succeed, setSucceed] = useState(false);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); // Indicates if the notification request is in progress
+  const [succeed, setSucceed] = useState(false); // Indicates if the notification request was successful
+  const [error, setError] = useState(null); // Holds any error that occurs during the notification request process
 
+  /**
+   * Sends a push notification to all app users.
+   *
+   * @param {Object} params - Parameters for the notification.
+   * @param {string} params.title - Title of the notification.
+   * @param {string} params.body - Body text of the notification.
+   * @param {string} params.imageUrl - URL of the image to display in the notification (defaults to a constant image).
+   * @param {Object} params.data - Additional data to accompany the notification for handling app navigation or other actions.
+   */
   const broadcastNotification = async ({
-    title = 'ship native',
-    body = 'ship native notifications',
+    title = 'Ship Native',
+    body = 'Ship Native notifications',
     imageUrl = fbImage,
     data,
   }) => {
@@ -37,6 +51,17 @@ const useBroadcastPushNotification = () => {
     }
   };
 
+  /**
+   * Sends a targeted push notification to a specific user.
+   *
+   * @param {Object} params - Parameters for the targeted notification.
+   * @param {string} params.imageUrl - URL of the image for the notification.
+   * @param {string} params.body - Body text of the notification.
+   * @param {Object} params.data - Additional data for the notification. That object need to contain `targetScreen: string` for routing the user if he clicks on the notification and the `params: object` value containing additional params you may want to pass the navigation
+   * @param {string} params.token - Firebase Cloud Messaging token of the target user.
+   * @param {string} params.title - Title of the notification.
+   * @param {string} params.sendToUserUID - UID of the user to whom the notification is being sent.
+   */
   const sendSingleNotification = async ({
     imageUrl = '',
     body = '',
@@ -51,7 +76,7 @@ const useBroadcastPushNotification = () => {
     try {
       if (!token || !Object.keys(data).length)
         throw new Error(
-          'You cant sent push to user without a token or valid data',
+          'You cant send push notification to user without a token or valid data.',
         );
       const sendPushToUser = functions().httpsCallable('sendPushToUser');
       await sendPushToUser({

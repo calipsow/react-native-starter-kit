@@ -6,7 +6,6 @@ import 'react-native-gesture-handler';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { Firebase } from '../../../App';
 import { isIOS } from '../../constants/constants';
-import getFontSize from '../../functions/ui/resolve-relative-font-size';
 
 import useAuthState from '../../hooks/auth/use-auth-state';
 import useDeepLinkResolver from '../../hooks/linking/use-deep-link-resolver';
@@ -18,18 +17,17 @@ import StackNavigationData, {
   AuthStackScreen,
   InitAppStackScreens,
 } from './stackNavigationData';
+import getFontSize from '../../helpers/resolve-relative-font-size';
 
 const Stack = createStackNavigator();
 
-
 export default function NavigatorView(props) {
-  const [accountCtx] = useContext(AccountContext); 
+  const [accountCtx] = useContext(AccountContext);
   const { app, auth, db, storage } = useContext(Firebase);
   const { authStatus } = useAuthState();
   useDeepLinkResolver(accountCtx); // documented in deeplink-setup docs
   useHandlePushNotifications(); // documented in notification-setup docs
   usePushNotification(); // documented in notification-setup docs
-
 
   const headerLeftComponentMenu = () => {
     return (
@@ -55,7 +53,7 @@ export default function NavigatorView(props) {
   // navigation logic in deeplink-setup and in authentication-workflow docs
   return (
     <Stack.Navigator>
-      {(!auth || !db || !storage || !app) ? (
+      {!auth || !db || !storage || !app ? (
         <Stack.Screen
           name={InitAppStackScreens['Loading Backend'].name}
           component={InitAppStackScreens['Loading Backend'].component}

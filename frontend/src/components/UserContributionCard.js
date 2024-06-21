@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { fbImage } from '../constants/constants';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 import { colors, fonts, width } from '../styles';
 import { captionTxtTrpYellow, mediumHeadlineText } from '../styles/partials';
 

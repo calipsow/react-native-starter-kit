@@ -8,7 +8,7 @@ import {
 import { colors } from '../styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useState } from 'react';
-import getFontSize from '../functions/ui/resolve-relative-font-size';
+import getFontSize from '../helpers/resolve-relative-font-size';
 
 const ToggleView = ({ previewTitel, content }) => {
   const [active, setActive] = useState(false);
