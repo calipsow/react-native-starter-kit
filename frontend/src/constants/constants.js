@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+// Adjust this if you want another header bg image
 export const HEADER_BACKGROUND_IMAGE = require('../../assets/images/topBarBg.png');
 export const iconHome = require('../../assets/images/tabbar/home.png');
 export const iconCalendar = require('../../assets/images/tabbar/calendar.png');
@@ -21,6 +22,7 @@ export const calendarIcon = require('../../assets/images/pages/calendar.png');
 export const chatIcon = require('../../assets/images/pages/chat.png');
 export const loginIcon = require('../../assets/images/pages/login.png');
 export const blogIcon = require('../../assets/images/pages/blog.png');
+
 export const fbImage =
   'https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
@@ -30,6 +32,9 @@ export const pbImage =
 export const LOGO_SRC =
   'https://cdn.shopify.com/s/files/1/0655/5087/6900/files/callipson-white-bg_24987243-6d3f-45b2-af85-dbe810c769ec.png?v=1690002775';
 
+// DEEP LINKING CONFIG 
+// Make sure you update this config if you change something within the navigation
+// its used to handle deeplinking through the app 
 export const DEEP_LINKING_CONFIG = {
   prefixes: ['https://shipnative.app/', 'shipnative://'],
   config: {
@@ -49,7 +54,7 @@ export const DEEP_LINKING_CONFIG = {
           },
           Settings: {
             path: 'settings',
-            initialRouteName: 'Einstellungen',
+            initialRouteName: 'Settings',
           },
         },
       },
@@ -57,6 +62,7 @@ export const DEEP_LINKING_CONFIG = {
   },
 };
 
+// content sharing config that deeplinks to in app screens or views
 export const sharingConfig = [
   {
     title: 'Whatsapp',
@@ -98,7 +104,7 @@ export const sharingConfig = [
     icon_name: '',
   },
   {
-    title: 'Teilen via',
+    title: 'Share via',
     action_id: 'share',
     icon: () => (
       <FontAwesome
@@ -112,6 +118,8 @@ export const sharingConfig = [
   },
 ];
 
+// most common app uri schemes
+// used to call other apps if they installed directly through there app uri scheme
 export const appUriSchemes = {
   whatsapp: {
     pkgName: 'com.whatsapp',
