@@ -14,7 +14,7 @@ import { ModalContext } from '../../modules/provider/ModalProvider';
 /**
  * Custom React hook for uploading images to Firebase Storage.
  * Includes state for upload progress, upload completion, error handling, and the resulting image URL.
- *
+ * This hook requires the Firebase Storage! 
  * returns  An object containing functions and state related to the image upload process.
  */
 const useImageUpload = () => {
@@ -37,8 +37,8 @@ const useImageUpload = () => {
       } else if (response.error) {
         // Show modal alert if there is an error with the image picker
         showModalAlert(
-          'Etwas ist schiefgelaufen.',
-          'Das Bild kann nicht hochgeladen werden, bitte wähle ein anderes.',
+          'Something went wrong.',
+          'The image cannot be uploaded, please choose another one.',
         );
         console.warn(response.error);
       } else {
