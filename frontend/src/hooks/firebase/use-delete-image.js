@@ -20,6 +20,10 @@ const useDeleteImage = () => {
    * @param {string} imageUrl - The full URL of the image to delete.
    */
   const deleteImage = async imageUrl => {
+    if (!storage) return showModalAlert(
+          'Firebase Storage needed.',
+          'Make sure you have setup the firbase storage bucket before callimg this hook.',
+        );
     setSuccessState(false); // Reset success state to false before attempting deletion
     try {
       // Validate the URL to ensure it's a valid Firebase Storage URL
