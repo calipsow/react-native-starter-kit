@@ -1,43 +1,8 @@
-export const EVENT_SCHEME = {
-  approval: {
-    approved: false,
-    approved_since: null,
-    approved_by: null,
-  },
-  commitments: [],
-  end_time: null,
-  documents: [],
-  description: '299 Kikem Boulevard DuPisYkxCyYDEKSWAAyt',
-  comments: [],
-  likes: [],
-  event_poster: 'http://izugul.sm/ire',
-  event_id: 'YF8Fjz9lnuAMQu5HesBtZNJVk',
-  event_descriptions: [],
-  location: {
-    street: '413 Doeji Court',
-    province: '5277',
-    postcode: 33902,
-    country: 'Burkina Faso',
-    city: 'Wureprid',
-  },
-  name: 'Louise Black',
-  organizer: {
-    phone: null,
-    organization: null,
-    email: null,
-    last_name: null,
-    first_name: null,
-    username: null,
-  },
-  creator_uid: 'kMGdUNAlTa',
-  visible: true,
-  start_time: new Date(Date.now() - 82590),
-  created_at: new Date(),
-  created_by: {
-    joined_since: null,
-  },
-  views: 565,
-};
+/*
+* This file contains default firestore document data shemes 
+*/
+
+// example for an article or blog post document scheme
 export const ARTICLE_SCHEME = {
   creator_uid: 'SHYMDeKfqYpcFiqBQHmrTYEvvyzZoCBCoWoxegHnmrZwp',
   article_id: 'ec430886-f613-5637-b6a9-8ccb899d652e',
@@ -74,9 +39,11 @@ export const ARTICLE_SCHEME = {
   },
   views: 0,
 };
+
+// Expexted object to render the settings menu
 export const SETTINGS = [
   {
-    sectionTitle: null,
+    sectionTitle: null, // optional section title and subtitle
     description: null,
     subSections: [
       {
@@ -103,7 +70,7 @@ export const SETTINGS = [
           {
             title: 'Remove Account',
             id: 'delete_account',
-            setting_type: 'action',
+            setting_type: 'action', // this type would callback to an event
             value: function () {},
           },
         ],
@@ -120,7 +87,7 @@ export const SETTINGS = [
           {
             title: 'Privacy',
             id: 'privacy',
-            setting_type: 'document',
+            setting_type: 'document', // this would redirect the user to the LegalDoc screen with the id as param to fetch the document from firestore
             value: function () {},
           },
           {
@@ -134,6 +101,8 @@ export const SETTINGS = [
     ],
   },
 ];
+
+// expected document scheme to render legals
 export const LEGAL_DOCUMENT = {
   document_id: null,
   active: true,
@@ -151,23 +120,21 @@ export const LEGAL_DOCUMENT = {
     },
     email: null,
   },
-  content_sections: [{ section_title: null, section_content: null }],
+  content_sections: [{ section_title: null, section_content: null }], // used to seperate the foc into sections
 };
+
+// user data scheme
 export const USER_SCHEME = {
-  push_notification_token: null,
+  push_notification_token: null, // latest push notification token
   username: null,
-  firebase_uid: undefined,
+  firebase_uid: undefined, // same as uid
   uid: undefined,
   account_activated: true,
   suspended_until: null,
-  blocked_users: [],
-  follower: [],
-  restrictions: {
-    liking_content: false,
-    commenting: false,
-  },
   role: 'user',
 };
+
+// data scheme for the badge component on the home view
 export const PROMOTION = {
   promo_title: null,
   promo_content: null,
@@ -175,6 +142,8 @@ export const PROMOTION = {
   external_link: null,
   promo_id: undefined,
 };
+
+// commentary data scheme example
 export const COMMENT = {
   comment_id: undefined,
   comment: null,
@@ -186,11 +155,11 @@ export const COMMENT = {
   related_content_id: undefined,
   content_type: undefined, // article, event
 };
+
+// push notification document scheme
 export const PUSH_NOTIFICATION_TOKEN = {
   token: null,
   device_type: null,
   created_at: new Date(new Date().getTime()),
-  uid: null,
-  user_role: null,
-  username: null,
+  uid: null, // the user id the token belongs to
 };
