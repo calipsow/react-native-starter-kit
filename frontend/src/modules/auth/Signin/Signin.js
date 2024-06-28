@@ -90,11 +90,7 @@ export default function SignIn() {
         <LinkText screen="Reset Password" />
         <FormSubmitButton
           loading={loading}
-          disabled={
-            !Object.entries(formData).every(([key, value]) =>
-              key === 'email' ? EMAIL_REG.test(value) : value,
-            )
-          }
+          disabled={!(EMAIL_REG.test(formData.email) && formData.password)}
           handleSubmit={handleSubmit}
           title="Log In"
         />

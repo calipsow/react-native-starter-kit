@@ -64,7 +64,7 @@ const SearchBar = ({
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        className="bg-gray-800 text-white p-2 rounded-lg mt-4 mb-1"
         onChangeText={handleSearch}
         value={searchQuery}
         placeholder={placeholder}
@@ -94,7 +94,6 @@ const SearchBar = ({
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    backgroundColor: colors.primary, // Typically 'white' or light color for better visibility
   },
   input: {
     height: 45,
@@ -110,7 +109,8 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     position: 'absolute',
-    left: 0,
+    right: 0,
+    top: 8,
     height: '100%',
     justifyContent: 'center',
     paddingHorizontal: 10,

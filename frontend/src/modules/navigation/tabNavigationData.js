@@ -9,6 +9,7 @@ import HomeScreen from '../home/HomeView';
 import ProfileStackNavigator from '../account/ProfileStack';
 import getFontSize from '../../helpers/resolve-relative-font-size';
 import ShopStackNavigator from '../e-commerce/ShopStack';
+import FeedView from '../feed/FeedView';
 
 // implement default fall back route
 const tabNavigationData = [
@@ -44,6 +45,18 @@ const tabNavigationData = [
         name="library-books"
         size={getFontSize(31)}
         style={{ padding: getFontSize(4), zIndex: 999 }}
+        color={focused ? colors.bluish : colors.primaryDark}
+      />
+    ),
+  },
+  {
+    name: 'Feed',
+    component: FeedView,
+    icon: focused => (
+      <MaterialIcons
+        name="auto-awesome-mosaic"
+        size={getFontSize(33)}
+        style={{ padding: getFontSize(2), zIndex: 999 }}
         color={focused ? colors.bluish : colors.primaryDark}
       />
     ),

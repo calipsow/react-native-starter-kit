@@ -2,7 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Image } from 'react-native';
 
 import { styles } from '../navigation/RootNavigation';
-import Profile from './Profile';
+import Profile from './ProfileView';
 
 import { headerLeftComponent } from '../navigation/headerLeftComponent';
 import { HEADER_BACKGROUND_IMAGE, isIOS } from '../../constants/constants';

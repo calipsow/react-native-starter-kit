@@ -21,11 +21,13 @@ import Markdown from './MarkdownView';
 import SingleTag from '../../components/SingleTag';
 import GalleryScreen from '../gallery/GalleryView';
 import { stubImages } from '../gallery/GalleryState';
+import ShipNativeSVG from '../../../assets/images/shipnative/svg/IMG_2090.svg';
+import { width } from '../../styles';
 
 const HomeTags = [
   {
-    text: 'Ship Native',
-    action_id: 'ship_native',
+    text: 'Documentation',
+    action_id: 'docs',
   },
 ];
 
@@ -56,10 +58,11 @@ const Home = () => {
       <View className="flex-row justify-between items-center">
         {HomeTags.map((tag, i) => (
           <SingleTag
-            className={'bg-slate-500 p-1.5 rounded-lg px-4'}
-            style={{ backgroundColor: '#475569' }}
+            className={'bg-slate-200 p-1.5 rounded-lg px-4'}
+            style={{ backgroundColor: '#fff', color: '#000' }}
             key={i}
             txt={tag.text}
+            textClassName={'text-slate-800 text-xs font-extrabold'}
           />
         ))}
         {/* Icons top right */}
@@ -73,10 +76,10 @@ const Home = () => {
       <View className="pt-2.5">
         <View>
           <Text className="font-bold text-slate-200 text-4xl mx-w-[200px]">
-            Welcome ✨
+            Ship Native
           </Text>
-          <Text className="text-gray-300 text-lg">
-            Theres a lot going on, stay up to date with us
+          <Text className="text-gray-300 text-[18px]">
+            Ship apps with ease not an burnout!
           </Text>
         </View>
       </View>
@@ -94,7 +97,7 @@ const Home = () => {
           <Text className="font-bold text-slate-300 text-2xl pr-20 leading-7">
             {documentData.title}
           </Text>
-          <Text className="text-gray-300 text-lg max-w-xs">
+          <Text className="text-gray-300 text-lg max-w-xs font-semibold">
             {documentData.content}
           </Text>
         </View>
@@ -105,8 +108,16 @@ const Home = () => {
       </TouchableOpacity>
 
       {/* Markdown */}
-      <GalleryScreen images={stubImages} />
-      <View className="h-6" />
+      <View className="w-full items-center justify-center mt-20">
+        <View
+          style={{
+            height: 300,
+            width: 300,
+          }}
+        >
+          <ShipNativeSVG width="100%" height="100%" />
+        </View>
+      </View>
     </KeyboardAwareScrollView>
   );
 };

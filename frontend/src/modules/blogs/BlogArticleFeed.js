@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import PaginationNumeric from '../../components/PaginationNumeric';
 import SearchBar from '../../components/Searchbar';
 
@@ -14,21 +23,21 @@ import BlogCard from '../../components/BlogCard';
 import { STATIC_BLOG, STATIC_BLOGS } from '../../constants/constants';
 import getFontSize from '../../helpers/resolve-relative-font-size';
 
-export const BlogIndexHeader = ({ headerText = '', captionText = '' }) => {
+export const SearchTopBar = ({ headerText = '', captionText = '' }) => {
   const [searchRes, setSearchRes] = useState([]);
 
   return (
     <React.Fragment>
       <View style={{ gap: 5 }}>
-        <Text style={[styles.title, { maxWidth: 320 }]}>{headerText}</Text>
+        {headerText && (
+          <Text style={[styles.title, { maxWidth: 320 }]}>{headerText}</Text>
+        )}
         <SearchBar
+          placeholder="Search for users.."
           onSearchResults={results => setSearchRes(results)}
           collectionID={'Users'}
           fieldPaths={['username']}
         />
-        <Text style={[smallCaptionTextGray, { fontSize: getFontSize(16) }]}>
-          {`Searching in Users, against the username field`}
-        </Text>
         {searchRes.map((result, i) => (
           <View key={i} className="w-full bg-slate-700 rounded-xl p-5">
             <Text className="text-xl font-semibold text-slate-100">
@@ -49,7 +58,102 @@ export const BlogIndexHeader = ({ headerText = '', captionText = '' }) => {
   );
 };
 
-const BlogArticlesFeed = () => {
+const members = [
+  {
+    id: 1,
+    name: 'Dominik McNeail',
+    country: 'IT',
+    profileImage:
+      'https://images.unsplash.com/photo-1718900351979-3e00f88386a3?q=80&w=1636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    description:
+      'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+  },
+  {
+    id: 2,
+    name: 'Ivan Mesaros',
+    country: 'FR',
+    profileImage:
+      'https://images.unsplash.com/photo-1718900351979-3e00f88386a3?q=80&w=1636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    description:
+      'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+  },
+  {
+    id: 3,
+    name: 'Tisha Yanchev',
+    country: 'DE',
+    profileImage:
+      'https://images.unsplash.com/photo-1718900351979-3e00f88386a3?q=80&w=1636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    description:
+      'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+  },
+  {
+    id: 4,
+    name: 'Sergio Gonnelli',
+    country: 'IT',
+    profileImage:
+      'https://images.unsplash.com/photo-1718900351979-3e00f88386a3?q=80&w=1636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    description:
+      'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+  },
+  {
+    id: 5,
+    name: 'Jerzy Wierzy',
+    country: 'ES',
+    profileImage:
+      'https://images.unsplash.com/photo-1718900351979-3e00f88386a3?q=80&w=1636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    description:
+      'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+  },
+  {
+    id: 6,
+    name: 'Mirko Grubisic',
+    country: 'DE',
+    profileImage:
+      'https://images.unsplash.com/photo-1718900351979-3e00f88386a3?q=80&w=1636&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    description:
+      'Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP Lover.',
+  },
+];
+
+const MemberCard = ({ member }) => {
+  return (
+    <View className="bg-gray-800 rounded-lg p-4 my-2 w-full">
+      <View className="flex-row justify-between items-center">
+        <Image src={member.profileImage} className="w-12 h-12 rounded-full" />
+        <TouchableOpacity className="bg-gray-700  rounded-xl px-4 py-2">
+          <Text className="text-white">···</Text>
+        </TouchableOpacity>
+      </View>
+      <Text className="text-xl font-bold text-white mt-4">{member.name}</Text>
+      <Text className="text-gray-400">→ {member.country}</Text>
+      <Text className="text-sm text-gray-400 mt-2">{member.description}</Text>
+      <View className="flex-row mt-4">
+        <TouchableOpacity className="bg-blue-600 px-4 py-2 rounded-lg mr-2">
+          <Text className="text-white">Send Email</Text>
+        </TouchableOpacity>
+        <TouchableOpacity className="bg-gray-600 px-4 py-2 rounded-lg">
+          <Text className="text-white">Edit Profile</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export const ProfileList = () => {
+  return (
+    <View className="p-4">
+      <SearchTopBar />
+      <TouchableOpacity className="bg-slate-600 p-2 rounded-lg mt-3 mb-1">
+        <Text className="text-white text-center">+ Add Member</Text>
+      </TouchableOpacity>
+      {members.map((item, i) => (
+        <MemberCard member={item} key={i} />
+      ))}
+    </View>
+  );
+};
+
+const Profiles = () => {
   return (
     <View className="flex-1 bg-slate-900">
       <ScrollView
@@ -57,29 +161,7 @@ const BlogArticlesFeed = () => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.content}>
-          <BlogIndexHeader
-            headerText="Search Feature"
-            captionText="Dolor laboris ad eiusmod quis."
-          />
-          {Array(3)
-            .fill()
-            .map((_, i) => (
-              <BlogCard
-                key={i}
-                blogTitle={STATIC_BLOG.title}
-                blogDescription={STATIC_BLOG.description}
-                tags={STATIC_BLOG.tags}
-                publisher={STATIC_BLOG.publisher}
-                featuredImage={STATIC_BLOG.coverImage}
-                likes={STATIC_BLOG.total_likes}
-                comments={STATIC_BLOG.total_comments}
-                id={STATIC_BLOG.id}
-              />
-            ))}
-
-          <PaginationNumeric />
-        </View>
+        <ProfileList />
       </ScrollView>
     </View>
   );
@@ -123,4 +205,4 @@ const styles = StyleSheet.create({
   // ... Rest of your styles based on the Tailwind classes
 });
 
-export default BlogArticlesFeed;
+export default Profiles;

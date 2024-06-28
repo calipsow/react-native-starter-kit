@@ -30,9 +30,9 @@ const ToggleView = ({ previewTitel, content }) => {
           {active && <Text style={styles.toggleSectionText}>{content}</Text>}
         </View>
         {active ? (
-          <Icon name="angle-up" color={colors.bluish} size={20} />
+          <Icon name="minus" color={colors.bluish} size={15} />
         ) : (
-          <Icon name="angle-down" color={colors.bluish} size={20} />
+          <Icon name="plus" color={colors.bluish} size={15} />
         )}
       </View>
     </Pressable>
@@ -74,12 +74,13 @@ const styles = StyleSheet.create({
     fontSize: getFontSize(18),
     lineHeight: 18,
     color: colors.white,
+    fontWeight: '500',
   },
   toggleSectionText: {
     marginTop: 4,
     fontSize: getFontSize(16),
     lineHeight: 16,
-    color: colors.lightGray,
+    color: '#c6c9cc',
   },
   toggleSectionToggle: {},
 });

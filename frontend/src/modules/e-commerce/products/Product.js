@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import RNSDropDown from '../../../components/Dropdown';
 import ImageSnapCarousel from '../../../components/ImageSnapFull';
@@ -24,6 +24,8 @@ import SingleTag from '../../../components/SingleTag';
 import { DividerCaption } from '../../../components/DividerCaption';
 
 const Product = () => {
+  const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
+  const [option, setOption] = useState(0);
   return (
     <ScrollView
       style={styles.container}
@@ -55,20 +57,22 @@ const Product = () => {
       <RNSDropDown
         items={['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5']}
         color={colors.white}
-        onSelect={sel => console.log(sel)}
+        onSelect={sel => setOption(sel)}
         style={{
           backgroundColor: '#94a3b8',
           height: 55,
           marginTop: 12,
           marginBottom: 8,
+          fontWeight: '800',
         }}
         borderColor={'transparent'}
-        placeholder="Option"
+        placeholder={options[option]}
+        selectedIndex={option}
       />
 
       {/* Shipping, Purchase etc Info */}
       <ToggleView
-        previewTitel={'14-05-2014 - 2024-10-02'}
+        previewTitel={'Fast Delivery'}
         content={
           'The product will be processed within one working day and dispatched within a few days and is expected to be delivered within 7 - 14 working days. More about this in the shipping conditions.'
         }
@@ -80,7 +84,7 @@ const Product = () => {
         }
       />
       <ToggleView
-        previewTitel={'Payment'}
+        previewTitel={'Flexible Payment'}
         content={
           'We offer credit card payments, instant bank transfers, and purchase on account with Klarna. Find out more in the terms and conditions.'
         }

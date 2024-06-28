@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whiteTwo,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 10,
   },
   item: {
     flexDirection: 'row',
@@ -99,6 +100,7 @@ const styles = StyleSheet.create({
     height: 15,
     flex: 1,
     paddingTop: 30,
+    borderRadius: 10,
   },
 });
 

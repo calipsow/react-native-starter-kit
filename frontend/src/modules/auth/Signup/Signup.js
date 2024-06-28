@@ -121,12 +121,10 @@ export default function SignUp() {
           loading={loading}
           handleSubmit={handleSubmit}
           disabled={
-            !Object.entries(formData).every(([key, value]) =>
-              key === 'email'
-                ? EMAIL_REG.test(value)
-                : key === 'name'
-                ? value.length < 2
-                : value.length < 10,
+            !(
+              EMAIL_REG.test(formData.email) &&
+              formData.name.length >= 2 &&
+              formData.password.length >= 10
             )
           }
         />
@@ -138,20 +136,4 @@ export default function SignUp() {
       </View>
     </KeyboardAwareScrollView>
   );
-
-  function SigninHint() {
-    return (
-      <View className="items-center justify-center flex-row mt-2">
-        <Text className="text-gray-400 text-[14px]">
-          Already have an account?
-        </Text>
-        <Pressable
-          onPress={() => navigation.navigate('Sign In')}
-          className="p-1.5"
-        >
-          <Text className="text-[#8E9AFC] text-[14px]">Log In</Text>
-        </Pressable>
-      </View>
-    );
-  }
 }

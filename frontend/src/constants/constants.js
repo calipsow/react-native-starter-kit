@@ -32,9 +32,9 @@ export const pbImage =
 export const LOGO_SRC =
   'https://cdn.shopify.com/s/files/1/0655/5087/6900/files/callipson-white-bg_24987243-6d3f-45b2-af85-dbe810c769ec.png?v=1690002775';
 
-// DEEP LINKING CONFIG 
+// DEEP LINKING CONFIG
 // Make sure you update this config if you change something within the navigation
-// its used to handle deeplinking through the app 
+// its used to handle deeplinking through the app
 export const DEEP_LINKING_CONFIG = {
   prefixes: ['https://shipnative.app/', 'shipnative://'],
   config: {
@@ -304,7 +304,8 @@ export const sampleArticleData = [
 export const sampleBannerData = {
   external_link: 'https://development.callipson.com',
   title: 'Read the docs',
-  content: 'Ut ipsum ullamco pariatur occaecat culpa laboris eiusmod.',
+  content:
+    'To get the best experience please read the docs or explore the large set of utilities!',
   image:
-    'https://images.unsplash.com/photo-1496200186974-4293800e2c20?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1718486463454-a29ee090f0c5?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 };
