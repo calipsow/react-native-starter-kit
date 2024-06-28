@@ -9,6 +9,7 @@ const useExternalLink = () => {
   const testLink = (url = '') =>
     url.toLowerCase().trim().includes('https://') ||
     url.toLowerCase().trim().includes('http://');
+  
   const stateLessOpenLink = async url =>
     await Linking.openURL(url).catch(e => console.warn(e));
 
