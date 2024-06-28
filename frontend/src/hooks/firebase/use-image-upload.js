@@ -18,7 +18,7 @@ import { ModalContext } from '../../modules/provider/ModalProvider';
  * returns  An object containing functions and state related to the image upload process.
  */
 const useImageUpload = () => {
-  const { app } = useContext(Firebase); // Access Firebase instance from context
+  const { app, storage } = useContext(Firebase); // Access Firebase instance from context
   const [uploadProgress, setUploadProgress] = useState(0); // State to track upload progress percentage
   const [uploadError, setUploadError] = useState(''); // State to store any errors that occur during upload
   const [isUploading, setIsUploading] = useState(false); // State to indicate if an upload is currently in progress
@@ -31,6 +31,10 @@ const useImageUpload = () => {
    * @param {string} uploadPath - The path in Firebase Storage where the image will be uploaded.
    */
   const startImageUpload = async uploadPath => {
+    if (!storage) return showModalAlert(
+          'Firebase Storage needed',
+          'This method requires an Firebase Storage Bucket. Make sure you added it to your project.',
+        );
     await launchImageLibrary({ mediaType: 'photo' }, async response => {
       if (response.didCancel) {
         console.log('User cancelled image picker');
