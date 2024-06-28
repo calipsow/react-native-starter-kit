@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { Firebase } from '../../../App'; // Adjust path as necessary
 import { ref, deleteObject } from 'firebase/storage';
+import { ModalContext } from '../../modules/provider/ModalProvider';
 
 /**
  * A React hook to delete an image from Firebase Storage.
