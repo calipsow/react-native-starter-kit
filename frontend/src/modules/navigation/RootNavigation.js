@@ -53,7 +53,7 @@ export default function NavigatorView(props) {
   // navigation logic in deeplink-setup and in authentication-workflow docs
   return (
     <Stack.Navigator>
-      {!auth || !db || !storage || !app ? (
+      {!auth || !db || !app ? (
         <Stack.Screen
           name={InitAppStackScreens['Loading Backend'].name}
           component={InitAppStackScreens['Loading Backend'].component}
