@@ -12,7 +12,7 @@ async function requestUserPermission(accountCtx) {
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
     if (enabled && accountCtx && accountCtx?.uid) {
-      // console.log('Authorization status:', authStatus);
+
       await messaging().registerDeviceForRemoteMessages();
       const token = await messaging().getToken();
       console.log('refresh push token to', token);
@@ -20,10 +20,7 @@ async function requestUserPermission(accountCtx) {
       PUSH_NOTIFICATION_TOKEN.created_at = new Date(new Date().getTime());
       PUSH_NOTIFICATION_TOKEN.device_type = Platform.OS;
       PUSH_NOTIFICATION_TOKEN.uid = accountCtx.uid;
-      PUSH_NOTIFICATION_TOKEN.user_role = await resolveRole(accountCtx.uid);
-      PUSH_NOTIFICATION_TOKEN.username =
-        accountCtx?.firebase_auth_data?.displayName;
-
+      
       await writeDocument(
         'Notification_Tokens',
         accountCtx.uid,
