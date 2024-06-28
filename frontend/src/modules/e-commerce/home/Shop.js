@@ -15,7 +15,7 @@ import {
 } from '../../../styles/partials';
 import { ProductCard } from '../products/partials/ProductCard';
 import { SectionPageLinks } from './partials/SectionPageLinks';
-import { ScreenFooter } from './partials/ScreenFooter';
+import { CTA } from './partials/ScreenFooter';
 import { SpotlightProduct } from './partials/SpotlightProduct';
 import getFontSize from '../../../helpers/resolve-relative-font-size';
 import { fbImage } from '../../../constants/constants';
@@ -31,97 +31,69 @@ function ShopPage() {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      {/* Header, Searchbar, Navigation */}
-      <View style={{ width: '100%' }}>
-        <View style={styles.pageHeader}>
-          <Text style={[mediumHeadlineText, styles.whiteText]}>
-            Online Shop 💫
-          </Text>
-        </View>
-        <SearchBar style={styles.searchForm} onSubmit={handleSearchSubmit} />
-        <RNSRadioGroup
-          darkMode={true}
-          style={{
-            marginVertical: 15,
-            borderColor: colors.primaryDark,
-            borderWidth: 1,
-            borderRadius: 30,
-          }}
-          items={['Overview', 'Collections', 'Special Offers']}
-          selectedIndex={radioGroupsState[0]}
-          onChange={index =>
-            setRadioGroupsState({ ...radioGroupsState, 0: index })
-          }
-        />
-      </View>
+      {/* Single Product */}
+      <SpotlightProduct
+        navigation={navigation}
+        imageSrc="https://shop.callipson.com/cdn/shop/files/164293ac-9c59-4790-99d6-5dfad6cd3c0f.jpg?v=1709666468"
+      />
+
+      {/* Categories */}
+      <ShopCategories navigation={navigation} />
+      {/* Category Products */}
+
+      <ScrollView
+        horizontal
+        contentContainerStyle={{ columnGap: 15 }}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
+        {[
+          {
+            title: 'Air Force Fighter',
+            imageUrl: fbImage,
+            price: 14.99,
+          },
+          {
+            title: 'Air Force Fighter',
+            imageUrl: fbImage,
+            price: 14.99,
+          },
+          {
+            title: 'Air Force Fighter',
+            imageUrl: fbImage,
+            price: 14.99,
+          },
+        ].map((item, i) => (
+          <View
+            key={`card-${i}`}
+            style={{ width: Dimensions.get('window').width * 0.65 }}
+          >
+            <ProductCard
+              style={{ width: '100%' }}
+              title={item.title}
+              imageUrl={item.imageUrl}
+              price={item.price}
+              key={`${item.title}-${i}`}
+            />
+          </View>
+        ))}
+      </ScrollView>
 
       {/* Single Product */}
-      <ShopPageSection title="Product Showcase" navigation={navigation}>
-        <SpotlightProduct
-          navigation={navigation}
-          imageSrc="https://shop.callipson.com/cdn/shop/files/164293ac-9c59-4790-99d6-5dfad6cd3c0f.jpg?v=1709666468"
-        />
-      </ShopPageSection>
-      {/* Categories */}
-      <ShopPageSection title="Popular Categories" navigation={navigation}>
-        <ShopCategories navigation={navigation} />
-        <ShopCategories navigation={navigation} />
-      </ShopPageSection>
-      {/* Category Products */}
-      <ShopPageSection title="Gaming Keyboards" navigation={navigation}>
-        <ScrollView
-          horizontal
-          contentContainerStyle={{ columnGap: 15 }}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-        >
-          {[
-            {
-              title: 'Air Force Fighter',
-              imageUrl: fbImage,
-              price: 14.99,
-            },
-            {
-              title: 'Air Force Fighter',
-              imageUrl: fbImage,
-              price: 14.99,
-            },
-            {
-              title: 'Air Force Fighter',
-              imageUrl: fbImage,
-              price: 14.99,
-            },
-          ].map((item, i) => (
-            <View
-              key={`card-${i}`}
-              style={{ width: Dimensions.get('window').width * 0.65 }}
-            >
-              <ProductCard
-                style={{ width: '100%' }}
-                title={item.title}
-                imageUrl={item.imageUrl}
-                price={item.price}
-                key={`${item.title}-${i}`}
-              />
-            </View>
-          ))}
-        </ScrollView>
-      </ShopPageSection>
-      {/* Single Product */}
-      <ShopPageSection title="" navigation={navigation}>
-        <SpotlightProduct
-          navigation={navigation}
-          imageSrc="https://shop.callipson.com/cdn/shop/products/image_ab893255-e927-4bfd-8a82-da9f747afb4c.jpg?v=1678653763&width=493"
-        />
-      </ShopPageSection>
-      <ScreenFooter />
+
+      <SpotlightProduct
+        navigation={navigation}
+        imageSrc="https://shop.callipson.com/cdn/shop/products/image_ab893255-e927-4bfd-8a82-da9f747afb4c.jpg?v=1678653763&width=493"
+      />
+
+      <CTA />
       <SectionPageLinks />
     </ScrollView>
   );
 }
 
 export const ShopPageSection = ({ title, children }) => (
-  <View style={styles.cardsSection}>
+  <View>
     <Text
       style={[
         sectionTitleCreme,
@@ -195,7 +167,8 @@ export const styles = StyleSheet.create({
   },
   contentContainer: {
     flexWrap: 'nowrap',
-    gap: 70,
+    gap: 15,
+    paddingTop: 30,
   },
   pageHeader: {
     paddingVertical: 20,
@@ -220,12 +193,9 @@ export const styles = StyleSheet.create({
   filterItemSelected: {
     borderBottomColor: colors.bluish,
   },
-  cardsSection: {
-    paddingVertical: 0,
-  },
+
   card: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 8,
     marginBottom: 20,
     overflow: 'hidden',
     shadowColor: '#000',

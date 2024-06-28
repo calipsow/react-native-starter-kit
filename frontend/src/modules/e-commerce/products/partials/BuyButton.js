@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginBottom: 8,
+    marginTop: 8,
   },
   packageTitle: {
     fontSize: getFontSize(14),

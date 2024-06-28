@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 10,
     padding: 15,
-    backgroundColor: colors.primary,
+    backgroundColor: '#4e5a6b',
     borderColor: colors.primaryDark,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -60,8 +60,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    borderColor: colors.primaryDark,
-    backgroundColor: colors.primary,
+    backgroundColor: '#4e5a6b',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -74,10 +73,10 @@ const styles = StyleSheet.create({
   toggleSectionTitle: {
     fontSize: getFontSize(18),
     lineHeight: 18,
-    color: colors.textCreme,
+    color: colors.white,
   },
   toggleSectionText: {
-    marginTop: 20,
+    marginTop: 4,
     fontSize: getFontSize(16),
     lineHeight: 16,
     color: colors.lightGray,

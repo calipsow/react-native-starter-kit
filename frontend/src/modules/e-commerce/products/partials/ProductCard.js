@@ -12,6 +12,10 @@ import { colors, fonts } from '../../../../styles';
 import Rating from '../../../../components/StarRating';
 import { smallTextGray } from '../../../../styles/partials';
 import getFontSize from '../../../../helpers/resolve-relative-font-size';
+import {
+  SecondarySubmitButton,
+  SubmitButton,
+} from '../../../../components/SubmitButton';
 
 // Card Component
 
@@ -27,17 +31,27 @@ export const ProductCard = ({
   hideButtons,
   onPressCard = function () {},
 }) => (
-  <View style={[styles.card, style && style]}>
+  <View
+    style={[style && style]}
+    className="bg-slate-100 rounded-2xl p-2 mb-2 w-full pb-2 m-0.5"
+  >
     <Image
-      style={[styles.cardImage, imageStyle && imageStyle]}
+      style={[imageStyle && imageStyle]}
       source={{ uri: imageUrl }}
+      className="rounded-2xl w-full h-40 object-cover"
     />
     <Pressable onPress={onPressCard}>
       <View>
-        <Text style={styles.cardTitle} numberOfLines={!multiline ? 1 : 5}>
+        <Text
+          className="text-slate-900 font-bold text-2xl"
+          numberOfLines={!multiline ? 1 : 5}
+        >
           {title}
         </Text>
-        <Text style={styles.cardDescription} numberOfLines={7}>
+        <Text
+          className="text-slate-600 font-semibold text-xl"
+          numberOfLines={7}
+        >
           {description}
         </Text>
         <View
@@ -49,12 +63,17 @@ export const ProductCard = ({
         </View>
         {!hideButtons && (
           <View style={styles.cardActionBtn}>
-            <RNSButton
-              caption="Add"
-              bgColor={colors.primaryDark}
-              textColor={colors.black}
+            <SecondarySubmitButton
+              className={`rounded-lg px-8 py-2.5 items-center mt-2 mb-2 border-slate-700 border-solid border-2`}
+              text="Details"
+              textClassName="text-slate-700 text-[16px] font-semibold opacity-[.8]"
             />
-            <RNSButton caption="More" secondary bordered />
+            <SubmitButton
+              text="Add"
+              className={
+                'bg-slate-800 text-gray-800 rounded-lg px-8 py-3 items-center mt-2 mb-2'
+              }
+            />
           </View>
         )}
       </View>
@@ -69,16 +88,13 @@ const styles = StyleSheet.create({
     borderColor: colors.primaryDark,
     marginBottom: 24,
     width: '48%', // Adjust based on your grid needs
-    paddingBottom: 15,
+    paddingBottom: 5,
   },
   cardActionBtn: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
     alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingHorizontal: 8,
-    marginBottom: 5,
+    justifyContent: 'space-between',
   },
   cardImage: {
     width: '100%',
@@ -109,20 +125,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 8,
     paddingBottom: 8,
+    paddingTop: 5,
     flexWrap: 'wrap',
     gap: 5,
-    marginBottom: 5,
     rowGap: 8,
   },
   price: {
-    backgroundColor: colors.textLightGreen + '5f',
-    color: colors.textLightGreen,
-    borderRadius: 20,
+    backgroundColor: '#D1FAE5',
+    color: '#10B981',
     paddingHorizontal: 8,
     paddingVertical: 4,
-    fontFamily: fonts.primaryBold,
-    fontSize: getFontSize(15),
+    borderRadius: 20,
+    fontSize: getFontSize(14),
+    fontWeight: '600',
   },
 });

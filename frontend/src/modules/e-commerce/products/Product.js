@@ -20,6 +20,8 @@ import { ProductPageSection } from './partials/ProductPageSection';
 import { ScrollView } from 'react-native-gesture-handler';
 import getFontSize from '../../../helpers/resolve-relative-font-size';
 import { fbImage } from '../../../constants/constants';
+import SingleTag from '../../../components/SingleTag';
+import { DividerCaption } from '../../../components/DividerCaption';
 
 const Product = () => {
   return (
@@ -28,72 +30,62 @@ const Product = () => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
-      <ImageSnapCarousel
-        imagesArray={[fbImage]}
-        imageStyles={{ borderRadius: 5 }}
-      />
+      <ImageSnapCarousel imageStyles={{ borderRadius: 5 }} />
       {/* Product Title */}
-      <Text style={[styles.text, styles.title]}>New And For Sale Now</Text>
+      <Text className="text-3xl text-slate-200 font-bold">
+        New And For Sale Now
+      </Text>
       {/* caption for discount info etc */}
-      <Text style={grayCaption}>
+      <Text className="text-xl text-slate-400 font-semibold pb-2">
         Save with the code something 30% on your order!
       </Text>
       {/* Tags for prices sales and so on */}
       <View style={[flexBoxRow, { gap: 10 }]}>
-        <Tag
-          text="$33.50"
-          textStyles={{
-            color: colors.white,
-            fontSize: getFontSize(18),
-            lineHeight: 21,
-          }}
-          containerStyles={{ backgroundColor: colors.brightRed }}
-        />
-        <Tag
-          text="SALE"
-          textStyles={{
-            color: colors.white,
-            fontSize: getFontSize(18),
-            lineHeight: 21,
-          }}
-          containerStyles={{ backgroundColor: colors.brightRed }}
-        />
+        {Array(3)
+          .fill()
+          .map((_, i) => (
+            <SingleTag
+              txt={'Sale'}
+              key={i}
+              className={'px-5 py-1 rounded-lg bg-rose-400'}
+            />
+          ))}
       </View>
       {/* Product Variants Dropdown */}
-      <ProductPageSection title="Variants">
-        <RNSDropDown
-          items={['Option 1', 'Option 2', 'Option 3']}
-          color={colors.textCreme}
-          onSelect={sel => console.log(sel)}
-          style={{}}
-          borderColor={colors.primaryDark}
-          placeholder="Styles"
-        />
-      </ProductPageSection>
+      <RNSDropDown
+        items={['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5']}
+        color={colors.white}
+        onSelect={sel => console.log(sel)}
+        style={{
+          backgroundColor: '#94a3b8',
+          height: 55,
+          marginTop: 12,
+          marginBottom: 8,
+        }}
+        borderColor={'transparent'}
+        placeholder="Option"
+      />
 
       {/* Shipping, Purchase etc Info */}
-      <ProductPageSection title="">
-        <ToggleView
-          previewTitel={'14-05-2014 - 2024-10-02'}
-          content={
-            'The product will be processed within one working day and dispatched within a few days and is expected to be delivered within 7 - 14 working days. More about this in the shipping conditions.'
-          }
-        />
-        <ToggleView
-          previewTitel={'14 Days Money Back'}
-          content={
-            'After delivery, the product can be returned within 14 days without giving reasons. Read more in the right of withdrawal.'
-          }
-        />
-        <ToggleView
-          previewTitel={'Payment'}
-          content={
-            'We offer credit card payments, instant bank transfers, and purchase on account with Klarna. Find out more in the terms and conditions.'
-          }
-        />
-      </ProductPageSection>
-      {/* Payment Badges */}
-      <PaymentBadge />
+      <ToggleView
+        previewTitel={'14-05-2014 - 2024-10-02'}
+        content={
+          'The product will be processed within one working day and dispatched within a few days and is expected to be delivered within 7 - 14 working days. More about this in the shipping conditions.'
+        }
+      />
+      <ToggleView
+        previewTitel={'14 Days Money Back'}
+        content={
+          'After delivery, the product can be returned within 14 days without giving reasons. Read more in the right of withdrawal.'
+        }
+      />
+      <ToggleView
+        previewTitel={'Payment'}
+        content={
+          'We offer credit card payments, instant bank transfers, and purchase on account with Klarna. Find out more in the terms and conditions.'
+        }
+      />
+
       {/* Buy Button */}
       {/* Displaying package options dynamically */}
       {[{ title: 'some kind of', imageUrl: fbImage, price: 20.99 }].map(
@@ -107,9 +99,11 @@ const Product = () => {
           />
         ),
       )}
+      {/* Payment Badges */}
+      <PaymentBadge />
       {/* Product Description */}
       <ProductPageSection title="Product Overview">
-        <Text style={[styles.text, styles.paragraph]}>
+        <Text className="text-gray-400 font-medium text-lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad
           minim veniam.
@@ -131,20 +125,26 @@ const Product = () => {
           - Services: Better lorem ipsum generator.
         </ProductListItem>
       </ProductPageSection>
-
+      <DividerCaption caption="Product Reviews" />
       {/* Reviews */}
-      <ProductPageSection title="Reviews">
-        <View style={{ paddingVertical: 10 }}>
-          <View style={[flexBoxRow, { marginVertical: 5 }]}>
-            <Image source={{ uri: fbImage }} style={styles.authorImage} />
-            <Text style={grayCaption}>Simona Lürwer</Text>
-          </View>
-          <Rating stars="55555" />
-          <Text style={[grayCaption, { marginVertical: 5 }]}>
-            Some 504 Ijado Terrace 901 Cuzi Highway 1899 Come Mill
+      <View className="mt-1">
+        <View style={[flexBoxRow, { marginVertical: 5 }]}>
+          <Image
+            source={{ uri: fbImage }}
+            style={styles.authorImage}
+            className=""
+          />
+          <Text className="text-gray-100 font-medium text-lg">
+            Simona Lürwer
           </Text>
         </View>
-      </ProductPageSection>
+        <Rating stars="55555" />
+        <Text style={[grayCaption, { marginVertical: 5 }]}>
+          Minim fugiat ex irure pariatur officia nisi ipsum laboris consectetur
+          ea esse ipsum. Officia culpa eiusmod minim non deserunt aliqua
+          cupidatat quis qui id exercitation qui.
+        </Text>
+      </View>
 
       {/* Cross sell category or product */}
       {<Image source={fbImage} style={styles.productImage} />}
@@ -158,6 +158,8 @@ export const styles = StyleSheet.create({
     height: 50,
     borderRadius: 360,
     marginRight: 10,
+    borderColor: 'white',
+    borderWidth: 1,
   },
   container: {
     flex: 1,

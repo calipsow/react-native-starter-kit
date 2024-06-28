@@ -11,7 +11,6 @@ const ProductCollection = ({ navigation, route }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.contentArea}>
-        <Text style={styles.pageHeader}>Product Collection 📱</Text>
         <View style={styles.filtersContainer}>
           <FilterButton title="View All" isActive={true} />
           <FilterButton
@@ -70,7 +69,6 @@ export const styles = StyleSheet.create({
   filtersContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginBottom: 20,
   },
   filterButton: {
     backgroundColor: '#F1F5F9',

@@ -3,36 +3,25 @@ import { Text, View } from 'react-native';
 import RNSButton from '../../../../components/Button';
 import { styles } from '../Shop';
 import { useNavigation } from '@react-navigation/native';
+import {
+  FormSubmitButton,
+  SecondarySubmitButton,
+  SubmitButton,
+} from '../../../../components/SubmitButton';
 
-export const ScreenFooter = () => {
-  const navigation = useNavigation();
+export const CTA = () => {
   return (
-    <View style={styles.footerContainer}>
+    <View className="rounded-xl bg-white p-4">
       {/* ZusammenStehenWir Blog Promotion */}
 
-      <Text style={styles.footerSectionTitle}>New Tech Blog Released 🎉</Text>
-      <Text style={styles.footerSubHeaderText}>
-        Take a breath from shopping and take a look on our tech blog about
-        Windows, Apple and much more ✨
+      <Text className="text-slate-950 font-extrabold text-2xl">
+        Latest Tech Trends
       </Text>
-      <View style={styles.footerButtonContainer}>
-        <RNSButton
-          caption="Blogs"
-          onPress={() => navigation.navigate('Blogs')}
-          secondary
-        />
-        <RNSButton
-          caption="Latest Blog"
-          bordered
-          onPress={() =>
-            navigation.navigate('Blogs', {
-              screen: 'Article',
-              params: {},
-            })
-          }
-          primary
-        />
-      </View>
+      <Text style={styles.footerSubHeaderText} className="mb-4">
+        Incididunt irure proident qui laboris et eiusmod in.Duis sint amet dolor
+        laboris magna ut ea incididunt ut officia tempor ut labore.
+      </Text>
+      <FormSubmitButton title="Ship Native Blog" />
     </View>
   );
 };

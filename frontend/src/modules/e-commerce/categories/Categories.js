@@ -10,7 +10,6 @@ import {
 import { colors, fonts } from '../../../styles';
 import getFontSize from '../../../helpers/resolve-relative-font-size';
 import { fbImage } from '../../../constants/constants';
-// import BlurImageFilter from '../../../components/SkiaImage';
 
 export const CategoryCard = ({
   title,
@@ -23,10 +22,15 @@ export const CategoryCard = ({
   <TouchableOpacity
     onPress={() => onPress(category_id)}
     style={[styles.categoryCard, style && style]}
+    className="rounded-xl border-white border-solid border-2"
   >
     <View style={styles.iconContainer}>
       {/*<BlurImageFilter source={imageUrl} />*/}
-      <Image source={{ uri: imageUrl }} style={styles.icon} />
+      <Image
+        source={{ uri: imageUrl }}
+        style={styles.icon}
+        className="rounded-xl"
+      />
       <View
         style={{
           position: 'absolute',
@@ -34,9 +38,9 @@ export const CategoryCard = ({
           top: '82%',
           backgroundColor: colors.primary,
           paddingHorizontal: 10,
-          borderRadius: 12,
           width: '95%',
         }}
+        className="rounded-xl"
       >
         <Text
           style={[styles.categoryTitle, textStyle && textStyle]}
@@ -52,8 +56,9 @@ export const CategoryCard = ({
 const ShopCategories = ({ navigation }) => {
   return (
     <View style={styles.gridContainer}>
-      {[{ id: 'category-1', title: 'some title', imageUrl: fbImage }].map(
-        (category, index) => (
+      {Array(4)
+        .fill({ id: 'category-1', title: 'some title', imageUrl: fbImage })
+        .map((category, index) => (
           <CategoryCard
             category_id={category.id || 'tAxog5nLAkIDtPjav2iYBfDpnZfQWjA8'}
             navigation={navigation}
@@ -66,8 +71,7 @@ const ShopCategories = ({ navigation }) => {
               })
             }
           />
-        ),
-      )}
+        ))}
     </View>
   );
 };
@@ -80,14 +84,7 @@ const styles = StyleSheet.create({
   },
   categoryCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 5,
-    borderWidth: 1,
-    borderColor: '#E2E8F0',
+
     width: '48%',
     marginBottom: 20,
     alignItems: 'center',

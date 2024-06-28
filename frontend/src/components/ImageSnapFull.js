@@ -63,7 +63,7 @@ const ImageSnapCarousel = ({ imagesArray = stubImages, imageStyles }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 20,
+    marginVertical: 8,
   },
   image: {
     width: windowWidth,

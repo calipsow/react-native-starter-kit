@@ -7,13 +7,17 @@ import { smallCaptionTextGray } from '../../../../styles/partials';
 import { styles } from '../Shop';
 import { useNavigation } from '@react-navigation/native';
 import getFontSize from '../../../../helpers/resolve-relative-font-size';
+import {
+  SecondarySubmitButton,
+  SubmitButton,
+} from '../../../../components/SubmitButton';
 
 export const SpotlightProduct = ({
   imageSrc = 'https://example.com/image.jpg',
 }) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.card}>
+    <View style={styles.card} className="rounded-xl">
       <Pressable onPress={() => navigation.navigate('Collection')}>
         <Image source={{ uri: imageSrc }} style={styles.cardImage} />
       </Pressable>
@@ -49,35 +53,31 @@ export const SpotlightProduct = ({
           >
             {/*<Text style={[grayCaption, {}]}></Text>*/}
             <View style={{ flexDirection: 'row', gap: 5, flexWrap: 'wrap' }}>
-              {['', '', '', '', ''].map((_, i) => (
-                <FontAwesome
-                  key={`star-${i}`}
-                  name="star"
-                  color={colors.yellow}
-                  size={20}
-                />
-              ))}
+              {Array(4)
+                .fill()
+                .map((_, i) => (
+                  <FontAwesome
+                    key={`star-${i}`}
+                    name="star"
+                    color={colors.yellow}
+                    size={20}
+                  />
+                ))}
             </View>
           </View>
           <Text style={styles.cardPrice}>$89.00</Text>
         </View>
         <View style={styles.demoButtonsContainer}>
-          <RNSButton
-            style={[styles.demoButton, { flexBasis: '47%' }]}
-            secondary
-            caption="Details"
-            bgColor={colors.primary}
-            onPress={() => navigation.navigate('Product')}
+          <SecondarySubmitButton
+            className={`rounded-lg px-8 py-2.5 items-center mt-2 mb-2 border-slate-700 border-solid border-2`}
+            text="More details"
+            textClassName="text-slate-700 text-[16px] font-semibold opacity-[.8]"
           />
-          <RNSButton
-            bordered
-            style={[
-              styles.demoButton,
-              { flexBasis: '47%', borderColor: colors.lightBlue },
-            ]}
-            primary
-            caption="Add"
-            onPress={() => navigation.navigate('Product')}
+          <SubmitButton
+            text="Add to card"
+            className={
+              'bg-slate-800 text-gray-800 rounded-lg px-8 py-3 items-center mt-2 mb-2'
+            }
           />
         </View>
       </View>

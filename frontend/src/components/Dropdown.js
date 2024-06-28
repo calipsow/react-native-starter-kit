@@ -2,7 +2,7 @@ import React from 'react';
 import ModalDropdown from 'react-native-modal-dropdown';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { colors, fonts, width } from '../styles';
 import { maxWidth } from '../styles/partials';
@@ -55,8 +55,8 @@ class RNSDropDown extends React.Component {
           backgroundColor: colors.primary,
           marginHorizontal: 10,
           borderColor: colors.primaryDark,
-          borderWidth: 0.5,
-
+          borderWidth: StyleSheet.hairlineWidth,
+          borderBottom: 0,
           borderRadius: 5,
         }}
         adjustFrame={params => {

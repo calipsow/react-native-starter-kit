@@ -43,6 +43,7 @@ export default function GalleryScreen(props) {
 
   return (
     <FlatList
+      nestedScrollEnabled={true}
       onRefresh={props.refreshImages}
       refreshing={props.images.length === 0 && props.isLoading}
       data={groupedData}
