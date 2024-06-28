@@ -6,7 +6,7 @@ import { colors } from '../../../../styles';
 import { smallCaptionTextGray } from '../../../../styles/partials';
 import { styles } from '../Shop';
 import { useNavigation } from '@react-navigation/native';
-import getFontSize from '../../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../../helpers/resolve-relative-font-size';
 
 export const SpotlightProduct = ({
   imageSrc = 'https://example.com/image.jpg',

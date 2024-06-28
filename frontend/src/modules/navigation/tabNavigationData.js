@@ -5,10 +5,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import { colors } from '../../styles';
 import BlogStackNavigator from '../blogs/BlogStack';
-import EventStackNavigator from '../events/EventStack';
 import HomeScreen from '../home/HomeView';
 import ProfileStackNavigator from '../account/ProfileStack';
 import getFontSize from '../../helpers/resolve-relative-font-size';
+import ShopStackNavigator from '../e-commerce/ShopStack';
 
 // implement default fall back route
 const tabNavigationData = [
@@ -25,13 +25,13 @@ const tabNavigationData = [
     ),
   },
   {
-    name: 'Events',
-    component: EventStackNavigator,
+    name: 'Shopping',
+    component: ShopStackNavigator,
     icon: focused => (
-      <MaterialCommunityIcons
-        name="newspaper"
-        size={getFontSize(33)}
-        style={{ padding: getFontSize(2), zIndex: 999 }}
+      <Entypo
+        name="shopping-cart"
+        size={getFontSize(32)}
+        style={{ padding: getFontSize(3), zIndex: 999 }}
         color={focused ? colors.bluish : colors.primaryDark}
       />
     ),

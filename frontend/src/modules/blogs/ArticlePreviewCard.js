@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import FBImage from '../../components/FBImage';
 
 import { format } from 'date-fns';
-import { fbImage } from '../../constants/constants';
+import { fbImage, pbImage } from '../../constants/constants';
 import {
   blueCaptionText,
   bodyTextRegular,
@@ -27,36 +27,33 @@ export const ArticlePreviewCard = ({ article, idx }) => {
   };
 
   return (
-    <View style={styles.article} key={`idx-${article.title}-${idx}`}>
+    <View className="my-3" key={`idx-${article.title}-${idx}`}>
       <TouchableOpacity onPress={handleClick}>
         <FBImage
-          fallbackStyles={{}}
-          src={article.poster || fbImage}
+          fallbackStyles={styles.featuredImage}
+          src={pbImage}
           style={styles.featuredImage}
         />
       </TouchableOpacity>
 
       <Pressable onPress={handleClick}>
         <View style={styles.authorContainer}>
-          <Text style={styles.authorText}>{article?.author}</Text>
+          <Text style={styles.authorText}>{'Sarah Bush'}</Text>
           <Text style={styles.dateText}>
-            from{' '}
-            {format(new Date(article.pub_date?.seconds * 1000), 'MM/dd/yyyy')}
+            from {format(new Date(Date.now() - Date.now() / 2), 'MM/dd/yyyy')}
           </Text>
         </View>
 
-        <Text style={styles.title}>{article.title}</Text>
-        <Text style={styles.description}>{article.description}</Text>
+        <Text style={styles.title}>{'Commodo Lorem proident'}</Text>
+        <Text style={styles.description}>
+          {'Sunt excepteur ipsum laboris sit pariatur sit reprehenderit.'}
+        </Text>
       </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  article: {
-    paddingHorizontal: 12,
-    marginVertical: 10,
-  },
   featuredImage: {
     width: '100%',
     height: 200, // Adjust as needed
@@ -82,6 +79,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontStyle: 'italic',
     marginLeft: -6,
+    color: 'white',
   },
   title: {
     ...mediumHeadlineText,
@@ -92,7 +90,6 @@ const styles = StyleSheet.create({
   },
   description: {
     ...bodyTextRegular,
-    marginBottom: 50,
     paddingTop: 2,
     fontSize: getFontSize(16),
     opacity: 0.8,

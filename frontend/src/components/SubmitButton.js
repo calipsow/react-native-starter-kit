@@ -12,7 +12,7 @@ export const SubmitButton = ({
     disabled={disabled}
     className={
       className ||
-      `bg-slate-500 text-gray-200 rounded-lg px-6 py-2 items-center mt-2 mb-2`
+      `bg-slate-500 text-gray-200 rounded-lg px-8 py-3 items-center mt-2 mb-2`
     }
   >
     <Text className="text-white text-[16px] font-semibold opacity-[.8]">
@@ -33,7 +33,7 @@ export const SecondarySubmitButton = ({
     disabled={disabled}
     className={
       className ||
-      `rounded-lg px-6 py-2 items-center mt-2 mb-2 border-slate-300 border-solid border`
+      `rounded-lg px-8 py-2.5 items-center mt-2 mb-2 border-slate-300 border-spacing-1 border`
     }
   >
     <Text

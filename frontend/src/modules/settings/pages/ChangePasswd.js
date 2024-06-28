@@ -28,9 +28,7 @@ const ChangePassword = ({ navigation, route }) => {
   const { showModalAlert } = useContext(ModalContext);
   const { showToastNotification } = useToastNotify();
 
-  const handleSubmit = async () => {
-    await changePassword(email);
-  };
+  const handleSubmit = () => changePassword(email);
 
   useEffect(() => {
     if (firebaseError) {
@@ -67,11 +65,7 @@ const ChangePassword = ({ navigation, route }) => {
           />
 
           {firebaseError && (
-            <Text style={styles.error}>
-              {firebaseError
-                ? firebaseError
-                : 'Something went wrong, please try again later.'}
-            </Text>
+            <Text style={styles.error}>{`${firebaseError}`}</Text>
           )}
 
           {/* Submit Button */}

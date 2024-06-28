@@ -35,7 +35,7 @@ function ShopPage() {
       <View style={{ width: '100%' }}>
         <View style={styles.pageHeader}>
           <Text style={[mediumHeadlineText, styles.whiteText]}>
-            ZusammenStehenWir Shop 💫
+            Online Shop 💫
           </Text>
         </View>
         <SearchBar style={styles.searchForm} onSubmit={handleSearchSubmit} />
@@ -59,11 +59,12 @@ function ShopPage() {
       <ShopPageSection title="Product Showcase" navigation={navigation}>
         <SpotlightProduct
           navigation={navigation}
-          imageSrc="https://ZusammenStehenWir.com/cdn/shop/files/164293ac-9c59-4790-99d6-5dfad6cd3c0f.jpg?v=1709666468"
+          imageSrc="https://shop.callipson.com/cdn/shop/files/164293ac-9c59-4790-99d6-5dfad6cd3c0f.jpg?v=1709666468"
         />
       </ShopPageSection>
       {/* Categories */}
       <ShopPageSection title="Popular Categories" navigation={navigation}>
+        <ShopCategories navigation={navigation} />
         <ShopCategories navigation={navigation} />
       </ShopPageSection>
       {/* Category Products */}
@@ -75,6 +76,16 @@ function ShopPage() {
           showsVerticalScrollIndicator={false}
         >
           {[
+            {
+              title: 'Air Force Fighter',
+              imageUrl: fbImage,
+              price: 14.99,
+            },
+            {
+              title: 'Air Force Fighter',
+              imageUrl: fbImage,
+              price: 14.99,
+            },
             {
               title: 'Air Force Fighter',
               imageUrl: fbImage,
@@ -100,7 +111,7 @@ function ShopPage() {
       <ShopPageSection title="" navigation={navigation}>
         <SpotlightProduct
           navigation={navigation}
-          imageSrc="https://ZusammenStehenWir.com/cdn/shop/products/image_ab893255-e927-4bfd-8a82-da9f747afb4c.jpg?v=1678653763&width=493"
+          imageSrc="https://shop.callipson.com/cdn/shop/products/image_ab893255-e927-4bfd-8a82-da9f747afb4c.jpg?v=1678653763&width=493"
         />
       </ShopPageSection>
       <ScreenFooter />
@@ -157,7 +168,7 @@ export const styles = StyleSheet.create({
     ...flexBoxRow,
     flexWrap: 'wrap',
     marginTop: 15,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'stretch',
     flexDirection: 'row', // Assuming flexBoxRow already defined flexDirection: 'row'
   },

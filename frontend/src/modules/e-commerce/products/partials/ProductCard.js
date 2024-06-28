@@ -11,7 +11,7 @@ import RNSButton from '../../../../components/Button';
 import { colors, fonts } from '../../../../styles';
 import Rating from '../../../../components/StarRating';
 import { smallTextGray } from '../../../../styles/partials';
-import getFontSize from '../../../../functions/ui/resolve-relative-font-size';
+import getFontSize from '../../../../helpers/resolve-relative-font-size';
 
 // Card Component
 

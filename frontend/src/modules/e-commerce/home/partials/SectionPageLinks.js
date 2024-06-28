@@ -1,9 +1,6 @@
 import React from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
-import {
-  ZusammenStehenWir_LOGO_SRC,
-  ZusammenStehenWir_META_DATA,
-} from '../../../../constants/constants';
+import { LOGO_SRC } from '../../../../constants/constants';
 import { colors } from '../../../../styles';
 import {
   sectionTitleCreme,
@@ -18,7 +15,11 @@ export const SectionPageLinks = ({ navigation, links }) => {
       <Text
         style={[
           smallTextGray,
-          { color: colors.lightBlue, fontVariant: ['small-caps'] },
+          {
+            color: colors.lightBlue,
+            fontVariant: ['small-caps'],
+            textAlign: 'center',
+          },
         ]}
         numberOfLines={1}
       >
@@ -28,38 +29,25 @@ export const SectionPageLinks = ({ navigation, links }) => {
   );
   return (
     <View style={{ marginBottom: 50 }}>
-      <Text style={[sectionTitleCreme, { opacity: 0.7, textAlign: 'center' }]}>
-        ZusammenStehenWir Shop
-      </Text>
       <View
-        style={[styles.footerButtonContainer, { rowGap: 10, flexWrap: 'wrap' }]}
+        style={[
+          styles.footerButtonContainer,
+          { columnGap: 15, flexWrap: 'wrap' },
+        ]}
       >
-        <View style={{ width: '50%', gap: 10 }}>
-          <Image
-            source={{ uri: ZusammenStehenWir_LOGO_SRC }}
-            style={{
-              objectFit: 'contain',
-              width: 150,
-              height: 90,
-              borderRadius: 8,
-              opacity: 0.8,
-            }}
-          />
-          <Text style={smallCaptionTextGray}>
-            {ZusammenStehenWir_META_DATA.company_name}
-          </Text>
-        </View>
-        <View style={{ width: '50%', gap: 10, alignItems: 'flex-end' }}>
+        <View style={{ gap: 5, alignItems: 'flex-center' }}>
           {[
-            'http://otti.ae/ozoefca',
-            'http://unocido.la/nek',
-            'http://ihtuwga.cf/nape',
-          ].map((l, i) => (
-            <LinkItem
-              key={`${i}-l`}
-              source={l}
-              text={l.split('://').at(-1).split('/')[0].toUpperCase()}
-            />
+            {
+              link: 'https://development.calllipson.com/about-us',
+              txt: 'About Us',
+            },
+            { link: 'https://development.calllipson.com', txt: 'Services' },
+            {
+              link: 'https://development.calllipson.com/contact',
+              txt: 'Contact',
+            },
+          ].map((item, i) => (
+            <LinkItem key={`${i}-l`} source={item.link} text={item.txt} />
           ))}
         </View>
       </View>

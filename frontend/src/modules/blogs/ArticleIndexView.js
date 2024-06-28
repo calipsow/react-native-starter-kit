@@ -29,13 +29,16 @@ const ArticleIndexScreen = ({ navigation, route }) => {
         {/* Dependency if no data could be loaded */}
         {sampleArticleData.length && (
           <View style={styles.articlesList}>
-            {sampleArticleData.map((article, idx) => (
-              <ArticlePreviewCard
-                article={article}
-                idx={idx}
-                key={idx + article.article_id}
-              />
-            ))}
+            {Array(3)
+              .fill()
+              .map(() => sampleArticleData[0])
+              .map((article, idx) => (
+                <ArticlePreviewCard
+                  article={article}
+                  idx={idx}
+                  key={idx + article.article_id}
+                />
+              ))}
           </View>
         )}
       </ScrollView>
@@ -90,6 +93,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: appThemeColor.darkBlue,
+    paddingHorizontal: 12,
   },
   avatar: {
     width: 79,

@@ -1,49 +1,15 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import getFontSize from '../helpers/resolve-relative-font-size';
-import { colors } from '../styles';
-import {
-  grayCaption,
-  mediumHeadlineText,
-  screenPadding,
-} from '../styles/partials';
 
 export const SubSectionLayout = ({ children, title, subTitle, styles }) => {
   return (
-    <View style={[{ marginBottom: 5, paddingBottom: 20 }]}>
-      <View
-        style={[
-          {
-            marginBottom: 20,
-            marginVertical: 5,
-            paddingHorizontal: 10,
-            paddingHorizontal: 12,
-            alignItems: 'center',
-          },
-          styles && styles,
-        ]}
-      >
-        <Text
-          style={[
-            mediumHeadlineText,
-            {
-              textAlign: 'center',
-              fontSize: getFontSize(18),
-              letterSpacing: -0.5,
-              color: colors.bluish,
-              maxWidth: 350,
-            },
-          ]}
-        >
+    <View className="mb-1 pb-5">
+      <View className="mb-3 mx-5 py-2 items-center" style={[styles && styles]}>
+        <Text className="text-center text-2xl font-semibold text-slate-300 max-w-sm">
           {title}
         </Text>
         {subTitle && (
-          <Text
-            style={[
-              grayCaption,
-              { textAlign: 'center', fontSize: getFontSize(14), maxWidth: 320 },
-            ]}
-          >
+          <Text className="text-center text-xl font-semibold text-slate-500 max-w-sm">
             {subTitle}
           </Text>
         )}

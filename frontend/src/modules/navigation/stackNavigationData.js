@@ -6,7 +6,6 @@ import { colors, fonts } from '../../styles';
 import { AuthStackNavigation } from '../auth/AuthStack';
 import BlogStackNavigator from '../blogs/BlogStack';
 import SingleArticleView from '../blogs/ArticlePage';
-import EventStackNavigator from '../events/EventStack';
 import SingleEventView from '../blogs/ArticlePage';
 import { SearchStackNavigation } from '../search/SearchStack';
 import { SettingStackNavigation } from '../settings/SettingStack';
@@ -85,18 +84,6 @@ const StackNavigationData = [
   {
     name: 'Settings',
     component: SettingStackNavigation,
-    headerLeft: headerLeftComponent,
-    headerShown: false,
-    headerBackground: { source: HEADER_BACKGROUND_IMAGE },
-    headerTitleStyle: {
-      fontFamily: fonts.primaryRegular,
-      color: colors.white,
-      fontSize: getFontSize(18),
-    },
-  },
-  {
-    name: 'Events', // remove
-    component: EventStackNavigator,
     headerLeft: headerLeftComponent,
     headerShown: false,
     headerBackground: { source: HEADER_BACKGROUND_IMAGE },

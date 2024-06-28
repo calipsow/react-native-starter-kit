@@ -1,8 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const ScreenWrapper = ({ children }) => (
-  <View className="flex-1 bg-slate-800 justify-center items-center">
+const ScreenWrapper = ({ children, className, style }) => (
+  <View
+    style={[style && style]}
+    className={className || 'flex-1 bg-slate-800 justify-center items-center'}
+  >
     {children}
   </View>
 );

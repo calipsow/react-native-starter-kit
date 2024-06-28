@@ -8,10 +8,9 @@ import {
 } from '../../../styles/partials';
 import SearchBar from '../../../components/Searchbar';
 import { ProductCard } from '../products/partials/ProductCard';
-import FeedArticlePost from '../../blogs/UI/FeedPost';
-import BlogCard from '../../blogs/UI/BlogCard';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { fbImage } from '../../../constants/constants';
+import BlogCard from '../../../components/BlogCard';
 
 const SearchPage = ({ navigation, route }) => {
   var { query } = route.params;
@@ -54,7 +53,7 @@ const SearchPage = ({ navigation, route }) => {
                   />
                 );
               case 'article':
-                return <FeedArticlePost key={`${i}--`} />;
+                return <View key={`${i}--`} />;
 
               case 'blog':
                 return (

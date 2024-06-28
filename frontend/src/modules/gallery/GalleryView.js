@@ -43,7 +43,6 @@ export default function GalleryScreen(props) {
 
   return (
     <FlatList
-      style={styles.container}
       onRefresh={props.refreshImages}
       refreshing={props.images.length === 0 && props.isLoading}
       data={groupedData}
@@ -54,9 +53,6 @@ export default function GalleryScreen(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.white,
-  },
   topImage: {
     flex: 1,
     height: 200,

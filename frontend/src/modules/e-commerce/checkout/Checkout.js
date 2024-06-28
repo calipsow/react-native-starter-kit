@@ -14,16 +14,16 @@ import {
   smallTextGray,
 } from '../../../styles/partials';
 import { colors } from '../../../styles';
-import Tag from '../../../components/Tag';
 import { Dropdown } from '../../../components';
-import { bundeslaenderDeutschland } from '../../../constants/constants';
 import getFontSize from '../../../helpers/resolve-relative-font-size';
+
+const provinces = ['sydney', 'new york'];
 
 export const LocationForm = ({ onChangeLocation = locationState => {} }) => {
   const [location, setLocation] = useState({
     city: '',
     street: '',
-    province: bundeslaenderDeutschland[0],
+    province: '',
     postCode: '',
     country: 'Deutschland',
   });
@@ -75,13 +75,13 @@ export const LocationForm = ({ onChangeLocation = locationState => {} }) => {
         />
       </View>
       <Dropdown
-        selectedIndex={bundeslaenderDeutschland.indexOf(location.province)}
-        items={bundeslaenderDeutschland}
+        selectedIndex={provinces.indexOf(location.province)}
+        items={provinces}
         color="#9b9b9b"
         onSelect={(idx, _) =>
           setLocation(prev => ({
             ...prev,
-            province: bundeslaenderDeutschland[idx],
+            province: provinces[idx],
           }))
         }
         style={[styles.input, { height: 40, marginBottom: 0, lineHeight: 16 }]}

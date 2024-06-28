@@ -7,9 +7,7 @@ import { Image } from 'react-native';
 import ProductCollection from './products/ProductCollection';
 import Shop from './home/Shop';
 import { HEADER_BACKGROUND_IMAGE } from '../../constants/constants';
-import AvailableInFullVersionScreen from '../availableInFullVersion/AvailableInFullVersionView';
 import Product from './products/Product';
-import ProductCategory from './categories/Category';
 import SearchPage from './search/SearchPage';
 import CheckoutScreen from './checkout/Checkout';
 import getFontSize from '../../helpers/resolve-relative-font-size';
@@ -79,7 +77,7 @@ const ShopStacks = [
 
 export function ShopStackNavigator({ navigation, route }) {
   return (
-    <ShopStack.Navigator initialRouteName="Checkout">
+    <ShopStack.Navigator initialRouteName="Shop">
       {ShopStacks.map((item, idx) => (
         <ShopStack.Screen
           key={`stack_item-${idx + 1}`}

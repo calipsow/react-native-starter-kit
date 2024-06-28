@@ -8,12 +8,12 @@ import {
   Text,
 } from 'react-native';
 import Lightbox from 'react-native-lightbox-v2';
+import { stubImages } from '../modules/gallery/GalleryState';
 
-import { _imagesArray } from '../modules/availableInFullVersion/sample-data';
 // import useResizeSnapView from './resizehook'
 const windowWidth = Dimensions.get('window').width;
 
-const ImageSnapCarousel = ({ imagesArray = _imagesArray, imageStyles }) => {
+const ImageSnapCarousel = ({ imagesArray = stubImages, imageStyles }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollViewRef = useRef();
 
@@ -38,14 +38,14 @@ const ImageSnapCarousel = ({ imagesArray = _imagesArray, imageStyles }) => {
         {imagesArray.map((image, index) => (
           <Lightbox key={index}>
             <Image
-              source={{ uri: image }}
+              source={{ uri: image.link }}
               style={[styles.image, imageStyles && imageStyles]}
             />
           </Lightbox>
         ))}
       </ScrollView>
       <View style={styles.indicatorContainer}>
-        {imagesArray.map((image, index) => (
+        {imagesArray.map((_, index) => (
           <Text
             key={index}
             style={[
