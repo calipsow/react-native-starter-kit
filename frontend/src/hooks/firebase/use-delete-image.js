@@ -13,7 +13,7 @@ const useDeleteImage = () => {
   const [successState, setSuccessState] = useState(false); // State to track if the image deletion was successful
   const [error, setError] = useState(''); // State to store any error messages that occur during deletion
   const [permissionGrantedState, setPermissionGrantedState] = useState(false); // State to track if the operation was permitted (e.g., user had correct permissions)
-
+  const { showModalAlert } = useContext(ModalContext);
   /**
    * Deletes an image from Firebase Storage based on its URL.
    *
