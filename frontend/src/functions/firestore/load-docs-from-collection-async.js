@@ -3,10 +3,14 @@ import { db } from '../../../config/firebase-client';
 import FirebaseAuthCacheController from '../../controller/cache/firebase-auth-controller';
 
 /**
- * Lädt alle Dokumente aus einer angegebenen Firestore-Kollektion
- * @param {string} collectionName Der Name der Firestore-Kollektion
- * @returns {Promise<Array>} Ein Promise, das beim Erfolg ein Array von Dokumentdaten zurückgibt
- */
+
+* Loads all documents from a specified Firestore collection
+
+* @param {string} collectionName The name of the Firestore collection
+
+* @returns {Promise<Array>} A promise that returns an array of document data upon success
+
+*/
 async function getDocsFromCollection(collectionName) {
   try {
     const collectionRef = collection(db, collectionName);
