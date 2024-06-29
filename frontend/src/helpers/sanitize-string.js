@@ -1,25 +1,25 @@
 /**
- * Desinfiziert Firestore-Eingaben, um sicherzustellen, dass sie sicher sind und keine schädlichen Zeichen oder HTML-Tags enthalten.
- * @param {String} input - Die Nutzereingabe, die desinfiziert werden soll.
- * @returns {String} - Der desinfizierte String.
+* Disinfected Firestore entries to ensure that they are secure and do not contain harmful characters or HTML tags.
+ * @param {String} input - The user input to be disinfected.
+ * @returns {String} - The sanitised string.
  */
 function sanitizeFirestoreInput(input) {
   if (typeof input !== 'string') {
     throw new Error('Input muss ein String sein');
   }
 
-  // Entfernt alle HTML-Tags
+// Removes all HTML tags
   const noHtml = input.replace(/<[^>]*>?/gm, '');
 
-  // Ersetzt Sonderzeichen durch sichere Entsprechungen
+// Replaces special characters with safe analogues
   const escaped = noHtml
-    .replace(/&/g, '&amp;') // Ersetzt '&'
-    .replace(/</g, '&lt;') // Ersetzt '<'
-    .replace(/>/g, '&gt;') // Ersetzt '>'
-    .replace(/"/g, '&quot;') // Ersetzt '"'
-    .replace(/'/g, '&#39;'); // Ersetzt "'"
+    .replace(/&/g, '&amp;') // Replaced '&'
+    .replace(/</g, '&lt;') // Replaced '<'
+    .replace(/>/g, '&gt;') // Replaced '>'
+    .replace(/"/g, '&quot;') // Replaced '"'
+    .replace(/'/g, '&#39;'); // Replaced "'"
 
-  return escaped; // Gibt den desinfizierten String zurück
+  return escaped; 
 }
 
 export default sanitizeFirestoreInput;
