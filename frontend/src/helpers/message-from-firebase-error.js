@@ -23,6 +23,6 @@ export default function getFriendlyErrorMessage(errorCode = '') {
     case !errorCode:
       return '';
     default:
-      return 'Ein Fehler ist aufgetreten.';
+      return 'An error has occurred.';
   }
 }
