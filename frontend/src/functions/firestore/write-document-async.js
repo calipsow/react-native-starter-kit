@@ -2,13 +2,20 @@ import { getFirestore, doc, setDoc, updateDoc } from 'firebase/firestore';
 import replaceUndefinedWithNull from '../../helpers/replace-undef-with-null';
 
 /**
- * Schreibt oder aktualisiert ein Dokument in Firestore.
- * @param {string} collectionID - Die ID der Sammlung, in der das Dokument geschrieben oder aktualisiert wird.
- * @param {string} docID - Die ID des Dokuments, das geschrieben oder aktualisiert werden soll.
- * @param {object} data - Das Objekt mit den Daten, die im Dokument gespeichert oder aktualisiert werden sollen.
- * @param {boolean} merge - Gibt an, ob die Daten gemerged (aktualisiert) oder überschrieben werden sollen.
- * @returns {Promise<void>} Ein Promise, das abgeschlossen wird, wenn die Operation erfolgreich war.
- */
+
+* Writes or updates a document in Firestore.
+
+* @param {string} collectionID - The ID of the collection in which the document is written or updated.
+
+* @param {string} docID - The ID of the document to be written or updated.
+
+* @param {object} data - The object with the data to be stored or updated in the document.
+
+* @param {boolean} merge - Specifies whether the data should be merged (updated) or overwritten.
+
+* @returns {Promise<void>} A promise that is completed when the operation was successful.
+
+*/
 const writeDocument = async (collectionID, docID, data, merge = false) => {
   const db = getFirestore();
   const docRef = doc(db, collectionID, docID); // Erstellt eine Referenz zum Dokument
@@ -19,10 +26,10 @@ const writeDocument = async (collectionID, docID, data, merge = false) => {
     } else {
       await setDoc(docRef, replaceUndefinedWithNull(data)); // Schreibt die Daten in das Dokument, überschreibt existierende Daten
     }
-    // console.log('Document successfully written!');
+
   } catch (error) {
     console.error('Error writing document: ', error);
-    throw error; // Weitergabe des Fehlers an den Aufrufer
+    throw error; 
   }
 };
 
