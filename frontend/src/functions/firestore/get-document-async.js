@@ -1,42 +1,47 @@
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-const cacheMap = new Map(); // Map zum Speichern der Cache-Daten
+const cacheMap = new Map(); // Map for storing the cache data
 
 /**
- * Holt ein Dokument aus Firestore basierend auf der Sammlungs-ID und der Dokumenten-ID.
- * Überprüft zuerst, ob ein gültiger Cache-Eintrag vorhanden ist.
- * @param {string} collectionID - Die ID der Sammlung, aus der das Dokument abgerufen wird.
- * @param {string} docID - Die ID des Dokuments, das abgerufen werden soll.
- * @returns {Promise<object|null>} Ein Promise, das das abgerufene Dokument zurückgibt, oder null, wenn kein Dokument gefunden wurde.
- */
+ * Get a document from Firestore based on the collection ID and document ID.
+
+* First checks whether a valid cache entry exists.
+
+* @param {string} collectionID - The ID of the collection from which the document is retrieved.
+
+* @param {string} docID - The ID of the document to be retrieved.
+
+* @returns {Promise<object|null>} A Promise that returns the retrieved document, or null if no document was found.
+
+*/
 const getDocument = async (collectionID = '', docID = '') => {
   try {
     const cacheKey = `${collectionID}:${docID}`;
     const now = Date.now();
     const cachedEntry = cacheMap.get(cacheKey);
 
-    // Überprüfung, ob der Cache gültig ist
+// Check whether the cache is valid
     if (
       cachedEntry &&
       now - cachedEntry.timestamp < 60000 &&
       collectionID !== 'Versions'
     ) {
-      return cachedEntry.response; // Zurückgeben der gecachten Antwort
+      return cachedEntry.response; // Returning the cached reply
     }
 
-    // Datenbank-Referenz und Dokumenten-Abfrage
+// Database reference and document query
     const db = getFirestore();
     const docRef = doc(db, collectionID, docID);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const data = docSnap.data();
-      cacheMap.set(cacheKey, { response: data, timestamp: now }); // Aktualisierung des Caches mit gültigen Daten
+      cacheMap.set(cacheKey, { response: data, timestamp: now }); 
       return data;
     } else {
       if (collectionID !== 'Admins')
         console.log('No such document!', `${collectionID} ${docID}`);
-      cacheMap.set(cacheKey, { response: null, timestamp: now }); // Aktualisierung des Caches auch wenn kein Dokument gefunden wurde
+      cacheMap.set(cacheKey, { response: null, timestamp: now }); 
       return null;
     }
   } catch (error) {
