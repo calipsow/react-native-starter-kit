@@ -1,5 +1,5 @@
 const sortObjectArrayByDate = ({ property = '', dataset = [] }) => {
-  const today = new Date().getTime(); // Aktuelles Datum für die Vergleichsgrundlage
+  const today = new Date().getTime(); // Current date for the comparison basis
 
   const futureEvents = [];
   const pastEvents = [];
@@ -18,14 +18,14 @@ const sortObjectArrayByDate = ({ property = '', dataset = [] }) => {
     }
   });
 
-  // Sortiere zukünftige Events in aufsteigender Reihenfolge nach Datum
+  // Sort future events in ascending order by date
   futureEvents.sort((a, b) => {
     const timeA = new Date(a[property]['seconds'] * 1000);
     const timeB = new Date(b[property]['seconds'] * 1000);
     return timeA - timeB;
   });
 
-  // Sortiere vergangene Events in absteigender Reihenfolge nach Datum
+// Sort past events in descending order by date
   pastEvents.sort((a, b) => {
     const timeA = new Date(a[property]['seconds'] * 1000);
     const timeB = new Date(b[property]['seconds'] * 1000);
@@ -35,21 +35,5 @@ const sortObjectArrayByDate = ({ property = '', dataset = [] }) => {
   return { futureEvents, pastEvents, nullEvents };
 };
 
-/* Beispiel-Verwendung der Funktion
-  const events = [
-    { id: 1, start_time: { seconds: new Date('2024-12-25').getTime() / 1000 } }, // Zukünftiges Event
-    { id: 2, start_time: null }, // Kein Event-Zeitstempel
-    { id: 3, start_time: { seconds: new Date('2020-10-15').getTime() / 1000 } }, // Vergangenes Event
-    { id: 4, start_time: { seconds: new Date('2024-11-01').getTime() / 1000 } }, // Zukünftiges Event
-    { id: 5, start_time: null }, // Kein Event-Zeitstempel
-  ];
-  
-  const { futureEvents, pastEvents } = sortObjectArrayByDate({
-    property: 'start_time',
-    dataset: events
-  });
-  
-  console.log("Zukünftige Events:", futureEvents);
-  console.log("Vergangene Events:", pastEvents);
-  */
+
 export default sortObjectArrayByDate;
