@@ -5,7 +5,6 @@ class SecureStoreClass {
     this.keysMap = new Map();
   }
 
-  // Methode zum Speichern eines Wertes
   async save(key, value) {
     try {
       if (!value)
@@ -20,13 +19,13 @@ class SecureStoreClass {
         key,
         typeof value !== 'string' ? JSON.stringify(value) : value,
       );
-      this.keysMap.set(key, true); // Schlüssel zur Map hinzufügen
+      this.keysMap.set(key, true); 
     } catch (error) {
-      console.log('Fehler beim Speichern:', error);
+      console.log('Error saving:', error);
     }
   }
 
-  // Methode zum Aktualisieren eines Wertes
+
   async update(key, newValue) {
     if (this.keysMap.has(key)) {
       if (!newValue)
@@ -42,10 +41,10 @@ class SecureStoreClass {
           typeof newValue !== 'string' ? JSON.stringify(newValue) : newValue,
         );
       } catch (error) {
-        console.log('Fehler beim Aktualisieren:', error);
+        console.log('Error when updating:', error);
       }
     } else {
-      console.log('Schlüssel existiert nicht.');
+      console.log('Key does not exist.');
     }
   }
 
@@ -53,25 +52,25 @@ class SecureStoreClass {
     try {
       return await EncryptedStorage.getItem(key);
     } catch (error) {
-      console.log('Fehler beim Abrufen des Schlüssels:', error);
+      console.log('Error when retrieving the key:', error);
     }
   }
 
-  // Methode zum Löschen eines Wertes
+
   async remove(key) {
     if (this.keysMap.has(key)) {
       try {
         await EncryptedStorage.removeItem(key);
-        this.keysMap.delete(key); // Schlüssel aus der Map entfernen
+        this.keysMap.delete(key); 
       } catch (error) {
-        console.log('Fehler beim Entfernen:', error);
+        console.log('Error during removal:', error);
       }
     } else {
-      console.log('Schlüssel existiert nicht.');
+      console.log('Key does not exist.');
     }
   }
 
-  // Methode zum Entfernen aller Schlüssel und Werte
+
   async clear() {
     try {
       const keys = await EncryptedStorage.getAllKeys();
@@ -80,9 +79,9 @@ class SecureStoreClass {
           await EncryptedStorage.removeItem(key);
         }
       }
-      this.keysMap.clear(); // Map leeren
+      this.keysMap.clear(); // Map clear
     } catch (error) {
-      console.log('Fehler beim Leeren des Speichers:', error);
+      console.log('Error when emptying the memory:', error);
     }
   }
 }
