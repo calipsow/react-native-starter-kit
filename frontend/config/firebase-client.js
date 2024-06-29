@@ -1,4 +1,3 @@
-// Importieren der Firebase-App und der benötigten Dienste
 import { initializeApp } from 'firebase/app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getAnalytics } from 'firebase/analytics';
@@ -9,6 +8,7 @@ import {
   initializeAuth,
 } from 'firebase/auth/react-native';
 
+// Paste here your compied condigs from the firebase condole in
 const firebaseConfig = {
   apiKey: 'AIzaSyCmmd2hH5n0iu8-dqvgaRuiY1MUZNh8a1Q',
   authDomain: 'ship-apps-fast.firebaseapp.com',
@@ -19,14 +19,22 @@ const firebaseConfig = {
   measurementId: 'G-W68GGYLSNN',
 };
 
-// Initialisieren von Firebase
+// Firebase App
 const app = initializeApp(firebaseConfig);
 
-// Initialisieren der Firebase-Dienste
+// REQUIRED: Firebase Auth
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage),
 });
+
+// REQUIRED: Firestore DB 
 const db = getFirestore(app);
+
+// OPTIONAL: storage is not required to run the app you can comment it out without worries 
 const storage = getStorage(app);
+
+// OPTIONAL: analytics is also not necessary 
 const analytics = getAnalytics(app);
+
+// if you dont want to use some services then declaire they instances with null
 export { auth, db, storage, app, analytics };
