@@ -1,15 +1,15 @@
 /**
- * Ersetzt alle `undefined` Werte in einem Objekt mit `null`.
- * @param {Object} obj - Das Objekt, das bearbeitet werden soll.
- * returns  Das bearbeitete Objekt mit `null` anstelle von `undefined`.
+ * Replaces all `undefined` values in an object with `zero`.
+ * @param {Object} Obj - The object to be edited.
+ * returns  The edited object with `zero` instead of `undefined`.
  */
 function replaceUndefinedWithNull(obj) {
   if (obj !== null && typeof obj === 'object') {
     Object.keys(obj).forEach(key => {
       if (obj[key] === undefined) {
-        obj[key] = null; // Ersetze undefined mit null
+        obj[key] = null; // replace undefined with zero
       } else if (typeof obj[key] === 'object') {
-        replaceUndefinedWithNull(obj[key]); // Rekursiver Aufruf für Objekte
+        replaceUndefinedWithNull(obj[key]); // Recursive call for objects
       }
     });
   }
