@@ -8,7 +8,7 @@ import {
   Text,
 } from 'react-native';
 import Lightbox from 'react-native-lightbox-v2';
-import { stubImages } from '../modules/gallery/GalleryState';
+import { stubImages } from '../constants/constants';
 
 // import useResizeSnapView from './resizehook'
 const windowWidth = Dimensions.get('window').width;

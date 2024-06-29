@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import SubSectionLayout from '../../components/SubSectionLayout';
 import { ARTICLE_SCHEME } from '../../constants/firestore-schemes';
-import { ArticlePreviewCard } from '../blogs/ArticlePreviewCard';
+import { ArticlePreviewCard } from '../blogs/partials/ArticleCard';
 import Markdown from 'react-native-simple-markdown';
 import getFontSize from '../../helpers/resolve-relative-font-size';
 

@@ -16,10 +16,12 @@ import SecureStorage from '../../../helpers/secure-storage';
 import useRegisterUser from '../../../hooks/auth/use-registrar-user';
 import { ModalContext } from '../../provider/ModalProvider';
 import { EMAIL_REG } from '../../../constants/constants';
+import { useToastNotify } from '../../../hooks/screen/use-toast-notification';
 
 export default function SignUp() {
   const navigation = useNavigation();
-  const { showModalAlert } = useContext(ModalContext);
+  const { showToastNotification } = useToastNotify();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -66,12 +68,13 @@ export default function SignUp() {
       await SecureStorage.save('username', formData.name);
       registerUser(formData.name, formData.email, formData.password);
     } else {
-      showModalAlert(
-        'Please check your entries\n',
-        `${Object.keys(formErrors)
-          .map(k => formErrors[k])
-          .join('\n\n')}`,
-      );
+      showToastNotification({
+        msg:
+          'Please check your entries ' +
+          `\n${Object.keys(formErrors)
+            .map(k => formErrors[k])
+            .join('\n')}`,
+      });
     }
   };
 
@@ -120,13 +123,6 @@ export default function SignUp() {
           title="Register"
           loading={loading}
           handleSubmit={handleSubmit}
-          disabled={
-            !(
-              EMAIL_REG.test(formData.email) &&
-              formData.name.length >= 2 &&
-              formData.password.length >= 10
-            )
-          }
         />
         <CaptionWithLink
           screen="Sign In"

@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useContext, useEffect } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -6,23 +7,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Tag from '../../components/Tag';
-import useAuthState from '../../hooks/auth/use-auth-state';
+import ShipNativeSVG from '../../../assets/images/shipnative/svg/IMG_2090.svg';
+import SingleTag from '../../components/SingleTag';
+import { sampleBannerData } from '../../constants/constants';
 import useGetDocument from '../../hooks/firebase/use-get-document';
 import useExternalLink from '../../hooks/utilities/use-external-link';
-import ScreenWrapper from '../layouts/ScreenWrapper';
-import { sampleBannerData } from '../../constants/constants';
 import { AccountContext } from '../AppView';
-import Markdown from './MarkdownView';
-import SingleTag from '../../components/SingleTag';
-import GalleryScreen from '../gallery/GalleryView';
-import { stubImages } from '../gallery/GalleryState';
-import ShipNativeSVG from '../../../assets/images/shipnative/svg/IMG_2090.svg';
-import { width } from '../../styles';
+import ScreenWrapper from '../pages/ScreenWrapper';
 
 const HomeTags = [
   {

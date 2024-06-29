@@ -49,19 +49,22 @@ function ShopPage() {
       >
         {[
           {
-            title: 'Air Force Fighter',
-            imageUrl: fbImage,
-            price: 14.99,
+            title: 'PS4 Controller',
+            imageUrl:
+              'https://images.unsplash.com/photo-1535043205849-513fe27db33e?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            price: 69.99,
           },
           {
-            title: 'Air Force Fighter',
-            imageUrl: fbImage,
-            price: 14.99,
+            title: 'Wilson Basket Ball',
+            imageUrl:
+              'https://images.unsplash.com/photo-1518989229647-6377f907a0b2?q=80&w=1748&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            price: 39.99,
           },
           {
-            title: 'Air Force Fighter',
-            imageUrl: fbImage,
-            price: 14.99,
+            title: 'Air Force',
+            imageUrl:
+              'https://images.unsplash.com/photo-1524687752851-f6ecdfa92e4c?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            price: 1499.99,
           },
         ].map((item, i) => (
           <View
@@ -74,6 +77,7 @@ function ShopPage() {
               imageUrl={item.imageUrl}
               price={item.price}
               key={`${item.title}-${i}`}
+              onPressCard={() => navigation.navigate('Product')}
             />
           </View>
         ))}
@@ -195,7 +199,6 @@ export const styles = StyleSheet.create({
   },
 
   card: {
-    backgroundColor: '#FFFFFF',
     marginBottom: 20,
     overflow: 'hidden',
     shadowColor: '#000',

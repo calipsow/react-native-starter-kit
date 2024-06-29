@@ -12,9 +12,12 @@ import { FormSubmitButton } from '../../../components/SubmitButton';
 import useResetPassword from '../../../hooks/auth/use-passwd-reset';
 import { FormField } from '../../../components/Forms';
 import { EMAIL_REG } from '../../../constants/constants';
+import { useToastNotify } from '../../../hooks/screen/use-toast-notification';
 
 export default function ResetPassword() {
   const navigation = useNavigation();
+  const { showToastNotification } = useToastNotify();
+
   const { resetPassword, emailSent, error, loading } = useResetPassword();
   const [email, setEmail] = useState('');
   useEffect(() => {
@@ -57,10 +60,13 @@ export default function ResetPassword() {
             className="mb-0"
           />
           <FormSubmitButton
-            handleSubmit={() => resetPassword(email)}
+            handleSubmit={() =>
+              !EMAIL_REG.test(email)
+                ? showToastNotification({ msg: 'Enter your email' })
+                : resetPassword(email)
+            }
             loading={loading}
             title="Reset Password"
-            disabled={!EMAIL_REG.test(email)}
           />
         </View>
         <SmallCaptionLink

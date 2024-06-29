@@ -6,7 +6,7 @@ import { CommentCard, PostCard } from './partials/CommentCard';
 
 export default function FeedView() {
   return (
-    <ScrollView className="bg-gray-950">
+    <ScrollView className="bg-slate-900">
       <View className="pb-5">
         <CTACard />
         <TextPost />

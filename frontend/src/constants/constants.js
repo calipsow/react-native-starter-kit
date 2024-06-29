@@ -46,7 +46,6 @@ export const DEEP_LINKING_CONFIG = {
           'Loading Backend': 'loading_app',
           'Update App Screen': 'update_app',
           Home: 'home',
-          Events: 'events',
           Auth: {
             // Fallback Router if the client is unauthenticated
             path: 'auth',
@@ -309,3 +308,66 @@ export const sampleBannerData = {
   image:
     'https://images.unsplash.com/photo-1718486463454-a29ee090f0c5?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 };
+
+export const stubImages = [
+  {
+    id: 0,
+    link: 'https://s-media-cache-ak0.pinimg.com/736x/6d/68/e5/6d68e55c58127d5f8271dc40449e037d--baddie-natural-makeup-pretty-natural-makeup.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 1,
+    link: 'https://s-media-cache-ak0.pinimg.com/736x/90/41/f0/9041f0a56732ec5ff824ea92852df69e.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 2,
+    link: 'https://pbs.twimg.com/profile_images/1642784826/pretty-girl-jessica-alba_422_8785.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 3,
+    link: 'https://pbs.twimg.com/profile_images/1642784826/pretty-girl-jessica-alba_422_8785.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 4,
+    link: 'https://s-media-cache-ak0.pinimg.com/736x/6d/68/e5/6d68e55c58127d5f8271dc40449e037d--baddie-natural-makeup-pretty-natural-makeup.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 5,
+    link: 'https://s-media-cache-ak0.pinimg.com/736x/90/41/f0/9041f0a56732ec5ff824ea92852df69e.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 6,
+    link: 'https://pbs.twimg.com/profile_images/1642784826/pretty-girl-jessica-alba_422_8785.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 7,
+    link: 'https://pbs.twimg.com/profile_images/1642784826/pretty-girl-jessica-alba_422_8785.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 8,
+    link: 'https://s-media-cache-ak0.pinimg.com/736x/6d/68/e5/6d68e55c58127d5f8271dc40449e037d--baddie-natural-makeup-pretty-natural-makeup.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 9,
+    link: 'https://s-media-cache-ak0.pinimg.com/736x/90/41/f0/9041f0a56732ec5ff824ea92852df69e.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 10,
+    link: 'https://pbs.twimg.com/profile_images/1642784826/pretty-girl-jessica-alba_422_8785.jpg',
+    description: 'Test image in the grid',
+  },
+  {
+    id: 11,
+    link: 'https://pbs.twimg.com/profile_images/1642784826/pretty-girl-jessica-alba_422_8785.jpg',
+    description: 'Test image in the grid',
+  },
+];

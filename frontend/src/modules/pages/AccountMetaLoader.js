@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Image, Pressable, Text, View } from 'react-native';
-import FBImage from './FBImage';
-import { fbImage, pbImage } from '../constants/constants';
+import FBImage from '../../components/FBImage';
+import { fbImage, pbImage } from '../../constants/constants';
 
 const AccountMeta = ({
   userData = {},

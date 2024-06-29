@@ -34,9 +34,7 @@ const Product = () => {
     >
       <ImageSnapCarousel imageStyles={{ borderRadius: 5 }} />
       {/* Product Title */}
-      <Text className="text-3xl text-slate-200 font-bold">
-        New And For Sale Now
-      </Text>
+      <Text className="text-3xl text-slate-200 font-bold">For Sale Now</Text>
       {/* caption for discount info etc */}
       <Text className="text-xl text-slate-400 font-semibold pb-2">
         Save with the code something 30% on your order!

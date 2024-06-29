@@ -1,46 +1,13 @@
 import React, { useContext } from 'react';
-import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
-import Tag from '../../components/Tag';
+import { Image, ScrollView, Text, View } from 'react-native';
 
-import { colors, fonts, height, width } from '../../styles';
-import {
-  appThemeColor,
-  bodyTextRegular,
-  flexBoxRow,
-  mediumHeadlineText,
-  screenPadding,
-  sectionTitleCreme,
-} from '../../styles/partials';
-import {
-  DangerButton,
-  SecondarySubmitButton,
-  SubmitButton,
-} from '../../components/SubmitButton';
-import { DividerCaption } from '../../components/DividerCaption';
+import { SecondarySubmitButton } from '../../components/SubmitButton';
+import { flexBoxRow } from '../../styles/partials';
 
-import LightboxView from 'react-native-lightbox-v2';
-import useImageDimensions from '../../hooks/utilities/use-size-from-sourced-image';
-import { ModalContext } from '../provider/ModalProvider';
-import useExternalLink from '../../hooks/utilities/use-external-link';
-import { AvatarComponent } from '../../components/ArticlePreviewCard';
-import { fbImage } from '../../constants/constants';
-import {
-  CaptionWithLink,
-  LinkText,
-  SmallCaptionLink,
-  TextCaptionWarning,
-} from '../../components/TextCaptions';
 import SingleTag from '../../components/SingleTag';
-import getFontSize from '../../helpers/resolve-relative-font-size';
+import { fbImage } from '../../constants/constants';
+import useExternalLink from '../../hooks/utilities/use-external-link';
+import { ModalContext } from '../provider/ModalProvider';
 
 const documentData = {
   content_sections: [
@@ -70,11 +37,6 @@ const SingleArticleView = ({ navigation, route }) => {
       showsVerticalScrollIndicator={false}
     >
       <View className="w-full bg-slate-900 h-screen">
-        <AvatarComponent
-          createdAt={'2024'}
-          createdBy={'user546'}
-          imageLink={fbImage}
-        />
         {/* Article Title */}
         <Text className="text-2xl text-slate-200 px-3 font-bold">
           Why Ship Native?

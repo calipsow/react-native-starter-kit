@@ -5,9 +5,7 @@ import { HEADER_BACKGROUND_IMAGE, isIOS } from '../../constants/constants';
 import { colors, fonts } from '../../styles';
 import { AuthStackNavigation } from '../auth/AuthStack';
 import BlogStackNavigator from '../blogs/BlogStack';
-import SingleArticleView from '../blogs/ArticlePage';
-import SingleEventView from '../blogs/ArticlePage';
-import { SearchStackNavigation } from '../search/SearchStack';
+import SingleArticleView from '../blogs/ArticleView';
 import { SettingStackNavigation } from '../settings/SettingStack';
 import { headerLeftComponent } from './headerLeftComponent';
 import LoadingView, { LoadingFirebaseView } from '../pages/LoadingViews';
@@ -70,7 +68,7 @@ const StackNavigationData = [
       : undefined,
   },
   {
-    name: 'Blogs', // remove
+    name: 'Blogs',
     component: BlogStackNavigator,
     headerLeft: headerLeftComponent,
     headerBackground: { source: HEADER_BACKGROUND_IMAGE },
@@ -105,34 +103,9 @@ const StackNavigationData = [
       fontSize: getFontSize(18),
     },
   },
+
   {
-    name: 'Suche', // remove
-    component: SearchStackNavigation,
-    headerLeft: headerLeftComponent,
-    headerShown: false,
-    headerBackground: { source: HEADER_BACKGROUND_IMAGE },
-    headerTitleStyle: {
-      fontFamily: fonts.primaryRegular,
-      color: colors.white,
-      fontSize: getFontSize(18),
-    },
-  },
-  {
-    name: 'Single Event', // remove
-    component: SingleEventView,
-    headerLeft: headerLeftComponent,
-    headerShown: true,
-    headerBackground: { source: HEADER_BACKGROUND_IMAGE },
-    headerTitleStyle: !isIOS
-      ? {
-          fontFamily: fonts.primaryRegular,
-          color: colors.white,
-          fontSize: 0,
-        }
-      : undefined,
-  },
-  {
-    name: 'Single Article', // remove
+    name: 'Single Article',
     component: SingleArticleView,
     headerLeft: headerLeftComponent,
     headerShown: true,

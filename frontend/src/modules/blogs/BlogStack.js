@@ -5,10 +5,10 @@ import { HEADER_BACKGROUND_IMAGE } from '../../constants/constants';
 import { colors, fonts } from '../../styles';
 import { styles } from '../navigation/RootNavigation';
 import { headerLeftComponent } from '../navigation/headerLeftComponent';
-import ArticleIndex from './ArticleIndexView';
-import BlogIndex from './BlogArticleFeed';
-import ArticlePage from './ArticlePage';
+import BlogsView from './BlogsView';
+import ArticlePage from './ArticleView';
 import getFontSize from '../../helpers/resolve-relative-font-size';
+import CommunityMembers from './partials/Community';
 const BlogStack = createStackNavigator();
 
 const BlogStacks = [
@@ -26,8 +26,8 @@ const BlogStacks = [
     },
   },
   {
-    name: 'Blog',
-    component: BlogIndex,
+    name: 'Community',
+    component: CommunityMembers,
     headerLeft: headerLeftComponent,
     headerBackground: { source: HEADER_BACKGROUND_IMAGE },
     headerShown: false,
@@ -39,7 +39,7 @@ const BlogStacks = [
   },
   {
     name: 'Blog Articles',
-    component: ArticleIndex,
+    component: BlogsView,
     headerLeft: headerLeftComponent,
     headerBackground: { source: HEADER_BACKGROUND_IMAGE },
     headerShown: false,
@@ -53,7 +53,7 @@ const BlogStacks = [
 
 export function BlogStackNavigator({ navigation, route }) {
   return (
-    <BlogStack.Navigator initialRouteName="Blog">
+    <BlogStack.Navigator initialRouteName="Community">
       {BlogStacks.map((item, idx) => (
         <BlogStack.Screen
           key={`stack_item-${idx + 1}`}

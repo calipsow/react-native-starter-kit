@@ -75,7 +75,7 @@ export const PostCard = ({ post = posts[0] }) => {
         </TouchableOpacity>
       </View>
       <Text className="text-white mt-4">{post.content}</Text>
-      <View className="flex-row mt-4 justify-around">
+      <View className="flex-row justify-start mt-4" style={{ columnGap: 16 }}>
         <Text className="text-gray-400">❤️ {post.reactions.likes}</Text>
         <Text className="text-gray-400">🔁 {post.reactions.retweets}</Text>
         <Text className="text-gray-400">💬 {post.reactions.comments}</Text>

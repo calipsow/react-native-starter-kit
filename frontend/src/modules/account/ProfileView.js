@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { AccountContext } from '../AppView';
 
 const ProfileView = () => {
+  const [accountCtx] = useContext(AccountContext);
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <View className="bg-slate-900 text-gray-100 min-h-screen">
@@ -36,7 +38,7 @@ const ProfileView = () => {
           </View>
         </View>
         <View className="items-center mt-4">
-          <Text className="text-2xl font-bold">Carolyn McNeail ✨</Text>
+          <Text className="text-2xl font-bold">{accountCtx.username} ✨</Text>
           <Text className="text-sm text-gray-400 mt-1 text-center">
             Fitness Fanatic, Design Enthusiast, Mentor, Meetup Organizer & PHP
             Lover.

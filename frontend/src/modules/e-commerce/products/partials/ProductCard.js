@@ -33,12 +33,12 @@ export const ProductCard = ({
 }) => (
   <View
     style={[style && style]}
-    className="bg-slate-100 rounded-2xl p-2 mb-2 w-full pb-2 m-0.5"
+    className="bg-slate-300 rounded-xl p-2 mb-2 w-full pb-2 m-0.5"
   >
     <Image
       style={[imageStyle && imageStyle]}
       source={{ uri: imageUrl }}
-      className="rounded-2xl w-full h-40 object-cover"
+      className="rounded-lg w-full h-40 object-cover"
     />
     <Pressable onPress={onPressCard}>
       <View>
@@ -49,7 +49,7 @@ export const ProductCard = ({
           {title}
         </Text>
         <Text
-          className="text-slate-600 font-semibold text-xl"
+          className="text-slate-900 font-semibold text-sm"
           numberOfLines={7}
         >
           {description}
@@ -67,12 +67,14 @@ export const ProductCard = ({
               className={`rounded-lg px-8 py-2.5 items-center mt-2 mb-2 border-slate-700 border-solid border-2`}
               text="Details"
               textClassName="text-slate-700 text-[16px] font-semibold opacity-[.8]"
+              onPress={onPressCard}
             />
             <SubmitButton
               text="Add"
               className={
                 'bg-slate-800 text-gray-800 rounded-lg px-8 py-3 items-center mt-2 mb-2'
               }
+              onPress={onPressCard}
             />
           </View>
         )}

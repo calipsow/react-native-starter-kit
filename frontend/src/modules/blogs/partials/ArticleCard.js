@@ -7,19 +7,19 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import FBImage from '../../components/FBImage';
+import FBImage from '../../../components/FBImage';
 
 import { format } from 'date-fns';
-import { fbImage, pbImage } from '../../constants/constants';
+import { fbImage, pbImage } from '../../../constants/constants';
 import {
   blueCaptionText,
   bodyTextRegular,
   mediumHeadlineText,
-} from '../../styles/partials';
-import { colors } from '../../styles';
-import getFontSize from '../../helpers/resolve-relative-font-size';
+} from '../../../styles/partials';
+import { colors } from '../../../styles';
+import getFontSize from '../../../helpers/resolve-relative-font-size';
 
-export const ArticlePreviewCard = ({ article, idx }) => {
+export const ArticleCard = ({ article, idx }) => {
   const navigation = useNavigation();
 
   const handleClick = () => {

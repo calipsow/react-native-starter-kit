@@ -17,7 +17,7 @@ export const SpotlightProduct = ({
 }) => {
   const navigation = useNavigation();
   return (
-    <View style={styles.card} className="rounded-xl">
+    <View style={styles.card} className="rounded-xl bg-slate-300">
       <Pressable onPress={() => navigation.navigate('Collection')}>
         <Image source={{ uri: imageSrc }} style={styles.cardImage} />
       </Pressable>
@@ -27,14 +27,13 @@ export const SpotlightProduct = ({
         </Text>
         <Text
           style={[
-            smallCaptionTextGray,
             {
-              color: colors.primaryDark,
               marginBottom: 5,
               fontSize: getFontSize(17),
               letterSpacing: -0.2,
             },
           ]}
+          className="rounded-xl text-slate-800 font-semibold text-sm"
         >
           The color-changing LEDs react to the music you are listening to and
           create a colorful and entertaining atmosphere.
@@ -69,15 +68,17 @@ export const SpotlightProduct = ({
         </View>
         <View style={styles.demoButtonsContainer}>
           <SecondarySubmitButton
-            className={`rounded-lg px-8 py-2.5 items-center mt-2 mb-2 border-slate-700 border-solid border-2`}
+            className={`rounded-lg px-8 py-2.5 items-center mt-2 mb-2 border-slate-900`}
             text="More details"
             textClassName="text-slate-700 text-[16px] font-semibold opacity-[.8]"
+            onPress={() => navigation.navigate('Product')}
           />
           <SubmitButton
             text="Add to card"
             className={
               'bg-slate-800 text-gray-800 rounded-lg px-8 py-3 items-center mt-2 mb-2'
             }
+            onPress={() => navigation.navigate('Product')}
           />
         </View>
       </View>

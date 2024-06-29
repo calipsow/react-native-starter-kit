@@ -24,7 +24,7 @@ import {
   mediumHeadlineText,
   screenPadding,
 } from '../styles/partials';
-import { AccountMeta } from './AccountMetaLoader';
+import { AccountMeta } from '../modules/pages/AccountMetaLoader';
 import getFontSize from '../helpers/resolve-relative-font-size';
 
 const ContentPost = ({ poster = '', description, title }) => {

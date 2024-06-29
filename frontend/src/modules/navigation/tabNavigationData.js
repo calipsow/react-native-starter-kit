@@ -42,8 +42,8 @@ const tabNavigationData = [
     component: BlogStackNavigator,
     icon: focused => (
       <MaterialIcons
-        name="library-books"
-        size={getFontSize(31)}
+        name="travel-explore"
+        size={getFontSize(35)}
         style={{ padding: getFontSize(4), zIndex: 999 }}
         color={focused ? colors.bluish : colors.primaryDark}
       />

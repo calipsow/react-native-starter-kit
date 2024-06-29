@@ -42,7 +42,7 @@ export const TextPost = ({ post = posts[0] }) => {
         </TouchableOpacity>
       </View>
       <Text className="text-white text-lg mt-4">{post.content}</Text>
-      <View className="flex-row justify-between mt-4">
+      <View className="flex-row justify-start mt-4" style={{ columnGap: 16 }}>
         <Text className="text-gray-400">❤️ {post.likes}</Text>
         <Text className="text-gray-400">🔁 {post.shares}</Text>
         <Text className="text-gray-400">💬 {post.comments}</Text>

@@ -13,9 +13,10 @@ import {
 import useSignIn from '../../../hooks/auth/use-login-user';
 import { ModalContext } from '../../provider/ModalProvider';
 import { EMAIL_REG } from '../../../constants/constants';
+import { useToastNotify } from '../../../hooks/screen/use-toast-notification';
 
 export default function SignIn() {
-  const { showModalAlert } = useContext(ModalContext);
+  const { showToastNotification } = useToastNotify();
   const navigation = useNavigation();
   const [formData, setFormData] = useState({ password: '', email: '' });
   const [formErrors, setFormErrors] = useState({});
@@ -49,10 +50,11 @@ export default function SignIn() {
       console.log(formData);
       signIn(formData);
     } else {
-      showModalAlert(
-        'Please check your entries',
-        Object.values(formErrors).join('\n'),
-      );
+      showToastNotification({
+        msg:
+          'Please check your entries ' +
+          `\n${Object.values(formErrors).join('\n')}`,
+      });
     }
   };
 
@@ -90,7 +92,6 @@ export default function SignIn() {
         <LinkText screen="Reset Password" />
         <FormSubmitButton
           loading={loading}
-          disabled={!(EMAIL_REG.test(formData.email) && formData.password)}
           handleSubmit={handleSubmit}
           title="Log In"
         />

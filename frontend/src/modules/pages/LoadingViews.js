@@ -1,5 +1,5 @@
 import { ActivityIndicator } from 'react-native-paper';
-import ScreenWrapper from '../layouts/ScreenWrapper';
+import ScreenWrapper from './ScreenWrapper';
 import { colors } from '../../styles';
 import React from 'react';
 import { smallCaptionTextGray } from '../../styles/partials';
