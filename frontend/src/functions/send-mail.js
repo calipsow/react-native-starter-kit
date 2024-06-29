@@ -7,7 +7,6 @@ const sendMail = async ({ recipient, subject, body, cc, bcc }) => {
     const encodedCc = cc ? encodeURIComponent(cc) : '';
     const encodedBcc = bcc ? encodeURIComponent(bcc) : '';
 
-    // Erstellen des mailto:-Links mit allen Parametern
     const mailtoLink = `mailto:${recipient}?subject=${encodedSubject}&body=${encodedBody}${
       encodedCc ? `&cc=${encodedCc}` : ''
     }${encodedBcc ? `&bcc=${encodedBcc}` : ''}`;
