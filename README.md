@@ -1,4 +1,4 @@
-![Ship Native Apps Faster](https://raw.githubusercontent.com/calipsow/ship-native-apps-faster/main/frontend/assets/images/shipnative/logo/Upscaled_2085.PNG)
+![Ship Native Apps Faster](https://cdn.shopify.com/s/files/1/0655/5087/6900/files/Unbenannt.jpg?v=1723153875)
 
 **Ship on mobile in days, not months!** This repository provides a streamlined solution for rapidly developing and deploying native mobile applications. Whether you're working on a personal project or delivering enterprise solutions, this toolkit helps you accelerate the development process.
 
