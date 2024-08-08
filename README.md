@@ -1,10 +1,17 @@
-# Ship Native
-
+# Ship Native Apps Fast
 Ship on mobile in days not months!
 
-### **[Get Started](/documentations/Get_Started.md)**
+## Support
 
-## App Festures
+If you find this project helpful or just want to show your appreciation, consider buying me a coffee! Your support helps me to keep maintaining and improving this project.
+
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-%23FFDD00.svg?&style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/calipsow?new=1)
+
+You can reach my Buy Me a Coffee page [here](https://buymeacoffee.com/calipsow?new=1). Thank you for your support!
+
+## **[Jump right into getting started](/documentations/Get_Started.md)**
+
+## Prewritten Features
 
 **Functionalities**
 
@@ -31,27 +38,20 @@ Ship on mobile in days not months!
 - Building App Release iOS / Android
 - Submitting App to Stores
 
-## Premium Pack
-
-### Authentication Based
-
---
-
 ## **UI**
 
-- All Auth Screens
-- User Profile
-- Home Content Feed UI
-- Forms
-- Settings
-- Loading, Status, Preview Screens
-- All Components
-- E-Commerce Pages
-- Calendar
+- Auth Screens ✅
+- User Profile ✅
+- Home Content Feed UI ✅
+- Forms ✅
+- Settings ✅
+- Loading, Status, Preview Screens ✅
+- UI/UX Components ✅
+- E-Commerce Components ✅
+- Calendar ✅
 
 **Features**
 
--
 - Deeplinking Handling (complete set)
 - Push Notification Logic
 - Complete Auth Logic
