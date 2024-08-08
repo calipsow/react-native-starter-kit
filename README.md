@@ -11,62 +11,46 @@ You can reach my Buy Me a Coffee page [here](https://buymeacoffee.com/calipsow?n
 
 ## **[Jump right into getting started](/documentations/Get_Started.md)**
 
-## Prewritten Features
+## Key Features
 
-**Functionalities**
+### Firebase Setup and Integration
+- Comprehensive Firebase setup including Storage, Analytics, Firestore, and Authentication.
+- Seamless integration with Firebase Authentication for managing user accounts.
 
-- Firebase Setup: Storage, Analytics, Firestore, Authentication
-- Authentication Based App Access: Account-Context
-- Deeplink Config
-- Deeplink Logic / Handler
-- Push Notification Setup iOS / Android
-- App Navigation Setup
-- Template Pages: User-Account, Settings, Home, Feed, Search, Legal, Auth, Blogs, Newsletter
-- Additional UI: Toast, Components: FBImage, Buttons etc.
-- Hooks: Firestore Hooks, Notifications, Deeplink, Auth, Sharing, Analytics
-- Functions: helper, async-firestore, compress-image
+### Deep Linking and Notifications
+- Efficient configuration of deep links and push notifications for both iOS and Android platforms.
 
-**Firebase-Functions**
+### Modular Firebase Functions
+- Pre-configured Firebase Functions for handling notifications and other backend tasks.
 
-- Push-Notification Modules
+### Rich UI and User Experience
+- Includes templates for user accounts, settings, home pages, feeds, and more.
+- Supports advanced UI elements like toast notifications, FBImage components, buttons, and more.
 
-**Documentations**
+### Documentation and Support
+- Detailed documentation on how to set up and use the provided features.
+- Step-by-step guides for integrating Firebase and setting up notifications.
 
-- Setup Push Notifications
-- Inline Documentation: Hook, Function, Modules
-- Run via Emulator, Run on Device
-- Building App Release iOS / Android
-- Submitting App to Stores
+### Additional Utilities
+- Hooks for handling Firestore, authentication, and deep linking.
+- Helper functions for image compression and asynchronous tasks.
 
-## **UI**
+## Getting Started
 
-- Auth Screens ✅
-- User Profile ✅
-- Home Content Feed UI ✅
-- Forms ✅
-- Settings ✅
-- Loading, Status, Preview Screens ✅
-- UI/UX Components ✅
-- E-Commerce Components ✅
-- Calendar ✅
+Jump right into building and shipping your native app by following our [Getting Started Guide](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
 
-**Features**
+## Prewritten Features Overview
+- Firebase setup and functions
+- Push notification modules
+- UI Components with comprehensive features
+- Deep linking and routing with ease
+- Ready-to-use templates for various screens and functionalities
 
-- Deeplinking Handling (complete set)
-- Push Notification Logic
-- Complete Auth Logic
-- Navigation Logic
-- Firebase Functions (full set)
-- Hooks (Auth related full)
-- Helper (full set)
-- Network Features
-- React Redux (Ready to use Setup)
-- Firestore DB Hooks (full set)
-- Authentication Hooks (full set)
-- Google Analytics Setup
+## User Interface Elements
+- Fully customizable screens including Home, Profile, and more.
+- Pre-built components for E-Commerce, Calendars, and other advanced features.
 
-## **Documentations**
-
-- Setup Google Firebase
-- App Introduction
-- Setting up Notifications for ios / android
+## Advanced Features
+- Deep linking and authentication handling.
+- Complete navigation logic and hooks for seamless user experience.
+- Ready-to-use Firebase Functions for handling backend processes.
