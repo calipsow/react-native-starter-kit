@@ -37,7 +37,7 @@ You can reach my Buy Me a Coffee page [here](https://buymeacoffee.com/calipsow?n
 ## Getting Started
 
 Jump right into building and shipping your native app by following our [Getting Started Guide](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
-*Some inline comments remaining in german, you can issue this following the guidelines*
+***Some inline comments remaining in german, you can issue this following the guidelines***
 
 ## Prewritten Features Overview
 - Firebase setup and functions
