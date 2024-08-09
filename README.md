@@ -10,6 +10,11 @@ If you find this project helpful or just want to show your appreciation, conside
 
 You can reach my Buy Me a Coffee page [here](https://buymeacoffee.com/calipsow?new=1). Thank you for your support!
 
+## Get Started
+
+Jump right into building and shipping your native app by following our [Getting Started Guide](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
+***Some inline comments remaining in german, you can issue this following the guidelines***
+
 ## Key Features
 
 ### Firebase Setup and Integration
@@ -33,11 +38,6 @@ You can reach my Buy Me a Coffee page [here](https://buymeacoffee.com/calipsow?n
 ### Additional Utilities
 - Hooks for handling Firestore, authentication, and deep linking.
 - Helper functions for image compression and asynchronous tasks.
-
-## Getting Started
-
-Jump right into building and shipping your native app by following our [Getting Started Guide](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
-***Some inline comments remaining in german, you can issue this following the guidelines***
 
 ## Prewritten Features Overview
 - Firebase setup and functions
