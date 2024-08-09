@@ -1,0 +1,116 @@
+# Add 'root' label to any root file changes
+# Quotation marks are required for the leading asterisk
+root:
+  - changed-files:
+      - any-glob-to-any-file: "*"
+
+# Add 'Documentation' label to any file changes within 'docs' folder
+Documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          [
+            "documentations/*",
+            "documentations/**/*",
+            "documentations/**/**/*",
+            "documentations/**/**/**/*",
+          ]
+
+# Add 'Documentation' label to any change to .md files within the entire repository
+Policies:
+  - changed-files:
+      - any-glob-to-any-file: "*.md"
+
+# Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
+source:
+  - all:
+      - changed-files:
+          - any-glob-to-any-file:
+              [
+                "frontend/src/*",
+                "frontend/src/**/*",
+                "frontend/src/**/**/*",
+                "frontend/src/**/**/**/*",
+                "frontend/src/**/**/**/**/*",
+                "frontend/src/**/**/**/**/**/*",
+                "frontend/src/**/**/**/**/**/**/*",
+                "frontend/src/**/**/**/**/**/**/**/*",
+                "frontend/src/**/**/**/**/**/**/**/**/*",
+                "frontend/src/**/**/**/**/**/**/**/**/**/*",
+                "frontend/src",
+              ]
+          - all-globs-to-all-files: "!documentations/*"
+
+backend:
+  - all:
+      - changed-files:
+          - any-glob-to-any-file:
+              [
+                "firebase-functions/functions/*",
+                "firebase-functions/functions/**/*",
+                "firebase-functions/functions/**/**/*",
+                "firebase-functions/functions/**/**/**/*",
+                "firebase-functions/functions/**/**/**/**/*",
+                "firebase-functions/functions/**/**/**/**/**/*",
+                "firebase-functions/functions/**/**/**/**/**/**/*",
+                "firebase-functions/functions/**/**/**/**/**/**/**/*",
+                "firebase-functions/functions/**/**/**/**/**/**/**/**/*",
+                "firebase-functions/functions/**/**/**/**/**/**/**/**/**/*",
+                "firebase-functions/functions",
+              ]
+
+android:
+  - all:
+      - changed-files:
+          - any-glob-to-any-file:
+              [
+                "frontend/android/*",
+                "frontend/android/**/*",
+                "frontend/android/**/**/*",
+                "frontend/android/**/**/**/*",
+                "frontend/android/**/**/**/**/*",
+                "frontend/android/**/**/**/**/**/*",
+                "frontend/android/**/**/**/**/**/**/*",
+                "frontend/android/**/**/**/**/**/**/**/*",
+                "frontend/android/**/**/**/**/**/**/**/**/*",
+                "frontend/android/**/**/**/**/**/**/**/**/**/*",
+                "frontend/android",
+              ]
+
+ios:
+  - all:
+      - changed-files:
+          - any-glob-to-any-file:
+              [
+                "frontend/ios/*",
+                "frontend/ios/**/*",
+                "frontend/ios/**/**/*",
+                "frontend/ios/**/**/**/*",
+                "frontend/ios/**/**/**/**/*",
+                "frontend/ios/**/**/**/**/**/*",
+                "frontend/ios/**/**/**/**/**/**/*",
+                "frontend/ios/**/**/**/**/**/**/**/*",
+                "frontend/ios/**/**/**/**/**/**/**/**/*",
+                "frontend/ios/**/**/**/**/**/**/**/**/**/*",
+                "frontend/ios",
+              ]
+
+package:
+  - all:
+      - changed-files:
+          - any-glob-to-any-file:
+              ["package.json", "package-lock.json", "yarn.lock"]
+
+eslint:
+  - all:
+      - changed-files:
+          - any-glob-to-any-file:
+              [
+                "frontend/.eslintrc.js",
+                "frontend/.eslintrc.json",
+                "frontend/.eslintrc.yaml",
+                "frontend/.eslintrc.yml",
+              ]
+
+    # Add 'release' label to any PR that is opened against the `main` branch
+release:
+  - base-branch: "main"
