@@ -60,7 +60,7 @@ You represent and warrant that You are not located in a country that is subject 
 
 11. CONTACT INFORMATION
 
-For general inquiries, complaints, questions or claims concerning the Licensed Application, please contact:       Rainer Budach info@zusammen-stehen-wir.de
+For general inquiries, complaints, questions or claims concerning the Licensed Application, please contact: Dennis Wilke development@callipson.com
 
 12. TERMINATION
 
