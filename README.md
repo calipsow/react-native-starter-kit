@@ -1,4 +1,4 @@
-![Ship Native Apps Faster](https://cdn.shopify.com/s/files/1/0655/5087/6900/files/Unbenannt.jpg?v=1723153875)
+![Ship Native Apps Faster](https://cdn.shopify.com/s/files/1/0655/5087/6900/files/Unbenannt.png?v=1723165554)
 
 **Ship on mobile in days, not months!** This repository provides a streamlined solution for rapidly developing and deploying native mobile applications. Whether you're working on a personal project or delivering enterprise solutions, this toolkit helps you accelerate the development process.
 
