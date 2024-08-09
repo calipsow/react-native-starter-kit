@@ -1,6 +1,8 @@
+<div align="center">
+  
 ![Ship Native Apps Faster](https://cdn.shopify.com/s/files/1/0655/5087/6900/files/extended-ship-native-cove.png?v=1723165898)
 
-**Ship on mobile in days, not months!** This repository provides a streamlined solution for rapidly developing and deploying native mobile applications. Whether you're working on a personal project or delivering enterprise solutions, this toolkit helps you accelerate the development process.
+
 
 ![GitHub license](https://img.shields.io/github/license/calipsow/react-native-starter-kit)
 ![GitHub issues](https://img.shields.io/github/issues/calipsow/react-native-starter-kit)
@@ -15,6 +17,12 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/calipsow/react-native-starter-kit)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/calipsow/react-native-starter-kit)
 ![GitHub discussions](https://img.shields.io/github/discussions/calipsow/react-native-starter-kit)
+
+
+
+**Ship on mobile in days, not months!** This repository provides a streamlined solution for rapidly developing and deploying native mobile applications. Whether you're working on a personal project or delivering enterprise solutions, this toolkit helps you accelerate the development process.
+
+</div>
 
 ## Support This Project.
 
