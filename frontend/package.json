@@ -75,7 +75,7 @@
     "react-native-modal": "^9.0.0",
     "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-modal-dropdown": "1.0.2",
-    "react-native-paper": "^3.1.1",
+    "react-native-paper": "^5.12.5",
     "react-native-popup-menu": "^0.16.1",
     "react-native-push-notification": "^8.1.1",
     "react-native-raw-bottom-sheet": "^3.0.0",
