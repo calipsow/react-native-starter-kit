@@ -10,8 +10,7 @@
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/calipsow/react-native-starter-kit)
 ![GitHub discussions](https://img.shields.io/github/discussions/calipsow/react-native-starter-kit)
 
-**Ship Apps in Days ✅**
-**Not Months ❌**
+# **Ship Apps in Days ✅ Not Months ❌**
 
 </div>
 
