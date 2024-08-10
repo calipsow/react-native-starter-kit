@@ -40,7 +40,7 @@ export const SuccessMessage = ({
         bgColor={colors.lightBlue}
         textColor={colors.white}
         bordered
-        caption="Zum Newsletter"
+        caption="Newsletter"
       />
     )}
     {typeof onPressReset === 'function' && (
