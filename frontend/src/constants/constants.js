@@ -301,10 +301,10 @@ export const sampleArticleData = [
 ];
 
 export const sampleBannerData = {
-  external_link: 'https://development.callipson.com',
-  title: 'Read the docs',
+  external_link: 'https://www.callipson.com',
+  title: 'About Us',
   content:
-    'To get the best experience please read the docs or explore the large set of utilities!',
+    'Discover who we are and what we do!',
   image:
     'https://images.unsplash.com/photo-1718486463454-a29ee090f0c5?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
 };
