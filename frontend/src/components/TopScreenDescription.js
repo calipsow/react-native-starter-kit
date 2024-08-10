@@ -12,11 +12,11 @@ import getFontSize from '../helpers/resolve-relative-font-size';
 
 export const TopBarMenu = ({
   navigation,
-  title = 'Nächste Events',
-  navigationRoute = 'Suche',
+  title = 'Next',
+  navigationRoute = 'Search',
   navigationParams = {},
-  actionButtonText = 'Suche',
-  actionButtonIcon,
+  actionButtonText = 'Search',
+  actionButtonIcon = null,
   hideActionButton = false,
 }) => {
   return (
