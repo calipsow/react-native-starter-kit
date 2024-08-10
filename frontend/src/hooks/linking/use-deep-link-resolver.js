@@ -69,6 +69,7 @@ const useDeepLinkResolver = accountCtx => {
 
     console.log('Navigating to unresolved deep link:', route);
     // Navigate based on the route
+    // TODO: Create an global object which key value pairs the short name of the route and the values screenname, params as object 
     switch (route) {
       case 'event':
         navigation.navigate('Single Event', { event_id: params });
