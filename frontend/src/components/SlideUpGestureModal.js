@@ -11,7 +11,7 @@ import getFontSize from '../helpers/resolve-relative-font-size';
 
 const { height } = Dimensions.get('window'); // Bildschirmhöhe
 
-// SlideUpComponent-Komponente
+// SlideUp Component (you can use slide up screen as component from react-navigation which can setup using the open animation slide
 const SlideUpComponent = ({
   isVisible,
   onClose,
@@ -34,7 +34,7 @@ const SlideUpComponent = ({
       toValue: height,
       duration: 300,
       useNativeDriver: true,
-    }).start(() => onClose()); // Schließen und Callback auslösen
+    }).start(() => onClose()); // Close and trigger callback
   };
 
   return (
@@ -51,7 +51,7 @@ const SlideUpComponent = ({
           {headerText || 'Dynamischer Slide-up-Screen'}
         </Text>
         <TouchableOpacity onPress={handleClose}>
-          <Text>Schließen</Text>
+          <Text>Close</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.content}>{children}</View>
@@ -59,7 +59,7 @@ const SlideUpComponent = ({
   );
 };
 
-// Beispielbildschirm zur Integration der Slide-up-Komponente
+// Example screen for integrating the slide-up component
 const ParentScreen = () => {
   const [isSlideUpVisible, setIsSlideUpVisible] = useState(false);
 
