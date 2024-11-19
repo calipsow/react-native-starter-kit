@@ -3,6 +3,13 @@
 ### You are not permitted to use this project for commercial use without an Licence signed by Callipson.
 ### Each violation against this will has be legal consequences.
 
+### This Restriction includes the commercial use as:
+- As a Starter Kit or Template as it is now or extended
+- Or any other commercial use
+
+### Whats Allowed:
+- You can use it for private and non commercial usages  
+
 
 <div align="center">
   
