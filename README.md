@@ -1,4 +1,11 @@
 <div align="center">
+## DISCLAIMER
+--- 
+### You are not permitted to use this project for commercial use without an Licence signed by Callipson.
+### Each violation against this will has be legal consequences.
+</div>
+
+<div align="center">
   
 ![Ship Native Apps Faster](.covers/extended-ship-native-cove.png)
 
