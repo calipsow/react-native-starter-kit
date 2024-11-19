@@ -10,7 +10,9 @@
 ### Whats Allowed:
 - You can use it for private and non commercial usages  
 
-
+<br>
+<br>
+<br>
 <div align="center">
   
 ![Ship Native Apps Faster](.covers/extended-ship-native-cove.png)
