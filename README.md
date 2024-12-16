@@ -1,7 +1,7 @@
  
 ## DISCLAIMER
 ### You are not permitted to use this project for commercial use without an Licence signed by Callipson.
-### Each violation against this be legal consequences.
+### Each violation against this has legal consequences.
 
 ### This Restriction includes the commercial use as:
 - As a Starter Kit or Template as it is now or extended
