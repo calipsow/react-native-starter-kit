@@ -98,7 +98,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@babel/preset-env": "^7.20.0",
+    "@babel/preset-env": "^7.26.9",
     "@babel/preset-flow": "^7.0.0",
     "@babel/runtime": "^7.20.0",
     "@octokit/core": ">=3",
