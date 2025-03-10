@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",
-    "@react-native-community/cli": "12.3.6",
+    "@react-native-community/cli": "17.0.0",
     "@react-native-community/masked-view": "^0.1.9",
     "@react-native-community/push-notification-ios": "^1.11.0",
     "@react-native-community/toolbar-android": "^0.2.1",
