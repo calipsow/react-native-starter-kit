@@ -48,7 +48,7 @@
     "date-fns": "^3.6.0",
     "expo": "^50.0.17",
     "expo-dev-client": "^3.3.11",
-    "firebase": "^9.19.0",
+    "firebase": "^11.6.0",
     "global": "^4.4.0",
     "i18n-js": "^3.2.1",
     "jetifier": "^1.6.5",
