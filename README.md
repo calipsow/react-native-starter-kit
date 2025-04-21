@@ -1,14 +1,4 @@
- 
-## DISCLAIMER
-### You are not permitted to use this project for commercial use without an Licence signed by Callipson.
-### Each violation against this has legal consequences.
-
-### This Restriction includes the commercial use as:
-- As a Starter Kit or Template as it is now or extended
-- Or any other commercial use
-
-### Whats Allowed:
-- You can use it for private and non commercial usages  
+_This Repository is outdated, im working on a rewrite in typescript using Expo instead of pure react native and better project structure_
 
 <br>
 <br>
