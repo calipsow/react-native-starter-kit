@@ -1,4 +1,4 @@
-_This Repository is outdated, im working on a rewrite in typescript using Expo instead of pure react native and better project structure_
+_This Repository is outdated, im working on a rewrite in typescript using Expo instead of pure react native_
 
 <br>
 <br>
