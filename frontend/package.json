@@ -61,7 +61,7 @@
     "react-native-calendars": "1.1299.0",
     "react-native-circular-chart": "^1.0.9",
     "react-native-date-picker": "^5.0.0",
-    "react-native-device-info": "^10.13.2",
+    "react-native-device-info": "^14.1.1",
     "react-native-email": "^2.1.0",
     "react-native-encrypted-storage": "^4.0.3",
     "react-native-fs": "^2.20.0",
