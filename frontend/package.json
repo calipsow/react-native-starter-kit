@@ -47,7 +47,7 @@
     "@react-navigation/stack": "^5.2.10",
     "date-fns": "^3.6.0",
     "expo": "^50.0.17",
-    "expo-dev-client": "^3.3.11",
+    "expo-dev-client": "^6.0.16",
     "firebase": "^9.19.0",
     "global": "^4.4.0",
     "i18n-js": "^3.2.1",
