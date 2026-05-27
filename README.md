@@ -22,7 +22,7 @@ If you find this project helpful or just want to show your appreciation, conside
 
 ## Get Started
 
-Jump right into building and shipping your native app by following our [**Getting Started**](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
+Jump right into building and shipping your native app by following our [**Get Started**](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
 
 ## Key Features
 
