@@ -1,12 +1,12 @@
 <div align="center">
   
-![Ship Native Apps Faster](.covers/extended-ship-native-cove.png)
-
 ![GitHub top language](https://img.shields.io/github/languages/top/calipsow/react-native-starter-kit)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/calipsow/react-native-starter-kit)
 ![GitHub discussions](https://img.shields.io/github/discussions/calipsow/react-native-starter-kit)
 
 # **Ship Apps in Days ✅ Not Months ❌**
+
+![Ship Native Apps Faster](.covers/extended-ship-native-cove.png)
 
 </div>
 
@@ -22,8 +22,7 @@ If you find this project helpful or just want to show your appreciation, conside
 
 ## Get Started
 
-Jump right into building and shipping your native app by following our [Getting Started Guide](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
-**_Some inline comments remaining in german, you can issue this following the guidelines_**
+Jump right into building and shipping your native app by following our [**Getting Started**](./documentations/Get_Started.md). This guide will walk you through the initial setup and get you up and running in no time.
 
 ## Key Features
 
