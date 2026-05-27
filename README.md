@@ -7,6 +7,7 @@
 ![Ship Native Apps Faster](.covers/extended-ship-native-cove.png)
 
 </div>
+
 ## **Ship Apps in Days ✅ Not Months ❌**
 
 This repository provides a streamlined solution for rapidly developing and deploying native mobile applications.
