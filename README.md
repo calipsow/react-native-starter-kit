@@ -16,7 +16,7 @@ Whether you're working on a personal project or delivering enterprise solutions,
 
 ## Support this Project.
 
-If you find this project helpful or just want to show your appreciation, consider buying me a coffee! Your support helps me to keep maintaining and improving this project. **You can reach my Buy Me a Coffee page [here](https://buymeacoffee.com/calipsow). Thank you for your support!**
+If you find this project helpful or just want to show your appreciation, consider buying me a coffee! Your support helps me to keep maintaining and improving this project. **[Buy Me A Coffee](https://buymeacoffee.com/calipsow). Thank you for your support!**
 
 [![Buy Me a Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/calipsow)
 
