@@ -4,11 +4,10 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/calipsow/react-native-starter-kit)
 ![GitHub discussions](https://img.shields.io/github/discussions/calipsow/react-native-starter-kit)
 
-# **Ship Apps in Days ✅ Not Months ❌**
-
 ![Ship Native Apps Faster](.covers/extended-ship-native-cove.png)
 
 </div>
+## **Ship Apps in Days ✅ Not Months ❌**
 
 This repository provides a streamlined solution for rapidly developing and deploying native mobile applications.
 
