@@ -2,12 +2,8 @@
   
 ![Ship Native Apps Faster](.covers/extended-ship-native-cove.png)
 
-# ![GitHub top language](https://img.shields.io/github/languages/top/calipsow/react-native-starter-kit)
-
-![GitHub issues](https://img.shields.io/github/issues/calipsow/react-native-starter-kit)
-![GitHub last commit](https://img.shields.io/github/last-commit/calipsow/react-native-starter-kit)
+![GitHub top language](https://img.shields.io/github/languages/top/calipsow/react-native-starter-kit)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/calipsow/react-native-starter-kit)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/calipsow/react-native-starter-kit)
 ![GitHub discussions](https://img.shields.io/github/discussions/calipsow/react-native-starter-kit)
 
 # **Ship Apps in Days ✅ Not Months ❌**
